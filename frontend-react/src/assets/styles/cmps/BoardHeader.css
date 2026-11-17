@@ -1,0 +1,28 @@
+.board-header {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem 1.5rem 0;
+
+    .title-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .board-title {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    .view-tabs {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .toolbar {
+        display: flex;
+        gap: .5rem;
+        min-height: 2rem;
+    }
+}
