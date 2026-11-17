@@ -1,3 +1,23 @@
-.main-container > main {
-    min-height: calc(100vh - 9rem);
+.app-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+    height: 100vh;
+
+    > .app-header {
+        grid-area: header;
+    }
+
+    > .side-bar {
+        grid-area: sidebar;
+        width: 16rem;
+    }
+
+    > .app-main {
+        grid-area: main;
+        overflow: auto;
+    }
 }
