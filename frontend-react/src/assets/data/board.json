@@ -1,0 +1,973 @@
+[
+  {
+    "_id": "b101",
+    "title": "Product Development",
+    "isStarred": true,
+    "archivedAt": null,
+    "createdBy": {
+      "_id": "u101",
+      "fullname": "Tal Tarablus",
+      "imgUrl": "https://i.pravatar.cc/150?img=12"
+    },
+    "style": {
+      "backgroundImage": ""
+    },
+    "labels": [
+      {
+        "id": "l101",
+        "title": "Bug",
+        "color": "#e2445c"
+      },
+      {
+        "id": "l102",
+        "title": "Feature",
+        "color": "#579bfc"
+      },
+      {
+        "id": "l103",
+        "title": "Improvement",
+        "color": "#a25ddc"
+      },
+      {
+        "id": "l104",
+        "title": "Research",
+        "color": "#ffcb00"
+      }
+    ],
+    "members": [
+      {
+        "_id": "u101",
+        "fullname": "Tal Tarablus",
+        "imgUrl": "https://i.pravatar.cc/150?img=12"
+      },
+      {
+        "_id": "u102",
+        "fullname": "Josh Green",
+        "imgUrl": "https://i.pravatar.cc/150?img=11"
+      },
+      {
+        "_id": "u103",
+        "fullname": "Sarah Miller",
+        "imgUrl": "https://i.pravatar.cc/150?img=47"
+      },
+      {
+        "_id": "u104",
+        "fullname": "Daniel Cohen",
+        "imgUrl": "https://i.pravatar.cc/150?img=13"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g101",
+        "title": "Sprint 1",
+        "archivedAt": null,
+        "style": {
+          "color": "#579bfc"
+        },
+        "tasks": [
+          {
+            "id": "c101",
+            "title": "Set up project architecture",
+            "status": "done",
+            "priority": "high",
+            "dueDate": "2026-11-10",
+            "description": "Define the frontend and backend architecture, project structure and coding conventions.",
+            "memberIds": [
+              "u101",
+              "u102"
+            ],
+            "labelIds": [
+              "l102"
+            ],
+            "byMember": {
+              "_id": "u101",
+              "fullname": "Tal Tarablus",
+              "imgUrl": "https://i.pravatar.cc/150?img=12"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c102",
+            "title": "Implement user authentication",
+            "status": "done",
+            "priority": "high",
+            "dueDate": "2026-11-12",
+            "description": "Implement login, signup, logout and session persistence.",
+            "memberIds": [
+              "u102"
+            ],
+            "labelIds": [
+              "l102"
+            ],
+            "byMember": {
+              "_id": "u102",
+              "fullname": "Josh Green",
+              "imgUrl": "https://i.pravatar.cc/150?img=11"
+            },
+            "comments": [
+              {
+                "id": "cm101",
+                "title": "Authentication flow is working. Moving to review.",
+                "createdAt": 1794470400000,
+                "byMember": {
+                  "_id": "u102",
+                  "fullname": "Josh Green",
+                  "imgUrl": "https://i.pravatar.cc/150?img=11"
+                }
+              }
+            ],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c103",
+            "title": "Create database models",
+            "status": "done",
+            "priority": "medium",
+            "dueDate": "2026-11-13",
+            "description": "Create schemas for users, boards, groups and tasks.",
+            "memberIds": [
+              "u104"
+            ],
+            "labelIds": [
+              "l102"
+            ],
+            "byMember": {
+              "_id": "u101",
+              "fullname": "Tal Tarablus",
+              "imgUrl": "https://i.pravatar.cc/150?img=12"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          }
+        ]
+      },
+      {
+        "id": "g102",
+        "title": "Sprint 2",
+        "archivedAt": null,
+        "style": {
+          "color": "#00c875"
+        },
+        "tasks": [
+          {
+            "id": "c104",
+            "title": "Build board management UI",
+            "status": "inProgress",
+            "priority": "high",
+            "dueDate": "2026-11-20",
+            "description": "Allow users to create, rename, duplicate and delete boards.",
+            "memberIds": [
+              "u101",
+              "u103"
+            ],
+            "labelIds": [
+              "l102"
+            ],
+            "byMember": {
+              "_id": "u101",
+              "fullname": "Tal Tarablus",
+              "imgUrl": "https://i.pravatar.cc/150?img=12"
+            },
+            "comments": [
+              {
+                "id": "cm102",
+                "title": "The board creation modal is ready. Need to finish the duplication flow.",
+                "createdAt": 1794870000000,
+                "byMember": {
+                  "_id": "u103",
+                  "fullname": "Sarah Miller",
+                  "imgUrl": "https://i.pravatar.cc/150?img=47"
+                }
+              }
+            ],
+            "checklists": [
+              {
+                "id": "cl101",
+                "title": "Implementation",
+                "todos": [
+                  {
+                    "id": "td101",
+                    "title": "Create board modal",
+                    "isDone": true
+                  },
+                  {
+                    "id": "td102",
+                    "title": "Implement board duplication",
+                    "isDone": false
+                  },
+                  {
+                    "id": "td103",
+                    "title": "Add board deletion confirmation",
+                    "isDone": false
+                  }
+                ]
+              }
+            ],
+            "style": {}
+          },
+          {
+            "id": "c105",
+            "title": "Implement drag and drop",
+            "status": "inProgress",
+            "priority": "high",
+            "dueDate": "2026-11-22",
+            "description": "Support reordering groups and moving tasks between groups.",
+            "memberIds": [
+              "u102",
+              "u104"
+            ],
+            "labelIds": [
+              "l102",
+              "l103"
+            ],
+            "byMember": {
+              "_id": "u102",
+              "fullname": "Josh Green",
+              "imgUrl": "https://i.pravatar.cc/150?img=11"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c106",
+            "title": "Fix task duplication bug",
+            "status": "stuck",
+            "priority": "critical",
+            "dueDate": "2026-11-18",
+            "description": "Duplicated tasks sometimes inherit incorrect member assignments.",
+            "memberIds": [
+              "u104"
+            ],
+            "labelIds": [
+              "l101"
+            ],
+            "byMember": {
+              "_id": "u104",
+              "fullname": "Daniel Cohen",
+              "imgUrl": "https://i.pravatar.cc/150?img=13"
+            },
+            "comments": [
+              {
+                "id": "cm103",
+                "title": "Reproduced this issue. Looks like the memberIds array is being shared.",
+                "createdAt": 1794956400000,
+                "byMember": {
+                  "_id": "u104",
+                  "fullname": "Daniel Cohen",
+                  "imgUrl": "https://i.pravatar.cc/150?img=13"
+                }
+              }
+            ],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c107",
+            "title": "Add real-time board updates",
+            "status": "workingOnIt",
+            "priority": "medium",
+            "dueDate": "2026-11-25",
+            "description": "Use Socket.IO to synchronize board changes between connected users.",
+            "memberIds": [
+              "u102"
+            ],
+            "labelIds": [
+              "l102",
+              "l104"
+            ],
+            "byMember": {
+              "_id": "u101",
+              "fullname": "Tal Tarablus",
+              "imgUrl": "https://i.pravatar.cc/150?img=12"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          }
+        ]
+      },
+      {
+        "id": "g103",
+        "title": "Backlog",
+        "archivedAt": null,
+        "style": {},
+        "tasks": [
+          {
+            "id": "c108",
+            "title": "Add board templates",
+            "status": "notStarted",
+            "priority": "low",
+            "dueDate": null,
+            "description": "Allow users to create boards from predefined templates.",
+            "memberIds": [
+              "u103"
+            ],
+            "labelIds": [
+              "l102"
+            ],
+            "byMember": {
+              "_id": "u101",
+              "fullname": "Tal Tarablus",
+              "imgUrl": "https://i.pravatar.cc/150?img=12"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c109",
+            "title": "Improve search functionality",
+            "status": "notStarted",
+            "priority": "medium",
+            "dueDate": null,
+            "description": "Add global search across boards and tasks.",
+            "memberIds": [],
+            "labelIds": [
+              "l103"
+            ],
+            "byMember": {
+              "_id": "u102",
+              "fullname": "Josh Green",
+              "imgUrl": "https://i.pravatar.cc/150?img=11"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          }
+        ]
+      }
+    ],
+    "activities": [
+      {
+        "id": "a101",
+        "title": "Completed authentication implementation",
+        "createdAt": 1794470400000,
+        "byMember": {
+          "_id": "u102",
+          "fullname": "Josh Green",
+          "imgUrl": "https://i.pravatar.cc/150?img=11"
+        },
+        "group": {
+          "id": "g101",
+          "title": "Sprint 1"
+        },
+        "task": {
+          "id": "c102",
+          "title": "Implement user authentication"
+        }
+      },
+      {
+        "id": "a102",
+        "title": "Changed status to Stuck",
+        "createdAt": 1794956400000,
+        "byMember": {
+          "_id": "u104",
+          "fullname": "Daniel Cohen",
+          "imgUrl": "https://i.pravatar.cc/150?img=13"
+        },
+        "group": {
+          "id": "g102",
+          "title": "Sprint 2"
+        },
+        "task": {
+          "id": "c106",
+          "title": "Fix task duplication bug"
+        }
+      }
+    ],
+    "cmpsOrder": [
+      "StatusPicker",
+      "PriorityPicker",
+      "MemberPicker",
+      "DatePicker",
+      "LabelPicker"
+    ]
+  },
+  {
+    "_id": "b102",
+    "title": "Marketing Campaign",
+    "isStarred": false,
+    "archivedAt": null,
+    "createdBy": {
+      "_id": "u103",
+      "fullname": "Sarah Miller",
+      "imgUrl": "https://i.pravatar.cc/150?img=47"
+    },
+    "style": {
+      "backgroundImage": ""
+    },
+    "labels": [
+      {
+        "id": "l201",
+        "title": "Social Media",
+        "color": "#579bfc"
+      },
+      {
+        "id": "l202",
+        "title": "Content",
+        "color": "#a25ddc"
+      },
+      {
+        "id": "l203",
+        "title": "Paid Ads",
+        "color": "#ff642e"
+      },
+      {
+        "id": "l204",
+        "title": "Urgent",
+        "color": "#e2445c"
+      }
+    ],
+    "members": [
+      {
+        "_id": "u101",
+        "fullname": "Tal Tarablus",
+        "imgUrl": "https://i.pravatar.cc/150?img=12"
+      },
+      {
+        "_id": "u103",
+        "fullname": "Sarah Miller",
+        "imgUrl": "https://i.pravatar.cc/150?img=47"
+      },
+      {
+        "_id": "u105",
+        "fullname": "Emily Davis",
+        "imgUrl": "https://i.pravatar.cc/150?img=44"
+      },
+      {
+        "_id": "u106",
+        "fullname": "Michael Scott",
+        "imgUrl": "https://i.pravatar.cc/150?img=68"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g201",
+        "title": "Campaign Planning",
+        "archivedAt": null,
+        "style": {},
+        "tasks": [
+          {
+            "id": "c201",
+            "title": "Define campaign goals",
+            "status": "done",
+            "priority": "high",
+            "dueDate": "2026-11-12",
+            "description": "Set measurable objectives for the upcoming product launch.",
+            "memberIds": [
+              "u103",
+              "u101"
+            ],
+            "labelIds": [
+              "l202"
+            ],
+            "byMember": {
+              "_id": "u103",
+              "fullname": "Sarah Miller",
+              "imgUrl": "https://i.pravatar.cc/150?img=47"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c202",
+            "title": "Research target audience",
+            "status": "done",
+            "priority": "medium",
+            "dueDate": "2026-11-14",
+            "description": "Identify audience segments and customer interests.",
+            "memberIds": [
+              "u105"
+            ],
+            "labelIds": [
+              "l202"
+            ],
+            "byMember": {
+              "_id": "u105",
+              "fullname": "Emily Davis",
+              "imgUrl": "https://i.pravatar.cc/150?img=44"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          }
+        ]
+      },
+      {
+        "id": "g202",
+        "title": "Content Production",
+        "archivedAt": null,
+        "style": {},
+        "tasks": [
+          {
+            "id": "c203",
+            "title": "Design Instagram campaign",
+            "status": "workingOnIt",
+            "priority": "high",
+            "dueDate": "2026-11-21",
+            "description": "Create a set of branded Instagram posts and stories.",
+            "memberIds": [
+              "u105",
+              "u106"
+            ],
+            "labelIds": [
+              "l201"
+            ],
+            "byMember": {
+              "_id": "u103",
+              "fullname": "Sarah Miller",
+              "imgUrl": "https://i.pravatar.cc/150?img=47"
+            },
+            "comments": [
+              {
+                "id": "cm201",
+                "title": "First draft is ready. Waiting for feedback on the color palette.",
+                "createdAt": 1794960000000,
+                "byMember": {
+                  "_id": "u105",
+                  "fullname": "Emily Davis",
+                  "imgUrl": "https://i.pravatar.cc/150?img=44"
+                }
+              }
+            ],
+            "checklists": [
+              {
+                "id": "cl201",
+                "title": "Design deliverables",
+                "todos": [
+                  {
+                    "id": "td201",
+                    "title": "Instagram post templates",
+                    "isDone": true
+                  },
+                  {
+                    "id": "td202",
+                    "title": "Instagram story templates",
+                    "isDone": false
+                  },
+                  {
+                    "id": "td203",
+                    "title": "Export final assets",
+                    "isDone": false
+                  }
+                ]
+              }
+            ],
+            "style": {}
+          },
+          {
+            "id": "c204",
+            "title": "Write product launch email",
+            "status": "inProgress",
+            "priority": "medium",
+            "dueDate": "2026-11-23",
+            "description": "Prepare the email announcement for existing customers.",
+            "memberIds": [
+              "u103"
+            ],
+            "labelIds": [
+              "l202"
+            ],
+            "byMember": {
+              "_id": "u103",
+              "fullname": "Sarah Miller",
+              "imgUrl": "https://i.pravatar.cc/150?img=47"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c205",
+            "title": "Prepare paid advertising assets",
+            "status": "notStarted",
+            "priority": "high",
+            "dueDate": "2026-11-26",
+            "description": "Prepare creatives for Google Ads and Meta campaigns.",
+            "memberIds": [
+              "u106"
+            ],
+            "labelIds": [
+              "l203",
+              "l204"
+            ],
+            "byMember": {
+              "_id": "u103",
+              "fullname": "Sarah Miller",
+              "imgUrl": "https://i.pravatar.cc/150?img=47"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          }
+        ]
+      },
+      {
+        "id": "g203",
+        "title": "Published",
+        "archivedAt": null,
+        "style": {},
+        "tasks": [
+          {
+            "id": "c206",
+            "title": "Publish teaser announcement",
+            "status": "done",
+            "priority": "medium",
+            "dueDate": "2026-11-08",
+            "description": "Publish the initial teaser across social channels.",
+            "memberIds": [
+              "u103"
+            ],
+            "labelIds": [
+              "l201"
+            ],
+            "byMember": {
+              "_id": "u103",
+              "fullname": "Sarah Miller",
+              "imgUrl": "https://i.pravatar.cc/150?img=47"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          }
+        ]
+      }
+    ],
+    "activities": [
+      {
+        "id": "a201",
+        "title": "Created a new task",
+        "createdAt": 1794870000000,
+        "byMember": {
+          "_id": "u103",
+          "fullname": "Sarah Miller",
+          "imgUrl": "https://i.pravatar.cc/150?img=47"
+        },
+        "group": {
+          "id": "g202",
+          "title": "Content Production"
+        },
+        "task": {
+          "id": "c205",
+          "title": "Prepare paid advertising assets"
+        }
+      },
+      {
+        "id": "a202",
+        "title": "Completed campaign planning",
+        "createdAt": 1794700000000,
+        "byMember": {
+          "_id": "u105",
+          "fullname": "Emily Davis",
+          "imgUrl": "https://i.pravatar.cc/150?img=44"
+        },
+        "group": {
+          "id": "g201",
+          "title": "Campaign Planning"
+        },
+        "task": {
+          "id": "c202",
+          "title": "Research target audience"
+        }
+      }
+    ],
+    "cmpsOrder": [
+      "StatusPicker",
+      "MemberPicker",
+      "DatePicker",
+      "PriorityPicker",
+      "LabelPicker"
+    ]
+  },
+  {
+    "_id": "b103",
+    "title": "Website Redesign",
+    "isStarred": false,
+    "archivedAt": null,
+    "createdBy": {
+      "_id": "u101",
+      "fullname": "Tal Tarablus",
+      "imgUrl": "https://i.pravatar.cc/150?img=12"
+    },
+    "style": {
+      "backgroundImage": ""
+    },
+    "labels": [
+      {
+        "id": "l301",
+        "title": "UX",
+        "color": "#a25ddc"
+      },
+      {
+        "id": "l302",
+        "title": "UI",
+        "color": "#579bfc"
+      },
+      {
+        "id": "l303",
+        "title": "Frontend",
+        "color": "#00c875"
+      },
+      {
+        "id": "l304",
+        "title": "Feedback",
+        "color": "#ffcb00"
+      }
+    ],
+    "members": [
+      {
+        "_id": "u101",
+        "fullname": "Tal Tarablus",
+        "imgUrl": "https://i.pravatar.cc/150?img=12"
+      },
+      {
+        "_id": "u102",
+        "fullname": "Josh Green",
+        "imgUrl": "https://i.pravatar.cc/150?img=11"
+      },
+      {
+        "_id": "u105",
+        "fullname": "Emily Davis",
+        "imgUrl": "https://i.pravatar.cc/150?img=44"
+      },
+      {
+        "_id": "u107",
+        "fullname": "Alex Morgan",
+        "imgUrl": "https://i.pravatar.cc/150?img=52"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g301",
+        "title": "Research & Discovery",
+        "archivedAt": null,
+        "style": {},
+        "tasks": [
+          {
+            "id": "c301",
+            "title": "Analyze existing website",
+            "status": "done",
+            "priority": "high",
+            "dueDate": "2026-11-09",
+            "description": "Identify usability issues and opportunities for improvement.",
+            "memberIds": [
+              "u101",
+              "u105"
+            ],
+            "labelIds": [
+              "l301"
+            ],
+            "byMember": {
+              "_id": "u101",
+              "fullname": "Tal Tarablus",
+              "imgUrl": "https://i.pravatar.cc/150?img=12"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c302",
+            "title": "Create user personas",
+            "status": "done",
+            "priority": "medium",
+            "dueDate": "2026-11-11",
+            "description": "Define the primary user personas based on research.",
+            "memberIds": [
+              "u105"
+            ],
+            "labelIds": [
+              "l301"
+            ],
+            "byMember": {
+              "_id": "u105",
+              "fullname": "Emily Davis",
+              "imgUrl": "https://i.pravatar.cc/150?img=44"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          }
+        ]
+      },
+      {
+        "id": "g302",
+        "title": "Design",
+        "archivedAt": null,
+        "style": {},
+        "tasks": [
+          {
+            "id": "c303",
+            "title": "Design homepage wireframes",
+            "status": "done",
+            "priority": "high",
+            "dueDate": "2026-11-17",
+            "description": "Create low-fidelity wireframes for desktop and mobile.",
+            "memberIds": [
+              "u105",
+              "u107"
+            ],
+            "labelIds": [
+              "l301",
+              "l302"
+            ],
+            "byMember": {
+              "_id": "u107",
+              "fullname": "Alex Morgan",
+              "imgUrl": "https://i.pravatar.cc/150?img=52"
+            },
+            "comments": [
+              {
+                "id": "cm301",
+                "title": "The mobile layout needs another iteration before approval.",
+                "createdAt": 1794870000000,
+                "byMember": {
+                  "_id": "u101",
+                  "fullname": "Tal Tarablus",
+                  "imgUrl": "https://i.pravatar.cc/150?img=12"
+                }
+              }
+            ],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c304",
+            "title": "Finalize design system",
+            "status": "inProgress",
+            "priority": "high",
+            "dueDate": "2026-11-24",
+            "description": "Define reusable components, colors, typography and spacing.",
+            "memberIds": [
+              "u105"
+            ],
+            "labelIds": [
+              "l302"
+            ],
+            "byMember": {
+              "_id": "u105",
+              "fullname": "Emily Davis",
+              "imgUrl": "https://i.pravatar.cc/150?img=44"
+            },
+            "comments": [],
+            "checklists": [
+              {
+                "id": "cl301",
+                "title": "Design system components",
+                "todos": [
+                  {
+                    "id": "td301",
+                    "title": "Typography scale",
+                    "isDone": true
+                  },
+                  {
+                    "id": "td302",
+                    "title": "Color palette",
+                    "isDone": true
+                  },
+                  {
+                    "id": "td303",
+                    "title": "Button variants",
+                    "isDone": false
+                  },
+                  {
+                    "id": "td304",
+                    "title": "Input components",
+                    "isDone": false
+                  }
+                ]
+              }
+            ],
+            "style": {}
+          }
+        ]
+      },
+      {
+        "id": "g303",
+        "title": "Development",
+        "archivedAt": null,
+        "style": {},
+        "tasks": [
+          {
+            "id": "c305",
+            "title": "Implement responsive navigation",
+            "status": "workingOnIt",
+            "priority": "high",
+            "dueDate": "2026-11-27",
+            "description": "Build the responsive header and navigation menu.",
+            "memberIds": [
+              "u102"
+            ],
+            "labelIds": [
+              "l303"
+            ],
+            "byMember": {
+              "_id": "u101",
+              "fullname": "Tal Tarablus",
+              "imgUrl": "https://i.pravatar.cc/150?img=12"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          },
+          {
+            "id": "c306",
+            "title": "Optimize homepage performance",
+            "status": "notStarted",
+            "priority": "medium",
+            "dueDate": "2026-12-02",
+            "description": "Optimize images, loading states and frontend bundle size.",
+            "memberIds": [
+              "u102",
+              "u107"
+            ],
+            "labelIds": [
+              "l303"
+            ],
+            "byMember": {
+              "_id": "u102",
+              "fullname": "Josh Green",
+              "imgUrl": "https://i.pravatar.cc/150?img=11"
+            },
+            "comments": [],
+            "checklists": [],
+            "style": {}
+          }
+        ]
+      }
+    ],
+    "activities": [
+      {
+        "id": "a301",
+        "title": "Updated design system checklist",
+        "createdAt": 1794960000000,
+        "byMember": {
+          "_id": "u105",
+          "fullname": "Emily Davis",
+          "imgUrl": "https://i.pravatar.cc/150?img=44"
+        },
+        "group": {
+          "id": "g302",
+          "title": "Design"
+        },
+        "task": {
+          "id": "c304",
+          "title": "Finalize design system"
+        }
+      }
+    ],
+    "cmpsOrder": [
+      "StatusPicker",
+      "PriorityPicker",
+      "DatePicker",
+      "MemberPicker",
+      "LabelPicker"
+    ]
+  }
+]
