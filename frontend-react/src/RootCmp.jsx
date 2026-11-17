@@ -2,30 +2,31 @@ import React from 'react'
 import { Routes, Route } from 'react-router'
 
 import { HomePage } from './pages/HomePage'
-import { AboutUs, AboutTeam, AboutVision } from './pages/AboutUs'
-import { CarIndex } from './pages/CarIndex.jsx'
-import { ReviewIndex } from './pages/ReviewIndex.jsx'
-import { ChatApp } from './pages/Chat.jsx'
-import { AdminIndex } from './pages/AdminIndex.jsx'
+// import { AboutUs, AboutTeam, AboutVision } from './pages/AboutUs'
+// import { CarIndex } from './pages/CarIndex.jsx'
+// import { ReviewIndex } from './pages/ReviewIndex.jsx'
+// import { ChatApp } from './pages/Chat.jsx'
+// import { AdminIndex } from './pages/AdminIndex.jsx'
 
-import { CarDetails } from './pages/CarDetails'
-import { UserDetails } from './pages/UserDetails'
+// import { CarDetails } from './pages/CarDetails'
+// import { UserDetails } from './pages/UserDetails'
 
-import { AppHeader } from './cmps/AppHeader'
-import { AppFooter } from './cmps/AppFooter'
-import { UserMsg } from './cmps/UserMsg.jsx'
-import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
+// import { AppHeader } from './cmps/AppHeader'
+// import { AppFooter } from './cmps/AppFooter'
+// import { UserMsg } from './cmps/UserMsg.jsx'
+// import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
 
 
 export function RootCmp() {
     return (
         <div className="main-container">
-            <AppHeader />
-            <UserMsg />
+            {/* <AppHeader />
+            <UserMsg /> */}
 
             <main>
                 <Routes>
                     <Route path="" element={<HomePage />} />
+                    {/* <Route path="" element={<HomePage />} />
                     <Route path="about" element={<AboutUs />}>
                         <Route path="team" element={<AboutTeam />} />
                         <Route path="vision" element={<AboutVision />} />
@@ -39,10 +40,10 @@ export function RootCmp() {
                     <Route path="auth" element={<LoginSignup />}>
                         <Route path="login" element={<Login />} />
                         <Route path="signup" element={<Signup />} />
-                    </Route>
+                    </Route> */}
                 </Routes>
             </main>
-            <AppFooter />
+            {/* <AppFooter /> */}
         </div>
     )
 }
