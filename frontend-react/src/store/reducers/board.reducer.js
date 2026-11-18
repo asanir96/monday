@@ -30,7 +30,9 @@ export function boardReducer(state = initialState, action) {
             break
         case UPDATE_BOARD:
             boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
-            newState = { ...state, boards }
+            // Also refresh the open board, otherwise BoardDetails keeps showing the old one
+            const board = (state.board?._id === action.board._id) ? action.board : state.board
+            newState = { ...state, boards, board }
             break
         case ADD_BOARD_MSG:
             if (action.msg && state.board) {
