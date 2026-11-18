@@ -1,0 +1,17 @@
+/* Structural styles only (positioning) - colors/shadows come with the monday values pass */
+.popover-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.popover {
+    position: absolute;
+    top: calc(100% + .25rem);
+    inset-inline-start: 0;
+    z-index: 10;
+    min-width: 14rem;
+    padding: .5rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

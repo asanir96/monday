@@ -16,6 +16,7 @@
 @import "cmps/Chat";
 
 @import "cmps/AppHeader";
+@import "cmps/Popover";
 @import "cmps/BoardHeader";
 @import "cmps/GroupList";
 @import "cmps/AppFooter";
