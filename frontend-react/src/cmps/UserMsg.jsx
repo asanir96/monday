@@ -1,6 +1,8 @@
-import { eventBus, showSuccessMsg } from '../services/event-bus.service'
+import { eventBus } from '../services/event-bus.service'
+// import { eventBus, showSuccessMsg } from '../services/event-bus.service'
 import { useState, useEffect, useRef } from 'react'
-import { socketService, SOCKET_EVENT_REVIEW_ABOUT_YOU } from '../services/socket.service'
+// Backend (socket) part - re-enable together with the backend
+// import { socketService, SOCKET_EVENT_REVIEW_ABOUT_YOU } from '../services/socket.service'
 
 export function UserMsg() {
 	const [msg, setMsg] = useState(null)
@@ -16,13 +18,13 @@ export function UserMsg() {
 			timeoutIdRef.current = setTimeout(closeMsg, 3000)
 		})
 
-		socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, review => {
-			showSuccessMsg(`New review about me ${review.txt}`)
-		})
+		// socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, review => {
+		// 	showSuccessMsg(`New review about me ${review.txt}`)
+		// })
 
 		return () => {
 			unsubscribe()
-			socketService.off(SOCKET_EVENT_REVIEW_ABOUT_YOU)
+			// socketService.off(SOCKET_EVENT_REVIEW_ABOUT_YOU)
 		}
 	}, [])
 

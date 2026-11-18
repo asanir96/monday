@@ -16,7 +16,7 @@ import { BoardDetails } from './pages/BoardDetails'
 import { AppHeader } from './cmps/AppHeader'
 // import { SideBar } from './cmps/SideBar'
 // import { AppFooter } from './cmps/AppFooter'
-// import { UserMsg } from './cmps/UserMsg.jsx'
+import { UserMsg } from './cmps/UserMsg.jsx'
 // import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
 
 
@@ -25,7 +25,7 @@ export function RootCmp() {
         <div className="app-layout">
             <AppHeader />
             {/* <SideBar /> */}
-            {/* <UserMsg /> */}
+            <UserMsg />
 
             <main className="app-main">
                 <Routes>
