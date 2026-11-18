@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { updateBoard } from '../store/actions/board.actions'
+import { updateBoardOptimistic } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 
 // Board header - title row, view tabs, toolbar
@@ -18,7 +18,7 @@ export function BoardHeader({ board }) {
         const title = titleDraft.trim()
         if (!title || title === board.title) return
         try {
-            await updateBoard({ ...board, title })
+            await updateBoardOptimistic({ ...board, title })
         } catch (err) {
             showErrorMsg('Cannot update board title')
         }
@@ -31,7 +31,7 @@ export function BoardHeader({ board }) {
 
     async function onToggleStar() {
         try {
-            await updateBoard({ ...board, isStarred: !board.isStarred })
+            await updateBoardOptimistic({ ...board, isStarred: !board.isStarred })
         } catch (err) {
             showErrorMsg('Cannot update board')
         }

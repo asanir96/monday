@@ -55,6 +55,26 @@ export async function updateBoard(board) {
     }
 }
 
+// Optimistic update: the store changes immediately, the save happens in the background.
+// If the save fails, the store goes back to the previous version and the error is rethrown.
+export async function updateBoardOptimistic(board) {
+    const { board: openBoard, boards } = store.getState().boardModule
+    const prevBoard = (openBoard?._id === board._id)
+        ? openBoard
+        : boards.find(b => b._id === board._id)
+
+    // Runs before the first await, so the screen updates in the same tick
+    store.dispatch(getCmdUpdateBoard(board))
+    try {
+        // Not dispatching the saved board: a slow response would overwrite a newer change
+        return await boardService.save(board)
+    } catch (err) {
+        console.log('Cannot save board, rolling back', err)
+        if (prevBoard) store.dispatch(getCmdUpdateBoard(prevBoard))
+        throw err
+    }
+}
+
 // Command Creators:
 function getCmdSetBoards(boards) {
     return {
