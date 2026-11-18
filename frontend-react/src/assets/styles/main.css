@@ -17,6 +17,7 @@
 
 @import "cmps/AppHeader";
 @import "cmps/BoardHeader";
+@import "cmps/GroupList";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 

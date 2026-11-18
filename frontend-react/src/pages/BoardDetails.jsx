@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { loadBoard } from '../store/actions/board.actions'
 import { BoardHeader } from '../cmps/BoardHeader'
+import { GroupList } from '../cmps/GroupList'
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -19,8 +20,7 @@ export function BoardDetails() {
         <section className="board-details">
             <BoardHeader board={board} />
 
-            {/* AH: group list goes here */}
-            <section className="group-list-placeholder">Groups</section>
+            <GroupList board={board} />
         </section>
     )
 }
