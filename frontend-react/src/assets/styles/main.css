@@ -18,6 +18,7 @@
 @import "cmps/AppHeader";
 @import "cmps/Popover";
 @import "cmps/BoardHeader";
+@import "cmps/BoardMembers";
 @import "cmps/GroupList";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";

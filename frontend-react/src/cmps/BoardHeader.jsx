@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { BoardMembers } from './BoardMembers'
 import { updateBoardOptimistic } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 
@@ -65,7 +66,7 @@ export function BoardHeader({ board }) {
                 >
                     {board.isStarred ? '★' : '☆'}
                 </button>
-                {/* members, invite, ... */}
+                <BoardMembers board={board} />
             </div>
 
             <nav className="view-tabs">
