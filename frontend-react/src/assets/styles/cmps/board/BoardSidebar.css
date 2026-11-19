@@ -5,6 +5,9 @@
     border-left-width: var(--border-width);
     border-left-style: var(--border-style);
     border-left-color: var(--ui-background-color);
+    border-right-width: var(--border-width);
+    border-right-style: var(--border-style);
+    border-right-color: var(--ui-background-color);
 }
 
 .board-list-header {
