@@ -1,4 +1,5 @@
 import { addBoard, removeBoard, updateBoardOptimistic } from "../store/actions/board.actions"
+import { boardService } from "../services/board"
 import { useNavigate } from "react-router"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"

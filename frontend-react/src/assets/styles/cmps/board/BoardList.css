@@ -1,19 +1,3 @@
-.board-table {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-columns: 1fr;
-    width: 500px;
-    border: 1px solid rgb(213, 211, 211);
-    border-radius: 10px;
-    overflow: auto;
-    margin-inline-start: 2em;
-    padding-block-end: 1em;
-    container-type: scroll-state;
-    container-name: table;
-    scrollbar-gutter: stable both-edges;
-    scrollbar-width: 0.5em;
-}
-
 .board-table-cell {
     width: 200px;
     height: 40px;
@@ -26,45 +10,6 @@
 
 .board-list li {
     /* border-block-end: solid 1px rgb(213, 211, 211) */
-}
-
-.board-table .board-list,
-.board-table .board-list li {
-    width: 100px;
-
-    display: grid;
-    grid-column: 1/4;
-    /* grid-template-rows: subgrid; */
-    grid-template-columns: subgrid;
-
-}
-
-.board-table-header {
-    display: grid;
-    grid-column: 1/4;
-    grid-template-columns: subgrid;
-    grid-template-rows: subgrid;
-    grid-row: 1;
-    border-block-end: solid 1px rgb(213, 211, 211)
-}
-
-
-.board-table-header .header-name {
-    grid-column: 1;
-}
-
-.board-table-header .header-creator {
-    grid-column: 2;
-}
-
-.board-table-header .header-date {
-    grid-column: 3;
-}
-
-@container table scroll-state(scrollable: inline-start) {
-    .sticky-col {
-        box-shadow: 3px 0 4px rgba(0, 0, 0, 0.1);
-    }
 }
 
 .boards-sidebar .board-list{

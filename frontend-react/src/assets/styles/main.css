@@ -20,6 +20,7 @@
 @import "cmps/BoardHeader";
 @import "cmps/BoardMembers";
 @import "cmps/GroupList";
+@import "cmps/BoardIndex";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 

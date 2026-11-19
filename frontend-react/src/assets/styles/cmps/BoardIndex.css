@@ -1,0 +1,114 @@
+.board-index {
+    padding: 1.5rem;
+    color: #323338;
+
+    .board-index-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 60rem;
+        margin-bottom: 1rem;
+
+        & h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+    }
+
+    .btn-new-board {
+        margin: 0;
+        padding: .45rem .9rem;
+        border-radius: 4px;
+        background-color: #0073ea;
+        color: white;
+
+        &:hover {
+            background-color: #0060b9;
+        }
+
+        &:disabled {
+            opacity: .6;
+            cursor: default;
+        }
+    }
+
+    .board-index-msg {
+        color: #676879;
+    }
+}
+
+.board-table {
+    width: 100%;
+    max-width: 60rem;
+    border-collapse: collapse;
+
+    & th,
+    & td {
+        height: 2.5rem;
+        padding: 0 .75rem;
+        border-bottom: 1px solid #e6e9ef;
+        text-align: start;
+    }
+
+    & th {
+        color: #676879;
+        font-size: .85rem;
+        font-weight: 400;
+    }
+
+    .col-count {
+        width: 5rem;
+        text-align: center;
+    }
+
+    .col-created-by {
+        width: 11rem;
+    }
+
+    .col-actions {
+        width: 10rem;
+        text-align: end;
+    }
+
+    .board-table-row:hover {
+        background-color: #f5f6f8;
+    }
+
+    .board-link {
+        font-weight: 500;
+
+        &:hover {
+            color: #0073ea;
+        }
+    }
+
+    .board-title-input {
+        width: 100%;
+        padding: 2px 4px;
+        border: 1px solid #0073ea;
+        border-radius: 4px;
+        font: inherit;
+        outline: none;
+    }
+
+    .btn-board-action {
+        margin: 0 0 0 .25rem;
+        padding: .25rem .5rem;
+        border-radius: 4px;
+        background: none;
+        color: #676879;
+        visibility: hidden;
+
+        &:hover {
+            background-color: #dcdfec;
+        }
+
+        &.danger:hover {
+            color: #d83a52;
+        }
+    }
+
+    .board-table-row:hover .btn-board-action {
+        visibility: visible;
+    }
+}
