@@ -3,7 +3,8 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { useState } from 'react'
 import { useBoardCrud } from '../customHooks/useBoardCrud';
 import { NavLink } from 'react-router-dom'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEllipsis  } from '@fortawesome/free-solid-svg-icons'
 import { useMatch } from 'react-router-dom'
 
 import { BoardPreview } from './BoardPreview'
@@ -22,6 +23,7 @@ export function BoardListItem({ board }) {
     const { onRemoveBoard, onUpdateBoard } = useBoardCrud()
 
     const handleMoreOptsClick = (event) => {
+        event.preventDefault()
         console.log('event.currentTarget', event.currentTarget)
         setDropwdownAnchorEl(event.currentTarget)
     }
@@ -80,7 +82,7 @@ export function BoardListItem({ board }) {
             }
 
             <button id="board-more-options" className="board-more-options" onClick={handleMoreOptsClick} >
-                < MoreHorizIcon sx={{fontSize:16}}/>
+                <FontAwesomeIcon icon={faEllipsis} />
             </button>
         </NavLink>
     </li>

@@ -28,7 +28,7 @@
 .boards-sidebar .board-list-item:hover,
 .boards-sidebar .board-list-item:hover *,
 .boards-sidebar .board-list-item.focus,
-.boards-sidebar .board-list-item.focus * {
+.boards-sidebar .board-list-item.focus *{
     background-color: rgb(242, 239, 239);
 }
 
@@ -59,7 +59,8 @@
 
 .boards-sidebar .board-more-options:hover,
 .boards-sidebar .board-more-options:hover>*,
-.boards-sidebar .board-list-item.focus .board-more-options {
+.boards-sidebar .board-list-item.focus .board-more-options,
+.boards-sidebar .board-list-item.focus .board-more-options>* {
     background-color: rgb(229, 226, 226);
 
 }
