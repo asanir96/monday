@@ -53,6 +53,8 @@
     border-radius: var(--border-radius-small);
     margin-inline-start: auto;
     opacity: 0;
+    height:100%;
+    margin-block:0;
 }
 
 .boards-sidebar .board-more-options:hover,
