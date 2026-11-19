@@ -1,6 +1,6 @@
 import { boardService } from '../../services/board'
 import { store } from '../store'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD } from '../reducers/board.reducer'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD, SET_IS_ADDING_BOARD } from '../reducers/board.reducer'
 
 export async function loadBoards(filterBy) {
     try {
@@ -35,12 +35,16 @@ export async function removeBoard(boardId) {
 
 export async function addBoard(board) {
     try {
+        store.dispatch(getCmdSetIsAddingBoard(true))
         const savedBoard = await boardService.save(board)
         store.dispatch(getCmdAddBoard(savedBoard))
         return savedBoard
     } catch (err) {
         console.log('Cannot add car', err)
         throw err
+    } finally {
+        store.dispatch(getCmdSetIsAddingBoard(false))
+
     }
 }
 
@@ -104,6 +108,13 @@ function getCmdUpdateBoard(board) {
     return {
         type: UPDATE_BOARD,
         board
+    }
+}
+
+function getCmdSetIsAddingBoard(state) {
+    return {
+        type: SET_IS_ADDING_BOARD,
+        isAddingBoard: state
     }
 }
 
