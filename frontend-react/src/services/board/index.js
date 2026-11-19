@@ -46,10 +46,6 @@ export function getEmptyBoard() {
 
 function getDefaultFilter() {
     return {
-        txt: '',
-        minSpeed: '',
-        sortField: '',
-        sortDir: '',
     }
 }
 
