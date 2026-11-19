@@ -79,6 +79,54 @@ export async function updateBoardOptimistic(board) {
     }
 }
 
+// ---- Group & task CRUD ----
+// All of these work on the open board (boardModule.board): build an updated copy
+// of the board and hand it to updateBoardOptimistic (instant UI, save in background, rollback on error).
+
+export function addGroup(group = boardService.getEmptyGroup()) {
+    const board = _getOpenBoard()
+    return updateBoardOptimistic({ ...board, groups: [...board.groups, group] })
+}
+
+export function updateGroup(groupToSave) {
+    const board = _getOpenBoard()
+    const groups = board.groups.map(group => group.id === groupToSave.id ? groupToSave : group)
+    return updateBoardOptimistic({ ...board, groups })
+}
+
+export function removeGroup(groupId) {
+    const board = _getOpenBoard()
+    const groups = board.groups.filter(group => group.id !== groupId)
+    return updateBoardOptimistic({ ...board, groups })
+}
+
+export function addTask(groupId, task = boardService.getEmptyTask()) {
+    return _updateGroupTasks(groupId, tasks => [...tasks, task])
+}
+
+export function updateTask(groupId, taskToSave) {
+    return _updateGroupTasks(groupId, tasks => tasks.map(task => task.id === taskToSave.id ? taskToSave : task))
+}
+
+export function removeTask(groupId, taskId) {
+    return _updateGroupTasks(groupId, tasks => tasks.filter(task => task.id !== taskId))
+}
+
+// Replaces one group's tasks array, using the given function to build the new array
+function _updateGroupTasks(groupId, updateTasks) {
+    const board = _getOpenBoard()
+    const groups = board.groups.map(group =>
+        group.id === groupId ? { ...group, tasks: updateTasks(group.tasks) } : group
+    )
+    return updateBoardOptimistic({ ...board, groups })
+}
+
+function _getOpenBoard() {
+    const board = store.getState().boardModule.board
+    if (!board) throw new Error('No board is open')
+    return board
+}
+
 // Command Creators:
 function getCmdSetBoards(boards) {
     return {

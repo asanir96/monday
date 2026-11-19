@@ -4,20 +4,126 @@
     gap: 2.5rem;
     padding: 1.5rem;
     color: #323338;
+
+    .no-groups-msg {
+        margin: 0;
+        color: #676879;
+    }
+
+    .btn-add-group {
+        align-self: flex-start;
+        margin: 0;
+        padding: .4rem .8rem;
+        border: 1px solid #c3c6d4;
+        border-radius: 4px;
+        background: none;
+
+        &:hover {
+            background-color: #f0f1f5;
+        }
+    }
+
+    /* Small icon buttons (the ⋯ menus) */
+    .btn-icon {
+        display: grid;
+        place-items: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        margin: 0;
+        padding: 0;
+        border-radius: 4px;
+        background: none;
+        color: #676879;
+
+        &:hover {
+            background-color: #dcdfec;
+        }
+    }
+
+    /* Menu content inside the shared Popover */
+    .popover {
+        min-width: 10rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+        border: none;
+        border-radius: 8px;
+    }
+
+    .menu-item {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: .4rem .6rem;
+        border-radius: 4px;
+        background: none;
+        text-align: start;
+
+        &:hover {
+            background-color: #f0f1f5;
+        }
+
+        &.danger {
+            color: #d83a52;
+        }
+    }
+}
+
+/* Click-to-edit text (InlineEdit) */
+.inline-edit {
+    display: inline-block;
+    max-width: 100%;
+    min-width: 2rem;
+    padding: 2px 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:not(.editing):hover {
+        border-color: #c3c6d4;
+    }
+
+    &.editing {
+        border-color: #0073ea;
+        outline: none;
+        font: inherit;
+        color: inherit;
+    }
+
+    .placeholder {
+        color: #9699a6;
+    }
 }
 
 .group-preview {
-    --group-color: #579bfc;
-
     .group-header {
+        display: flex;
+        align-items: center;
+        gap: .25rem;
         margin-bottom: .5rem;
         color: var(--group-color);
     }
 
+    /* The ⋯ button only shows when hovering the header (or while its menu is open) */
+    .btn-group-menu {
+        opacity: 0;
+    }
+
+    .group-header:hover .btn-group-menu,
+    .popover-wrapper:has(.popover) .btn-group-menu {
+        opacity: 1;
+    }
+
     .group-title {
-        margin: 0;
         font-size: 1.1rem;
         font-weight: 600;
+    }
+
+    .task-count {
+        margin-inline-start: .5rem;
+        color: #676879;
+        font-size: .85rem;
     }
 }
 
@@ -49,7 +155,23 @@
     .cell-status {
         width: 10rem;
         padding: 0;
+    }
+
+    .cell-actions {
+        width: 2.75rem;
+        padding: 0;
         border-inline-end: none;
+
+        .popover-wrapper {
+            display: grid;
+            place-items: center;
+        }
+
+        /* Last column - open the menu towards the left so it stays on screen */
+        .popover {
+            inset-inline-start: auto;
+            inset-inline-end: 0;
+        }
     }
 
     & thead .cell {
@@ -66,28 +188,59 @@
         border-end-start-radius: 6px;
     }
 
-    & tbody tr:hover .cell {
+    .task-preview:hover .cell:not(.cell-status) {
         background-color: #f5f6f8;
     }
 
-    & tbody .cell-owner .avatar-placeholder {
+    /* Owner avatars */
+    .avatar {
         display: inline-grid;
         place-items: center;
         width: 1.75rem;
         height: 1.75rem;
+        border: 2px solid white;
         border-radius: 50%;
+        object-fit: cover;
+        vertical-align: middle;
+    }
+
+    .avatar + .avatar {
+        margin-inline-start: -.5rem;
+    }
+
+    .avatar-placeholder,
+    .avatar-more {
         background-color: #c4c4c4;
         color: white;
         font-size: .75rem;
     }
 
+    /* Status cell: background color comes inline from the status option */
     & tbody .cell-status {
-        background-color: #c4c4c4;
         color: white;
         font-size: .85rem;
     }
 
-    & tbody tr:hover .cell-status {
-        background-color: #b5b5b5;
+    /* "+ Add item" row */
+    .add-task-row .cell {
+        border-inline-end: none;
+    }
+
+    .add-task-input {
+        width: 100%;
+        max-width: 24rem;
+        padding: 2px 4px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        font: inherit;
+
+        &:hover {
+            border-color: #c3c6d4;
+        }
+
+        &:focus {
+            border-color: #0073ea;
+            outline: none;
+        }
     }
 }

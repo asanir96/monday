@@ -1,25 +1,27 @@
+import { addGroup } from '../store/actions/board.actions'
+import { showErrorMsg } from '../services/event-bus.service'
 import { GroupPreview } from './GroupPreview'
 
-// TODO: render board.groups (static group for now)
-const groups = [
-    {
-        id: 'g101',
-        title: 'New Group',
-        style: {},
-        tasks: [
-            { id: 'c101', title: 'Item 1', memberIds: [], status: '' },
-            { id: 'c102', title: 'Item 2', memberIds: [], status: '' },
-            { id: 'c103', title: 'Item 3', memberIds: [], status: '' },
-        ],
-    },
-]
-
 export function GroupList({ board }) {
+    const groups = board.groups || []
+
+    async function onAddGroup() {
+        try {
+            await addGroup()
+        } catch (err) {
+            showErrorMsg('Cannot add group')
+        }
+    }
+
     return (
         <section className="group-list">
             {groups.map(group => (
-                <GroupPreview key={group.id} group={group} />
+                <GroupPreview key={group.id} group={group} members={board.members || []} />
             ))}
+
+            {!groups.length && <p className="no-groups-msg">This board has no groups yet.</p>}
+
+            <button className="btn-add-group" onClick={onAddGroup}>+ Add new group</button>
         </section>
     )
 }
