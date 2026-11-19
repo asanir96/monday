@@ -1,4 +1,3 @@
-
 /* Flex helpers */
 .flex {
     display: flex;
@@ -24,3 +23,46 @@
 .debug * {
     outline: 1px solid gold
 }
+
+
+
+
+
+
+
+
+
+
+.sticky-col {
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 2;
+}
+
+.sticky-row {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 5;
+}
+
+.text-centered{
+    text-align: center;
+}
+
+.flex-centered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aligned-center{
+    display: flex;
+    align-items: center;
+}
+
+.position-relative{
+    position: relative;
+}
+

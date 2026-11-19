@@ -14,4 +14,18 @@
 
   --success: rgb(41, 189, 73);
   --error: rgb(216, 59, 59);
+
+
+  --primary-selected-color: #cce5ff;
+--primary-selected-hover-color:#aed4fc;
+
+  --border-radius-small: 4px;
+  --border-width: 1px;
+  --border-style: solid;
+  --ui-background-color: #e7e9ef;
+
+
+  --box-shadow-medium: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  --font-size-medium: 0.875rem;
+  --font-text3-medium: 0.75rem
 }

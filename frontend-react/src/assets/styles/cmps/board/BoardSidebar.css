@@ -1,0 +1,40 @@
+.boards-sidebar {
+    border-top-width: var(--border-width);
+    border-top-style: var(--border-style);
+    border-top-color: var(--ui-background-color);
+    border-left-width: var(--border-width);
+    border-left-style: var(--border-style);
+    border-left-color: var(--ui-background-color);
+}
+
+.board-list-header {
+    font-size: var(--font-text3-medium);
+    margin-inline: 1rem;
+    margin-block: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+}
+
+.board-list-header span {
+    padding-inline-start: 7px;
+    display: flex;
+    align-items: center;
+}
+
+.board-list-header:hover,
+.board-list-header:hover .add-board-btn {
+    background-color: rgb(242, 239, 239);
+
+}
+
+.add-board-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 24px;
+    height: 24px
+}

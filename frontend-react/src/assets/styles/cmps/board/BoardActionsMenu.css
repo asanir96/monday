@@ -1,0 +1,30 @@
+.board-actions {
+    width: 240px
+}
+
+.board-actions>* {
+    width: 100%;
+}
+
+.board-actions>*,
+.board-actions button {
+
+    font-size: var(--font-size-medium)
+}
+
+.board-actions button {
+    padding-inline: 8px;
+    padding-block: 4px;
+    margin: 0;
+    gap: 0.5em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+        width: 100%;
+
+}
+
+.board-actions .board-action:hover {
+    background-color: rgb(242, 239, 239);
+
+}

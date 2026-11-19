@@ -23,7 +23,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 ul {
@@ -41,4 +41,8 @@ video,
 object {
   max-width: 100%;
   display: block;
+}
+
+nav{
+    z-index: 100;
 }

@@ -25,6 +25,11 @@
 
 @import "cmps/car/CarIndex";
 @import "cmps/car/CarList";
+@import "cmps/board/BoardList";
+@import "cmps/board/BoardListItem";
+@import "cmps/board/BoardPreview";
+@import "cmps/board/BoardSidebar";
+@import "cmps/board/BoardActionsMenu";
 @import "cmps/car/CarPreview";
 @import "cmps/car/CarFilter";
 
