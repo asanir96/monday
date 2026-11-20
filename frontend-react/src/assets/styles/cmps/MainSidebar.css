@@ -34,7 +34,7 @@
     background-color: var(--primary-selected-color);
 }
 
-.main-sidebar-btn .sidebar-icon-container:hover {
+.main-sidebar-btn:not(.selected) .sidebar-icon-container:hover {
     background-color: var(--primary-background-hover-color);
 }
 
