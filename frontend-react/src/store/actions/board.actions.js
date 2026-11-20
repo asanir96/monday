@@ -1,6 +1,14 @@
 import { boardService } from '../../services/board'
 import { store } from '../store'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD, SET_IS_ADDING_BOARD } from '../reducers/board.reducer'
+import {
+    ADD_BOARD,
+    REMOVE_BOARD,
+    SET_BOARDS,
+    SET_BOARD,
+    UPDATE_BOARD,
+    SET_IS_ADDING_BOARD,
+    SET_SIDEBAR_FILTER_BY
+} from '../reducers/board.reducer'
 
 export async function loadBoards(filterBy) {
     try {
@@ -22,6 +30,14 @@ export async function loadBoard(boardId) {
     }
 }
 
+export async function setSidebarFilterBy(filterBy) {
+    try {
+        store.dispatch(getCmdSetSidebarFilterBy(filterBy))
+    } catch (err) {
+        console.log('Cannot load board', err)
+        throw err
+    }
+}
 
 export async function removeBoard(boardId) {
     try {
@@ -159,6 +175,12 @@ function getCmdUpdateBoard(board) {
     }
 }
 
+function getCmdSetSidebarFilterBy(filterBy) {
+    return {
+        type: SET_SIDEBAR_FILTER_BY,
+        sidebarFilterBy:filterBy
+    }
+}
 function getCmdSetIsAddingBoard(state) {
     return {
         type: SET_IS_ADDING_BOARD,
