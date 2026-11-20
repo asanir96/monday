@@ -13,8 +13,8 @@ export function MainSidebar() {
 
     return <nav className="main-sidebar">
         <button
-            className={`main-sidebar-btn ${sidebarView==='workspace' ? 'selected' : ''}`}
-            onClick={()=>onSwitchBoardGroup('workspace')}
+            className={`main-sidebar-btn ${sidebarView === 'workspace' ? 'selected' : ''}`}
+            onClick={() => onSwitchBoardGroup('workspace')}
         >
             <div className='sidebar-icon-container'>
                 <GridViewIcon sx={{ fontSize: '1rem', lineHeight: '100%', width: 18, height: 18 }} />
@@ -24,13 +24,15 @@ export function MainSidebar() {
             </span>
         </button>
         <button
-            className={`main-sidebar-btn ${sidebarView==='favorites'  ? 'selected' : ''}`}
-            onClick={()=>onSwitchBoardGroup('favorites')}
+            className={`main-sidebar-btn ${sidebarView === 'favorites' ? 'selected' : ''}`}
+            onClick={() => onSwitchBoardGroup('favorites')}
         >
             <div className='sidebar-icon-container'>
                 <StarBorderOutlinedIcon sx={{ fontSize: '1rem', lineHeight: '100%', width: 18, height: 18 }} />
             </div>
-            Favorites
+            <span className='sidebar-btn-title'>
+                Favorites
+            </span>
         </button>
     </nav>
 }

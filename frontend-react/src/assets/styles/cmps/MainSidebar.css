@@ -43,5 +43,6 @@
 }
 
 .sidebar-btn-title {
-    height: 1em
+    height: 1em;
+    margin:auto;
 }
