@@ -9,13 +9,15 @@
 .main-sidebar-btn {
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     padding-block: 6px;
     background-color: unset;
     font-size: 0.6875rem;
-        margin: auto;
+    margin: auto;
 
     width: 100%;
-    height: 32px
 }
 
 .main-sidebar-btn .sidebar-icon-container {
@@ -28,6 +30,18 @@
     border-radius: var(--border-radius-medium);
 }
 
-.main-sidebar-btn.selected .sidebar-icon-container{
-    background-color: var(  --primary-selected-color);
+.main-sidebar-btn.selected .sidebar-icon-container {
+    background-color: var(--primary-selected-color);
+}
+
+.main-sidebar-btn .sidebar-icon-container:hover {
+    background-color: var(--primary-background-hover-color);
+}
+
+.main-sidebar-btn .sidebar-icon-container:hover>* {
+    transform: scale(1.1);
+}
+
+.sidebar-btn-title {
+    height: 1em
 }
