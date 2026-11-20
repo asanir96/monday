@@ -12,7 +12,7 @@ import { BoardDetails } from './pages/BoardDetails'
 import { BoardSidebar } from './cmps/BoardSidebar'
 // import { CarDetails } from './pages/CarDetails'
 // import { UserDetails } from './pages/UserDetails'
-
+import { MainSidebar } from './cmps/MainSidebar.jsx'
 import { AppHeader } from './cmps/AppHeader'
 // import { SideBar } from './cmps/SideBar'
 // import { AppFooter } from './cmps/AppFooter'
@@ -24,7 +24,10 @@ export function RootCmp() {
     return (
         <div className="app-layout">
             <AppHeader />
-            <BoardSidebar/>
+            <aside className='left-pane left-pane-layout'>
+                <MainSidebar/>
+                <BoardSidebar />
+            </aside>
             {/* <SideBar /> */}
             <UserMsg />
 

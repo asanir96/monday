@@ -6,6 +6,7 @@ import Skeleton from '@mui/material/Skeleton';
 import GridViewIcon from '@mui/icons-material/GridView';
 
 export function BoardList({ boards }) {
+    const sidebarFilterBy = useSelector(storedState => storedState.boardModule.sidebarFilterBy)
     const navigate = useNavigate()
     const isIndex = !!useMatch('/board')   // exact match: true only on /board, not /board/123
     const isAddingBoard = useSelector(storedState => storedState.boardModule.isAddingBoard)
@@ -15,13 +16,14 @@ export function BoardList({ boards }) {
     }
 
     return <ul className="board-list">
-        <li className={`board-list-item 
+        {Object.keys(sidebarFilterBy).length === 0 &&
+            <li className={`board-list-item 
             ${isIndex ? 'selected' : ''}`}>
-            <div className='board-table-cell preview-title sticky-col aligned-center' onClick={navToIndex}>
-                <GridViewIcon sx={{ fontSize: '1em', lineHeight: '100%' }} />
-                Manage your boards
-            </div>
-        </li>
+                <div className='board-table-cell preview-title sticky-col aligned-center' onClick={navToIndex}>
+                    <GridViewIcon sx={{ fontSize: '1em', lineHeight: '100%' }} />
+                    Manage your boards
+                </div>
+            </li>}
         {boards.map(board => <BoardListItem board={board} />)}
         {isAddingBoard &&
             <li className='add-board-loader'>
