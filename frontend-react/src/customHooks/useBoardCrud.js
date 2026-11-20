@@ -1,12 +1,13 @@
 import { addBoard, removeBoard, updateBoardOptimistic, setSidebarView } from "../store/actions/board.actions"
 import { boardService } from "../services/board"
-import { useNavigate } from "react-router"
+import { useNavigate, useMatch } from "react-router"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 export function useBoardCrud() {
     const navigate = useNavigate()
-    const openBoardId = useSelector(s => s.boardModule.board?._id)
+    const match = useMatch('/board/:boardId')
+    const openBoardId = match?.params.boardId
     const view = useSelector(s => s.boardModule.sidebarView)
     const boards = useSelector(s => s.boardModule.boards)
     const filteredBoards = boardService.filterBoardsByView(boards, view)
@@ -27,10 +28,13 @@ export function useBoardCrud() {
         try {
             const boardIdx = filteredBoards.findIndex(board => board._id === boardId)
             const prevBoard = filteredBoards[boardIdx - 1]
+            const boardCount = filteredBoards.length
             await removeBoard(boardId)
 
-            if (!prevBoard) {
+            if (boardCount - 1 === 0) {
                 setSidebarView('workspace')
+                navigate(`/board`)
+            } else if (boardId === openBoardId && !prevBoard) {
                 navigate(`/board`)
             } else if (boardId === openBoardId && prevBoard._id) {
                 navigate(`/board/${prevBoard._id}`)
