@@ -22,6 +22,9 @@ export function BoardListItem({ board }) {
     const [dropwdownAnchorEl, setDropwdownAnchorEl] = useState(null)
     const { onRemoveBoard, onUpdateBoard } = useBoardCrud()
 
+    const actionsMap = {
+        
+    }
     const handleMoreOptsClick = (event) => {
         event.preventDefault()
         console.log('event.currentTarget', event.currentTarget)
@@ -69,7 +72,7 @@ export function BoardListItem({ board }) {
 
         </DropdownMenu>
 
-        <NavLink to={`board/${board._id}`} className='board-table-cell preview-title sticky-col aligned-center' >
+        <NavLink to={`board/${board._id}`} className='board-link aligned-center' >
 
             <SpaceDashboardOutlinedIcon className='aligned-center' sx={{ fontSize: '1em', lineHeight: '100%' }} />
 

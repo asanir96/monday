@@ -12,15 +12,14 @@
     /* border-block-end: solid 1px rgb(213, 211, 211) */
 }
 
-.boards-sidebar .board-list{
-width: 277px;
+.boards-sidebar .board-list {
+    width: 277px;
 }
 
-.add-board-loader{
+.add-board-loader {
     display: flex;
-    margin-inline:27px;
+    margin-inline: 27px;
     gap: 0.5em;
     align-items: center;
     justify-content: start;
 }
-
