@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Popover, Button, Typography, Box } from '@mui/material'
 import '../assets/styles/setup/var.css'
 export function DropdownMenu({ handleClick, handleClose, anchorEl, children }) {
-    console.log('anchorEl', anchorEl)
 
     return (<Popover
         open={Boolean(anchorEl)}

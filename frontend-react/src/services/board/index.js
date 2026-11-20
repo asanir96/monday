@@ -98,7 +98,6 @@ function filterBoardsByView(boards, view) {
     if (!boards.length) return 
     
     let filteredBoards = [...boards]
-        console.log('boards',boards)
 
     switch (view) {
         case 'favorites':
