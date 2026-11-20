@@ -5,13 +5,13 @@ export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const ADD_BOARD_MSG = 'ADD_BOARD_MSG'
 export const SET_IS_ADDING_BOARD = 'SET_IS_ADDING_BOARD'
-export const SET_SIDEBAR_FILTER_BY = 'SET_SIDEBAR_FILTER_BY'
+export const  SET_SIDEBAR_VIEW = ' SET_SIDEBAR_VIEW'
 
 const initialState = {
     boards: [],
     board: null,
     isAddingBoard: false,
-    sidebarFilterBy: {}
+    sidebarView: 'workspace'
 }
 
 export function boardReducer(state = initialState, action) {
@@ -21,8 +21,8 @@ export function boardReducer(state = initialState, action) {
         case SET_IS_ADDING_BOARD:
             newState = { ...state, isAddingBoard: action.isAddingBoard }
             break
-        case SET_SIDEBAR_FILTER_BY:
-            newState = { ...state, sidebarFilterBy: action.sidebarFilterBy }
+        case SET_SIDEBAR_VIEW:
+            newState = { ...state, sidebarView: action.sidebarView }
             break
         case SET_BOARDS:
             newState = { ...state, boards: action.boards }

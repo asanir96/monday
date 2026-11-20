@@ -94,15 +94,18 @@ export function getEmptyTask(title = '') {
     }
 }
 
-function filterBoards(boards, filterBy) {
+function filterBoardsByView(boards, view) {
+    if (!boards.length) return 
+    
     let filteredBoards = [...boards]
-    if (Object.hasOwn(filterBy, 'isStarred')) {
-        filteredBoards = boards.filter(board => {
-            console.log('board.isStarred', board.isStarred)
-            console.log('board.isStarred', filterBy.isStarred)
+        console.log('boards',boards)
 
-            return board.isStarred === filterBy.isStarred
-        })
+    switch (view) {
+        case 'favorites':
+            filteredBoards = boards.filter(board => board.isStarred)
+            break
+        case 'worskpace':
+            break;
     }
     return filteredBoards
 }
@@ -112,7 +115,7 @@ function getDefaultFilter() {
 }
 
 const service = (VITE_LOCAL === 'true') ? local : remote
-export const boardService = { getEmptyBoard, getEmptyGroup, getEmptyTask, filterBoards, getDefaultFilter, ...service }
+export const boardService = { getEmptyBoard, getEmptyGroup, getEmptyTask, filterBoardsByView, getDefaultFilter, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

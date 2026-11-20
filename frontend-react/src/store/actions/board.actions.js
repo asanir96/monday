@@ -7,7 +7,7 @@ import {
     SET_BOARD,
     UPDATE_BOARD,
     SET_IS_ADDING_BOARD,
-    SET_SIDEBAR_FILTER_BY
+    SET_SIDEBAR_VIEW
 } from '../reducers/board.reducer'
 
 export async function loadBoards(filterBy) {
@@ -30,9 +30,9 @@ export async function loadBoard(boardId) {
     }
 }
 
-export async function setSidebarFilterBy(filterBy) {
+export async function setSidebarView(view) {
     try {
-        store.dispatch(getCmdSetSidebarFilterBy(filterBy))
+        store.dispatch(getCmdSetSidebarView(view))
     } catch (err) {
         console.log('Cannot load board', err)
         throw err
@@ -175,10 +175,10 @@ function getCmdUpdateBoard(board) {
     }
 }
 
-function getCmdSetSidebarFilterBy(filterBy) {
+function getCmdSetSidebarView(view) {
     return {
-        type: SET_SIDEBAR_FILTER_BY,
-        sidebarFilterBy:filterBy
+        type: SET_SIDEBAR_VIEW,
+        sidebarView: view
     }
 }
 function getCmdSetIsAddingBoard(state) {

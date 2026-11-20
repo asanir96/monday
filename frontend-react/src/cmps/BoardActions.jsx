@@ -4,11 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy } from '@fortawesome/free-regular-svg-icons'
 
 import { faCircleUser, faPen } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux';
 
-import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined';
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service';
 export function BoardActions({ board, onRemoveBoard, onStartEdit }) {
-
 
     return <div className='board-actions'>
         <div className="actions-update">
