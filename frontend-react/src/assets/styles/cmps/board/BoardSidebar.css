@@ -1,4 +1,6 @@
 .boards-sidebar {
+    grid-column: 2;
+    border-top-left-radius: var(--border-radius-big);
     border-top-width: var(--border-width);
     border-top-style: var(--border-style);
     border-top-color: var(--ui-background-color);

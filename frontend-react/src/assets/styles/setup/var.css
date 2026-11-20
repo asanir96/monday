@@ -15,11 +15,15 @@
   --success: rgb(41, 189, 73);
   --error: rgb(216, 59, 59);
 
+  --allgrey-background-color: #f6f7fb;
+
 
   --primary-selected-color: #cce5ff;
---primary-selected-hover-color:#aed4fc;
+  --primary-selected-hover-color: #aed4fc;
 
   --border-radius-small: 4px;
+  --border-radius-medium:8px;
+  --border-radius-big: 16px;
   --border-width: 1px;
   --border-style: solid;
   --ui-background-color: #e7e9ef;
