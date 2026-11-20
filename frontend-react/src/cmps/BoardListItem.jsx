@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useBoardCrud } from '../customHooks/useBoardCrud';
 import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsis  } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import { useMatch } from 'react-router-dom'
 
 import { BoardPreview } from './BoardPreview'
@@ -54,6 +54,10 @@ export function BoardListItem({ board }) {
         setDropwdownAnchorEl(null)
     }
 
+    function onStarToggle() {
+        onUpdateBoard({ ...board, isStarred: !board.isStarred })
+    }
+
     return <li
         className={`board-list-item 
             ${isActive ? 'selected' : ''}
@@ -68,7 +72,8 @@ export function BoardListItem({ board }) {
             <BoardActions
                 board={board}
                 onRemoveBoard={onDelete}
-                onStartEdit={onStartEdit} />
+                onStartEdit={onStartEdit}
+                onStarToggle={onStarToggle} />
 
         </DropdownMenu>
 

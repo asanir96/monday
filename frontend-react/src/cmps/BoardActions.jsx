@@ -1,12 +1,12 @@
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { Divider } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy } from '@fortawesome/free-regular-svg-icons'
+import { faStar } from '@fortawesome/free-regular-svg-icons'
 
 import { faCircleUser, faPen } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
 
-export function BoardActions({ board, onRemoveBoard, onStartEdit }) {
+export function BoardActions({ board, onRemoveBoard, onStartEdit,onStarToggle }) {
 
     return <div className='board-actions'>
         <div className="actions-update">
@@ -14,9 +14,9 @@ export function BoardActions({ board, onRemoveBoard, onStartEdit }) {
                 <FontAwesomeIcon icon={faPen} />
                 Rename
             </button>
-            <button className="board-action">
-                <FontAwesomeIcon icon={faCopy} />
-                Duplicate
+            <button className="board-action" onClick={onStarToggle}>
+                <FontAwesomeIcon icon={faStar} />
+                {`${board.isStarred?'Remove from':'Add to'} favorites`}
             </button>
         </div>
 
