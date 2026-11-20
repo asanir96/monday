@@ -23,8 +23,6 @@ export function BoardSidebar() {
         await onAddEmptyBoard()
     }
 
-    if (!filteredBoards || !filteredBoards.length) return <div>Loading...</div>
-
     return <aside className='boards-sidebar'>
         <div className='sidebar-header'></div>
         <div className='board-list-header'>

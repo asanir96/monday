@@ -24,7 +24,7 @@ export function BoardList({ boards }) {
                     Manage your boards
                 </div>
             </li>}
-        {boards.map(board => <BoardListItem board={board} />)}
+        {boards && boards.map(board => <BoardListItem board={board} />)}
         {isAddingBoard &&
             <li className='add-board-loader'>
                 <Skeleton variant="circular" width={14} height={14} />
