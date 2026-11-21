@@ -20,6 +20,7 @@
 @import "cmps/Popover";
 @import "cmps/BoardHeader";
 @import "cmps/BoardMembers";
+@import "cmps/StatusPicker";
 @import "cmps/GroupList";
 @import "cmps/BoardIndex";
 @import "cmps/AppFooter";

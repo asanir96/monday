@@ -1,25 +1,32 @@
 import { useState } from 'react'
 
-import { getStatusOption } from '../services/board'
 import { updateTask, removeTask } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { InlineEdit } from './InlineEdit'
 import { Popover } from './Popover'
+import { StatusPicker } from './StatusPicker'
 
 const MAX_AVATARS = 2
 
-// One task row. Title is editable; owner + status are display-only for now (pickers come later)
+// One task row. Title is editable, status has a picker; owner is display-only for now (picker comes later)
 export function TaskPreview({ task, groupId, members }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const owners = members.filter(member => task.memberIds?.includes(member._id))
-    const status = getStatusOption(task.status)
 
     async function onRenameTask(title) {
         try {
             await updateTask(groupId, { ...task, title })
         } catch (err) {
             showErrorMsg('Cannot rename item')
+        }
+    }
+
+    async function onChangeStatus(statusId) {
+        try {
+            await updateTask(groupId, { ...task, status: statusId })
+        } catch (err) {
+            showErrorMsg('Cannot update status')
         }
     }
 
@@ -46,7 +53,9 @@ export function TaskPreview({ task, groupId, members }) {
                 {owners.length > MAX_AVATARS && <span className="avatar avatar-more">+{owners.length - MAX_AVATARS}</span>}
             </td>
 
-            <td className="cell cell-status" style={{ backgroundColor: status.color }}>{status.title}</td>
+            <td className="cell cell-status">
+                <StatusPicker value={task.status} onChange={onChangeStatus} />
+            </td>
 
             <td className="cell cell-actions">
                 <Popover
