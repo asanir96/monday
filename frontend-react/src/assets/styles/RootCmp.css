@@ -6,6 +6,8 @@
         "header header"
         "sidebar main";
     height: 100vh;
+    /* An app shell exactly one screen high: only the white panel scrolls, never the page */
+    overflow: hidden;
     /* monday's app surface: the header and the side area sit on it */
     background-color: var(--allgrey-background-color);
 
@@ -26,6 +28,10 @@
         border-start-start-radius: 12px;
         background-color: var(--primary-background-color);
         box-shadow: var(--box-shadow-xs), -5px -5px 20px 0 var(--surface-color);
+
+        /* monday's scrollbar color (--scrollbar-color); the exact width wasn't extracted, so "thin" for now */
+        scrollbar-color: var(--scrollbar-color) transparent;
+        scrollbar-width: thin;
     }
 }
 
