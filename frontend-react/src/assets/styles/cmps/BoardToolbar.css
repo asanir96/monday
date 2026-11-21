@@ -1,0 +1,199 @@
+/* Values from monday (monday-design-values.json -> boardToolbar, states.hover, states.stylesheetRules) */
+.board-toolbar {
+    display: flex;
+    align-items: center;
+    height: 64px;
+
+    /* forms.css gives every button a margin and padding - reset them here */
+    & button {
+        margin: 0;
+        border: none;
+        background-color: transparent;
+
+        color: var(--primary-text-color);
+        font-family: inherit;
+
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px hsla(209, 100%, 50%, 0.5), 0 0 0 1px var(--primary-hover-color) inset;
+        }
+    }
+
+    /* ---- New task: a split button (main part + dropdown half) ---- */
+    .new-task-group {
+        display: flex;
+        margin-inline-end: 14px;
+    }
+
+    .btn-new-task,
+    .btn-new-task-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        background-color: var(--primary-color);
+
+        color: var(--text-color-on-primary);
+
+        transition: transform 0.07s, background-color 0.1s ease-in;
+
+        &:hover {
+            background-color: var(--primary-hover-color);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    .btn-new-task {
+        padding: var(--spacing-xs) var(--spacing-small);
+        border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
+
+        font-size: 14px;
+        line-height: 24px;
+        white-space: nowrap;
+    }
+
+    .btn-new-task-menu {
+        width: 28px;
+        padding: 0;
+        border-inline-start: 1px solid var(--primary-hover-color);
+        border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
+
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    /* ---- Search ---- */
+    .toolbar-search {
+        display: flex;
+        align-items: center;
+        height: 32px;
+        margin-inline-end: 6px;
+        /* monday's input ends 4px before the box edge */
+        padding-inline-end: var(--spacing-xs);
+        border: 1px solid transparent;
+        border-radius: var(--border-radius-small);
+
+        cursor: pointer;
+        transition: background-color 0.1s cubic-bezier(0, 0, 0.35, 1);
+
+        &:hover:not(:focus-within) {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        .glyph-search {
+            margin-inline-start: 10px;
+            color: var(--icon-color);
+            font-size: 15px;
+        }
+
+        & input {
+            width: 60px;
+            height: 28px;
+            padding: 1px 0 1px 5px;
+            border: 1px solid transparent;
+            border-radius: var(--border-radius-small);
+            outline: none;
+            background: transparent;
+
+            color: var(--primary-text-color);
+            font-family: inherit;
+            font-size: 15px;
+            line-height: 22.5px;
+
+            cursor: pointer;
+            transition: width 0.1s cubic-bezier(0, 0, 0.35, 1);
+
+            /* Chrome's own search-field styling takes room inside the 60px input */
+            appearance: none;
+
+            &::-webkit-search-decoration,
+            &::-webkit-search-cancel-button {
+                appearance: none;
+            }
+
+            &::placeholder {
+                color: var(--primary-text-color);
+                font-size: 14px;
+            }
+
+            &:focus {
+                border-color: var(--primary-color);
+                cursor: text;
+            }
+        }
+    }
+
+    /* ---- Person / Filter / Sort / Hide / Group by ---- */
+    .btn-toolbar-item {
+        display: flex;
+        align-items: center;
+        height: 32px;
+        margin-inline-end: 6px;
+        padding: 0;
+        border-radius: var(--border-radius-small);
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        .item-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 20px;
+            color: var(--icon-color);
+        }
+
+        .item-title {
+            padding-inline-end: 12px;
+            font-size: 14px;
+            line-height: 21px;
+            white-space: nowrap;
+        }
+    }
+
+    .btn-toolbar-more {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: var(--border-radius-small);
+
+        transition: transform 0.07s;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    .btn-collapse-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        margin-inline-start: auto;
+        padding: 0;
+        border-radius: 32px;
+        background-color: var(--allgrey-background-color);
+
+        transition: transform 0.07s;
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
+

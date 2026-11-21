@@ -199,12 +199,7 @@
         }
     }
 
-    /* ---- Row 3: toolbar (step 3b) ---- */
-    .toolbar {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-small);
-    }
+    /* Row 3 is the toolbar - its own component (BoardToolbar.css) */
 
     /* Popovers on the right edge open towards the left, so they stay on screen */
     .header-actions .popover {

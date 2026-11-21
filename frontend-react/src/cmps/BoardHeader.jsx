@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { BoardMembers } from './BoardMembers'
+import { BoardToolbar } from './BoardToolbar'
 import { Icon } from './Icon'
 import { updateBoardOptimistic } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
@@ -107,9 +108,7 @@ export function BoardHeader({ board }) {
                 </ul>
             </nav>
 
-            <div className="toolbar">
-                {/* New task, Search, Person, Filter, Sort, Hide, Group by */}
-            </div>
+            <BoardToolbar />
         </header>
     )
 }
