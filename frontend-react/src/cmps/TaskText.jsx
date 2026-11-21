@@ -1,33 +1,30 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faT, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { EmptyCellTrigger } from "./EmptyCellTrigger"
 
-export function TaskText({ task, onUpdateTask }) {
-    const [taskToEdit, setTaskToEdit] = useState(task)
+export function TaskText({ value, onChange }) {
+    const [txtToEdit, setTxtToEdit] = useState(value || '')
     const [isEditing, setIsEditing] = useState(false)
     const inputRef = useRef(null)
 
     function handleChange(ev) {
-        const { name, value } = ev.target
-        setTaskToEdit({ ...taskToEdit, [name]: value })
+        const { value } = ev.target
+        setTxtToEdit(value)
     }
 
     function onStartEdit() {
         setIsEditing(true)
-        if (!taskToEdit.description) {
-            setTaskToEdit({ ...taskToEdit, description: '' })
-        }
     }
 
     function onStopEditing(ev) {
         if (ev.key && ev.key !== 'Enter') return
         inputRef.current.blur()
         setIsEditing(false)
-        onUpdateTask(taskToEdit, ev)
+        onChange(txtToEdit)
     }
 
-    if (!taskToEdit.description && !isEditing) return (
+    if (!txtToEdit && !isEditing) return (
         <EmptyCellTrigger
             onStartEdit={onStartEdit}>
             <FontAwesomeIcon icon={faT} />
@@ -40,7 +37,7 @@ export function TaskText({ task, onUpdateTask }) {
         className="task-text"
         name='description'
         type="text"
-        value={taskToEdit.description || ''}
+        value={txtToEdit}
         onFocus={onStartEdit}
         onChange={handleChange}
         onBlur={onStopEditing}
