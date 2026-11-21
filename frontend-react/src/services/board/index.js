@@ -61,6 +61,14 @@ export const statusOptions = [
     { id: 'notStarted', title: 'Not started', color: '#797e93' },
 ]
 
+// Task priority values (stored on task.priority) -> display title + color (monday's default priority labels)
+export const priorityOptions = [
+    { id: 'critical', title: 'Critical', color: '#333333' },
+    { id: 'high', title: 'High', color: '#401694' },
+    { id: 'medium', title: 'Medium', color: '#5559df' },
+    { id: 'low', title: 'Low', color: '#579bfc' },
+]
+
 const EMPTY_STATUS = { id: '', title: '', color: '#c4c4c4' }
 
 export function getStatusOption(statusId) {

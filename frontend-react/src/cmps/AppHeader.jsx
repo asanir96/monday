@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { Icon } from './Icon'
 // import { Link } from 'react-router-dom'
 // import { useNavigate } from 'react-router'
 // import { useSelector } from 'react-redux'
@@ -6,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 // import { logout } from '../store/actions/user.actions'
 
 // Main header - shown on every app page (board index + board details)
-export function AppHeader() {
+export function AppHeader({ onToggleSidebar }) {
     // Re-enable once userModule is back in the store (store.js)
     // const user = useSelector(storeState => storeState.userModule.user)
     // const navigate = useNavigate()
@@ -23,16 +24,42 @@ export function AppHeader() {
 
     return (
         <header className="app-header">
-            <NavLink to="/board" className="logo">
-                monday
-            </NavLink>
+            <section className="header-start">
+                {/* Small screens only (hidden on desktop): opens the left pane as a drawer.
+                    Our own icon - monday's desktop site has no menu button */}
+                <button className="btn-sidebar-toggle" title="Menu" aria-label="Open menu" onClick={onToggleSidebar}>
+                    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <rect x="3" y="5" width="14" height="1.5" rx=".75" />
+                        <rect x="3" y="9.25" width="14" height="1.5" rx=".75" />
+                        <rect x="3" y="13.5" width="14" height="1.5" rx=".75" />
+                    </svg>
+                </button>
 
-            <div className="search">
+                <NavLink to="/board" className="logo" title="monday">
+                    <Icon name="logo_multicolor" className="logo-icon" />
+                </NavLink>
+
+                <button className="btn-see-plans optional">
+                    <Icon name="seePlansDiamond" />
+                    See plans
+                </button>
+            </section>
+
+            <label className="header-search">
+                <Icon name="search" className="search-icon" />
                 <input type="search" placeholder="Search for anything..." />
-            </div>
+                <span className="search-shortcut">Ctrl K</span>
+            </label>
 
             <nav className="actions">
-                {/* notifications, inbox, invite, apps, help... */}
+                {/* Not working yet - visual only for now. "optional" ones are hidden on phones */}
+                <button className="btn-header-icon" title="Notifications"><Icon name="bell" /></button>
+                <button className="btn-header-icon optional" title="Inbox"><Icon name="inbox" /></button>
+                <button className="btn-header-icon optional" title="Invite members"><Icon name="invite" /></button>
+                <button className="btn-header-icon optional" title="Apps"><Icon name="apps" /></button>
+                <button className="btn-header-icon optional" title="Help"><Icon name="help" /></button>
+                <span className="divider optional" />
+                <button className="btn-header-icon optional" title="Products"><Icon name="productSwitcherGrid" /></button>
 
                 {/* {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>} */}
 
@@ -46,7 +73,8 @@ export function AppHeader() {
                         <button onClick={onLogout}>logout</button>
                     </div>
                 )} */}
-                <div className="user-avatar">Placeholder</div>
+                {/* No logged-in user yet (userModule is commented out) */}
+                <div className="user-avatar" title="Guest">G</div>
             </nav>
         </header>
     )

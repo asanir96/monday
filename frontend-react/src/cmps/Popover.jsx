@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 
 // Reusable dropdown shell: a trigger + content that opens under it.
-// Controlled by the parent (isOpen / onClose). Closes on outside click and on Escape.
+// Controlled by the parent (isOpen / onClose). Closes on outside click and on Escape;
+// onClose gets the reason ('outside' / 'escape') for parents that treat them differently.
 // Used by the header menus and (later) the status / priority / member / date pickers.
 //
 // <Popover isOpen={isOpen} onClose={() => setIsOpen(false)} trigger={<button onClick={...}>Open</button>}>
@@ -15,10 +16,10 @@ export function Popover({ isOpen, onClose, trigger, children, className = '' }) 
 
         // The wrapper contains the trigger too, so clicking the trigger is not an "outside" click
         function onDocMouseDown(ev) {
-            if (wrapperRef.current && !wrapperRef.current.contains(ev.target)) onClose()
+            if (wrapperRef.current && !wrapperRef.current.contains(ev.target)) onClose('outside')
         }
         function onDocKeyDown(ev) {
-            if (ev.key === 'Escape') onClose()
+            if (ev.key === 'Escape') onClose('escape')
         }
 
         document.addEventListener('mousedown', onDocMouseDown)

@@ -1,13 +1,14 @@
 import { useState } from 'react'
 
 import { Popover } from './Popover'
+import { Icon } from './Icon'
 import { updateBoardOptimistic } from '../store/actions/board.actions'
-import { showErrorMsg } from '../services/event-bus.service'
-import { makeId } from '../services/util.service'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { makeId, getInitials } from '../services/util.service'
 
 const MAX_SHOWN = 3
 
-// Members avatars + Invite button of the board header
+// Members avatars + Invite / copy link buttons of the board header
 export function BoardMembers({ board }) {
     const [openPopover, setOpenPopover] = useState(null) // null | 'members' | 'invite'
     const [name, setName] = useState('')
@@ -43,6 +44,15 @@ export function BoardMembers({ board }) {
         }
     }
 
+    async function onCopyLink() {
+        try {
+            await navigator.clipboard.writeText(window.location.href)
+            showSuccessMsg('Board link copied')
+        } catch (err) {
+            showErrorMsg('Cannot copy the link')
+        }
+    }
+
     return (
         <div className="board-members">
             <Popover
@@ -66,33 +76,39 @@ export function BoardMembers({ board }) {
                 <MemberList members={members} />
             </Popover>
 
-            <Popover
-                isOpen={openPopover === 'invite'}
-                onClose={closePopover}
-                className="invite-popover"
-                trigger={
-                    <button
-                        className="btn-invite"
-                        onClick={() => togglePopover('invite')}
-                        aria-expanded={openPopover === 'invite'}
-                    >
-                        Invite / {members.length}
-                    </button>
-                }
-            >
-                <form className="invite-form" onSubmit={onInvite}>
-                    <input
-                        type="text"
-                        value={name}
-                        placeholder="Enter a name"
-                        aria-label="Name of the member to invite"
-                        autoFocus
-                        onChange={ev => setName(ev.target.value)}
-                    />
-                    <button type="submit" disabled={!name.trim()}>Invite</button>
-                </form>
-                <MemberList members={members} />
-            </Popover>
+            <div className="invite-group">
+                <Popover
+                    isOpen={openPopover === 'invite'}
+                    onClose={closePopover}
+                    className="invite-popover"
+                    trigger={
+                        <button
+                            className="btn-invite"
+                            onClick={() => togglePopover('invite')}
+                            aria-expanded={openPopover === 'invite'}
+                        >
+                            Invite / {members.length}
+                        </button>
+                    }
+                >
+                    <form className="invite-form" onSubmit={onInvite}>
+                        <input
+                            type="text"
+                            value={name}
+                            placeholder="Enter a name"
+                            aria-label="Name of the member to invite"
+                            autoFocus
+                            onChange={ev => setName(ev.target.value)}
+                        />
+                        <button type="submit" disabled={!name.trim()}>Invite</button>
+                    </form>
+                    <MemberList members={members} />
+                </Popover>
+
+                <button className="btn-copy-link" title="Copy board link" onClick={onCopyLink}>
+                    <Icon name="copyLink" section="boardHeader" />
+                </button>
+            </div>
         </div>
     )
 }
@@ -114,6 +130,5 @@ function MemberAvatar({ member }) {
     if (member.imgUrl) {
         return <img className="member-avatar" src={member.imgUrl} alt={member.fullname} title={member.fullname} />
     }
-    const initials = member.fullname.split(' ').map(word => word[0]).slice(0, 2).join('').toUpperCase()
-    return <span className="member-avatar initials" title={member.fullname}>{initials}</span>
+    return <span className="member-avatar initials" title={member.fullname}>{getInitials(member.fullname)}</span>
 }

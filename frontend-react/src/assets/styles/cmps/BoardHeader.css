@@ -1,28 +1,271 @@
+/* Values from monday (monday-design-values.json -> boardHeader, states.hover, states.stylesheetRules) */
 .board-header {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    padding: 1rem 1.5rem 0;
+    display: grid;
+    /* minmax(0): the column may be narrower than the full title, so the title shrinks ("...") instead */
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 32px 42px 64px;
 
-    .title-row {
+    /* ---- Row 1: board info (title, star) + actions ---- */
+    .info-row {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        justify-content: space-between;
+        gap: var(--spacing-medium);
+    }
+
+    .board-info,
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-small);
+    }
+
+    /* The title side gives up room first: a long title ends with "..." instead of wrapping */
+    .board-info {
+        min-width: 0;
+    }
+
+    .header-actions {
+        flex-shrink: 0;
+    }
+
+    .board-title-container {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        height: 32px;
+        padding: 1px var(--spacing-xs);
+        border-radius: var(--border-radius-small);
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        .title-arrow {
+            width: 24px;
+            height: 24px;
+            color: var(--icon-color);
+        }
+    }
+
+    .board-title,
+    .board-title-input {
+        margin: 0;
+
+        color: var(--primary-text-color);
+        font-family: var(--title-font-family);
+        font-size: var(--font-size-h2);
+        font-weight: var(--font-weight-bold);
+        line-height: 30px;
+        letter-spacing: -0.1px;
     }
 
     .board-title {
-        font-size: 1.5rem;
-        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
+    .board-title-input {
+        height: 32px;
+        padding: 1px var(--spacing-xs);
+        border: 1px solid var(--primary-color);
+        border-radius: var(--border-radius-small);
+        outline: none;
+    }
+
+    /* Shared look of the header buttons (monday's "tertiary" buttons) */
+    .btn-board-icon,
+    .btn-board-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        margin: 0; /* forms.css gives every button a margin */
+        border: none;
+        border-radius: var(--border-radius-small);
+        background-color: transparent;
+
+        color: var(--primary-text-color);
+        font-family: inherit;
+
+        cursor: pointer;
+        transition: transform 0.07s;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px hsla(209, 100%, 50%, 0.5), 0 0 0 1px var(--primary-hover-color) inset;
+        }
+    }
+
+    .btn-board-icon {
+        width: 32px;
+        padding: 0;
+        font-size: 16px;
+    }
+
+    .btn-board-text {
+        gap: var(--spacing-small);
+        padding: var(--spacing-xs) var(--spacing-small);
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .btn-discussion {
+        color: var(--icon-color);
+    }
+
+    .btn-more .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* No extracted values for the star yet (monday's board didn't show one) */
+    .btn-star {
+        color: var(--icon-color);
+
+        &.starred {
+            color: var(--warning-color);
+        }
+    }
+
+    /* ---- Row 2: view tabs ---- */
     .view-tabs {
         display: flex;
-        gap: 1rem;
+        align-items: flex-end;
     }
 
-    .toolbar {
+    .tab-list {
         display: flex;
-        gap: .5rem;
-        min-height: 2rem;
+        align-items: center;
+        width: 100%;
+        height: 34px;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid var(--layout-border-color);
+        list-style: none;
+    }
+
+    .view-tab {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        height: 34px;
+        padding-inline: 2px 11px;
+        background-color: var(--primary-background-color);
+
+        cursor: pointer;
+
+        &.selected {
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .tab-name {
+            padding: 0 var(--spacing-xs);
+            border: 1px solid transparent;
+            border-radius: var(--border-radius-small);
+
+            color: var(--primary-text-color);
+            font-size: 14px;
+            line-height: 20px;
+            white-space: nowrap;
+        }
+
+        .tab-menu {
+            width: 14px;
+            color: var(--icon-color);
+            font-size: 12px;
+            text-align: center;
+        }
+    }
+
+    .btn-add-view {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        margin: 0 0 0 var(--spacing-xs);
+        padding: 0;
+        border: none;
+        border-radius: var(--border-radius-small);
+        background-color: transparent;
+
+        color: var(--primary-text-color);
+        font-size: 14px;
+
+        cursor: pointer;
+        transition: transform 0.07s;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    /* Row 3 is the toolbar - its own component (BoardToolbar.css) */
+
+    /* Popovers on the right edge open towards the left, so they stay on screen */
+    .header-actions .popover {
+        inset-inline-start: auto;
+        inset-inline-end: 0;
+    }
+}
+
+/* ---- Small screens (our own - see RootCmp.css) ---- */
+@media (max-width: 1199px) {
+    /* Integrate / Automate: icon only */
+    .board-header .btn-board-text {
+        width: 32px;
+        padding: 0;
+
+        .btn-label {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 639px) {
+    .board-header {
+        grid-template-rows: auto 42px auto;
+
+        /* Title on its own line, actions on the next one (right-aligned, so popovers stay on screen) */
+        .info-row {
+            flex-wrap: wrap;
+            row-gap: var(--spacing-small);
+        }
+
+        .board-info {
+            flex: 1 1 100%;
+        }
+
+        .board-title,
+        .board-title-input {
+            font-size: var(--font-size-h4);
+            line-height: 24px;
+        }
+
+        .header-actions {
+            margin-inline-start: auto;
+        }
+
+        .btn-board-text,
+        .btn-discussion {
+            display: none;
+        }
     }
 }

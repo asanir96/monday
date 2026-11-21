@@ -1,5 +1,5 @@
-import React from 'react'
-import { Routes, Route, Navigate } from 'react-router'
+import React, { useEffect, useState } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router'
 
 // import { HomePage } from './pages/HomePage'
 // import { AboutUs, AboutTeam, AboutVision } from './pages/AboutUs'
@@ -21,9 +21,19 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 
 
 export function RootCmp() {
+    // Small screens only: the left pane is a drawer (on desktop it's always shown and this is ignored)
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+    const location = useLocation()
+
+    // Picking a board (or any navigation) closes the drawer
+    useEffect(() => {
+        setIsSidebarOpen(false)
+    }, [location.pathname])
+
     return (
-        <div className="app-layout">
-            <AppHeader />
+        <div className={`app-layout ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+            <AppHeader onToggleSidebar={() => setIsSidebarOpen(isOpen => !isOpen)} />
+            <div className="sidebar-backdrop" onClick={() => setIsSidebarOpen(false)} />
             <aside className='left-pane left-pane-layout'>
                 <MainSidebar/>
                 <BoardSidebar />

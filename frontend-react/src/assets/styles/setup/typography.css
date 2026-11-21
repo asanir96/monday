@@ -6,3 +6,48 @@
     /* font-family: montserrat; */
     /* src: url(../../fonts/Montserrat/Montserrat-Regular.ttf); */
 }
+
+/* ---- Icon fonts (kept in the repo, so we don't depend on monday's CDN) ----
+   monday draws a few icons with font glyphs instead of SVGs (monday-icons.json lists font + codepoint).
+   Usage: <span className="glyph glyph-plus" aria-hidden="true" /> */
+@font-face {
+    font-family: dapulse;
+    src: url(../../fonts/dapulse.woff) format('woff');
+    font-display: block;
+}
+
+/* FontAwesome 4.7 (free, SIL OFL) - only used for the glyphs monday takes from it */
+@font-face {
+    font-family: FontAwesome4;
+    src: url(../../fonts/fontawesome-webfont.woff2) format('woff2');
+    font-display: block;
+}
+
+.glyph {
+    display: inline-block;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+
+    &::before {
+        font-family: dapulse;
+    }
+
+    &.glyph-ellipsis::before {
+        content: '\f311';
+    }
+
+    &.glyph-plus::before {
+        content: '\f47b';
+    }
+
+    &.glyph-search::before {
+        content: '\f3aa';
+    }
+
+    &.glyph-angle-down::before {
+        font-family: FontAwesome4;
+        content: '\f107';
+    }
+}

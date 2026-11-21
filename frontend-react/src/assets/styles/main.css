@@ -15,11 +15,16 @@
 @import "cmps/LoginSignup";
 @import "cmps/Chat";
 
+@import "cmps/Icon";
 @import "cmps/AppHeader";
 @import "cmps/MainSidebar";
 @import "cmps/Popover";
+@import "cmps/BoardDetails";
 @import "cmps/BoardHeader";
 @import "cmps/BoardMembers";
+@import "cmps/BoardToolbar";
+@import "cmps/LabelPicker";
+@import "cmps/DatePicker";
 @import "cmps/GroupList";
 @import "cmps/BoardIndex";
 @import "cmps/AppFooter";

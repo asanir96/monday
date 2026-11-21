@@ -32,5 +32,63 @@
 
   --box-shadow-medium: 0px 6px 20px rgba(0, 0, 0, 0.2);
   --font-size-medium: 0.875rem;
-  --font-text3-medium: 0.75rem
+  --font-text3-medium: 0.75rem;
+
+  /* ---- monday tokens: names and values copied from monday's own CSS variables
+     (monday-design-values.json, cssCustomProperties.root). Use these, don't invent new values. ---- */
+
+  /* Colors */
+  --primary-color: #0073ea;
+  --primary-hover-color: #0060b9;
+  --primary-highlighted-color: #f0f7ff;
+  --primary-background-color: #ffffff;
+  --grey-background-color: #f6f7fb;
+  --primary-text-color: #323338;
+  --color-blackish: #333333;
+  --secondary-text-color: #676879;
+  --text-color-on-primary: #ffffff;
+  --icon-color: #676879;
+  --placeholder-color: #676879;
+  --link-color: #1f76c2;
+  --layout-border-color: #d0d4e4;
+  --ui-border-color: #c3c6d4;
+  --ui-background-hover-color: #d8d9e0;
+  --disabled-text-color: rgba(50, 51, 56, 0.38);
+  --positive-color: #00854d;
+  --negative-color: #d83a52;
+  --warning-color: #ffcb00;
+  --surface-color: #edf1fc;
+  --backdrop-color: rgba(41, 47, 76, 0.7);
+  --scrollbar-color: #c3c6d4;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-xl: 32px;
+
+  /* Shadows */
+  --box-shadow-xs: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --box-shadow-small: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  --box-shadow-large: 0px 15px 50px rgba(0, 0, 0, 0.3);
+
+  /* Fonts (loaded in index.html) */
+  --font-family: Figtree, Roboto, "Noto Sans Hebrew", sans-serif;
+  --title-font-family: Poppins, Roboto, "Noto Sans Hebrew", sans-serif;
+  --font-size-subtext: 14px;
+  --font-size-general-label: 14px;
+  --font-size-paragraph: 16px;
+  --font-size-h1: 30px;
+  --font-size-h2: 24px;
+  --font-size-h4: 18px;
+  --font-size-h5: 16px;
+  --font-line-height-subtext: 18px;
+  --font-line-height-general-label: 24px;
+  --font-line-height-paragraph: 24px;
+  --font-line-height-h1: 42px;
+  --font-line-height-h2: 32px;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 500;
 }
