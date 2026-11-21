@@ -6,6 +6,8 @@
         "header header"
         "sidebar main";
     height: 100vh;
+    /* monday's app surface: the header and the side area sit on it */
+    background-color: var(--allgrey-background-color);
 
     > .app-header {
         grid-area: header;

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { Icon } from './Icon'
 // import { Link } from 'react-router-dom'
 // import { useNavigate } from 'react-router'
 // import { useSelector } from 'react-redux'
@@ -23,16 +24,32 @@ export function AppHeader() {
 
     return (
         <header className="app-header">
-            <NavLink to="/board" className="logo">
-                monday
-            </NavLink>
+            <section className="header-start">
+                <NavLink to="/board" className="logo" title="monday">
+                    <Icon name="logo_multicolor" className="logo-icon" />
+                </NavLink>
 
-            <div className="search">
+                <button className="btn-see-plans">
+                    <Icon name="seePlansDiamond" />
+                    See plans
+                </button>
+            </section>
+
+            <label className="header-search">
+                <Icon name="search" className="search-icon" />
                 <input type="search" placeholder="Search for anything..." />
-            </div>
+                <span className="search-shortcut">Ctrl K</span>
+            </label>
 
             <nav className="actions">
-                {/* notifications, inbox, invite, apps, help... */}
+                {/* Not working yet - visual only for now */}
+                <button className="btn-header-icon" title="Notifications"><Icon name="bell" /></button>
+                <button className="btn-header-icon" title="Inbox"><Icon name="inbox" /></button>
+                <button className="btn-header-icon" title="Invite members"><Icon name="invite" /></button>
+                <button className="btn-header-icon" title="Apps"><Icon name="apps" /></button>
+                <button className="btn-header-icon" title="Help"><Icon name="help" /></button>
+                <span className="divider" />
+                <button className="btn-header-icon" title="Products"><Icon name="productSwitcherGrid" /></button>
 
                 {/* {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>} */}
 
@@ -46,7 +63,8 @@ export function AppHeader() {
                         <button onClick={onLogout}>logout</button>
                     </div>
                 )} */}
-                <div className="user-avatar">Placeholder</div>
+                {/* No logged-in user yet (userModule is commented out) */}
+                <div className="user-avatar" title="Guest">G</div>
             </nav>
         </header>
     )

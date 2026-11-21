@@ -15,6 +15,7 @@
 @import "cmps/LoginSignup";
 @import "cmps/Chat";
 
+@import "cmps/Icon";
 @import "cmps/AppHeader";
 @import "cmps/MainSidebar";
 @import "cmps/Popover";
