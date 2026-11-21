@@ -1,0 +1,21 @@
+.empty-cell-trigger{
+    height:100%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+
+.task-text:not(:focus){
+    background-color: unset;
+    border: unset;
+}
+
+.empty-cell-trigger{
+    color:black;
+    opacity:0;
+    transition: 0.1s ease
+}
+.empty-cell-trigger:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
