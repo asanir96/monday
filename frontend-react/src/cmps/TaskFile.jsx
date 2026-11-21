@@ -5,34 +5,28 @@ import { faFile } from '@fortawesome/free-regular-svg-icons'
 import { EmptyCellTrigger } from "./EmptyCellTrigger"
 import { Tooltip } from "@mui/material"
 
-export function TaskFile({ task, onUpdateTask }) {
-    const [taskToEdit, setTaskToEdit] = useState(task)
+export function TaskFile({ value, onChange }) {
+    const [filesToEdit, setFilesToEdit] = useState(value || [])
     const inputRef = useRef(null)
 
     useEffect(() => {
-        onUpdateTask(taskToEdit)
-    }, [taskToEdit])
+        onChange(filesToEdit)
+    }, [filesToEdit])
 
     function handleChange(ev) {
         const { files } = ev.target
-        console.log('files[0].type', files[0].type)
         const selectedFile = { name: files[0].name, type: files[0].type }
-        setTaskToEdit({ ...taskToEdit, files: [...taskToEdit.files, selectedFile] })
+        setFilesToEdit(prev => [...prev, selectedFile])
     }
 
     function onStartEdit() {
-        if (!taskToEdit.files) {
-            setTaskToEdit({ ...taskToEdit, files: [] })
-        }
-
-        inputRef.current?.click()
+            inputRef.current?.click()
     }
 
     function onStopEditing(ev) {
         if (ev.key && ev.key !== 'Enter') return
         inputRef.current.blur()
         setIsEditing(false)
-        onUpdateTask(taskToEdit, ev)
     }
 
     function getFileIcons(fileType) {
@@ -53,7 +47,7 @@ export function TaskFile({ task, onUpdateTask }) {
     }
 
     function onRemoveFile() {
-        setTaskToEdit({ ...taskToEdit, files: taskToEdit.files.slice(0, -1) })
+        setFilesToEdit(prev => prev.slice(0, -1))
     }
 
     return <div className="task-file-input" >
@@ -68,12 +62,12 @@ export function TaskFile({ task, onUpdateTask }) {
             onCancel={() => setIsEditing(false)}
             onKeyDown={onStopEditing}
         />
-        {taskToEdit.files && taskToEdit.files.length > 0 ?
+        {filesToEdit && filesToEdit.length > 0 ?
             <div className="task-file-preview position-relative">
-                <label for="task-file">
-                    {taskToEdit.files[0] &&
-                        <Tooltip title={taskToEdit.files[0].name}>
-                            {getFileIcons(taskToEdit.files[0].type)}
+                <label htmlFor="task-file" onClick={ev => { if (filesToEdit.length) ev.preventDefault() }}>
+                    {filesToEdit[0] &&
+                        <Tooltip title={filesToEdit[0].name}>
+                            {getFileIcons(filesToEdit[0].type)}
                         </Tooltip>}
                 </label>
                 <button
