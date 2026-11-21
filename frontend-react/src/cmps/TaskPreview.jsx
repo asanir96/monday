@@ -6,10 +6,11 @@ import { getInitials } from '../services/util.service'
 import { InlineEdit } from './InlineEdit'
 import { Popover } from './Popover'
 import { StatusPicker } from './StatusPicker'
+import { PriorityPicker } from './PriorityPicker'
 
 const MAX_AVATARS = 2
 
-// One task row. Title is editable, status has a picker; owner is display-only for now (picker comes later)
+// One task row. Title is editable, status + priority have pickers; owner is display-only for now (picker comes later)
 export function TaskPreview({ task, groupId, members }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -23,11 +24,12 @@ export function TaskPreview({ task, groupId, members }) {
         }
     }
 
-    async function onChangeStatus(statusId) {
+    // Used by the cell pickers: onUpdateTaskField('status', 'done')
+    async function onUpdateTaskField(field, value) {
         try {
-            await updateTask(groupId, { ...task, status: statusId })
+            await updateTask(groupId, { ...task, [field]: value })
         } catch (err) {
-            showErrorMsg('Cannot update status')
+            showErrorMsg(`Cannot update ${field}`)
         }
     }
 
@@ -55,7 +57,11 @@ export function TaskPreview({ task, groupId, members }) {
             </td>
 
             <td className="cell cell-status">
-                <StatusPicker value={task.status} onChange={onChangeStatus} />
+                <StatusPicker value={task.status} onChange={statusId => onUpdateTaskField('status', statusId)} />
+            </td>
+
+            <td className="cell cell-priority">
+                <PriorityPicker value={task.priority} onChange={priorityId => onUpdateTaskField('priority', priorityId)} />
             </td>
 
             <td className="cell cell-actions">

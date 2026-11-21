@@ -152,7 +152,8 @@
         width: 9rem;
     }
 
-    .cell-status {
+    .cell-status,
+    .cell-priority {
         width: 10rem;
         padding: 0;
     }
