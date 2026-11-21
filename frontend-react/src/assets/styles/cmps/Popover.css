@@ -1,4 +1,6 @@
-/* Structural styles only (positioning) - colors/shadows come with the monday values pass */
+/* Values from monday (monday-design-values-2.json -> itemMenu.surfaces / peoplePicker.container):
+   every popup is a white surface with an 8px radius and the medium shadow, 6px under its trigger.
+   Pickers with their own look override it (LabelPicker.css) */
 .popover-wrapper {
     position: relative;
     display: inline-block;
@@ -6,12 +8,15 @@
 
 .popover {
     position: absolute;
-    top: calc(100% + .25rem);
+    top: calc(100% + 6px);
     inset-inline-start: 0;
     z-index: 10;
     min-width: 14rem;
-    padding: .5rem;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: var(--spacing-small);
+    border-radius: var(--border-radius-medium);
+    background-color: var(--primary-background-color);
+    box-shadow: var(--box-shadow-medium);
+
+    color: var(--color-blackish);
+    text-align: start;
 }

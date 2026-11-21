@@ -41,7 +41,7 @@ export function LabelPicker({ options, value, onChange }) {
                         <li key={option.id}>
                             <button
                                 type="button"
-                                className={`label-option${option.id === value ? ' selected' : ''}`}
+                                className="label-option"
                                 style={{ '--label-color': option.color }}
                                 onClick={() => onPickLabel(option.id)}
                             >
