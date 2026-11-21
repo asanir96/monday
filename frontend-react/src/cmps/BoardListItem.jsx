@@ -27,7 +27,6 @@ export function BoardListItem({ board }) {
     }
     const handleMoreOptsClick = (event) => {
         event.preventDefault()
-        console.log('event.currentTarget', event.currentTarget)
         setDropwdownAnchorEl(event.currentTarget)
     }
 
@@ -44,9 +43,13 @@ export function BoardListItem({ board }) {
         }
     }
 
-    function onStopEdit(board) {
+    function onStopEdit(updatedBoard,ev) {
+        if (ev.key && ev.key!=='Enter') return
+
         setIsEdit(false)
-        onUpdateBoard(board)
+        if (updatedBoard.title===board.title) return
+
+        onUpdateBoard(updatedBoard)
     }
 
     function onStartEdit() {
