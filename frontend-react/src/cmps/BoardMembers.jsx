@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Popover } from './Popover'
 import { updateBoardOptimistic } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
-import { makeId } from '../services/util.service'
+import { makeId, getInitials } from '../services/util.service'
 
 const MAX_SHOWN = 3
 
@@ -114,6 +114,5 @@ function MemberAvatar({ member }) {
     if (member.imgUrl) {
         return <img className="member-avatar" src={member.imgUrl} alt={member.fullname} title={member.fullname} />
     }
-    const initials = member.fullname.split(' ').map(word => word[0]).slice(0, 2).join('').toUpperCase()
-    return <span className="member-avatar initials" title={member.fullname}>{initials}</span>
+    return <span className="member-avatar initials" title={member.fullname}>{getInitials(member.fullname)}</span>
 }

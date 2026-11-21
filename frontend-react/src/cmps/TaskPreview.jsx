@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { updateTask, removeTask } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
+import { getInitials } from '../services/util.service'
 import { InlineEdit } from './InlineEdit'
 import { Popover } from './Popover'
 import { StatusPicker } from './StatusPicker'
@@ -48,7 +49,7 @@ export function TaskPreview({ task, groupId, members }) {
             <td className="cell cell-owner">
                 {!owners.length && <span className="avatar avatar-placeholder" title="No owner">?</span>}
                 {owners.slice(0, MAX_AVATARS).map(member => (
-                    <img key={member._id} className="avatar" src={member.imgUrl} alt={member.fullname} title={member.fullname} />
+                    member.imgUrl ? <img key={member._id} className="avatar" src={member.imgUrl} alt={member.fullname} title={member.fullname} /> : <span key={member._id} className="avatar avatar-placeholder" title={member.fullname}>{getInitials(member.fullname)}</span>
                 ))}
                 {owners.length > MAX_AVATARS && <span className="avatar avatar-more">+{owners.length - MAX_AVATARS}</span>}
             </td>
