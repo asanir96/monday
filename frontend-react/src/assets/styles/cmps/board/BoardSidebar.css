@@ -10,6 +10,7 @@
     border-right-width: var(--border-width);
     border-right-style: var(--border-style);
     border-right-color: var(--ui-background-color);
+    background-color: white;
 }
 
 .board-list-header {

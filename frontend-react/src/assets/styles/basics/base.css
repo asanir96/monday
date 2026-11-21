@@ -46,3 +46,7 @@ object {
 nav{
     z-index: 100;
 }
+
+.left-pane{
+    background-color: var(--allgrey-background-color);
+}
