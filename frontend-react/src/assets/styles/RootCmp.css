@@ -22,16 +22,31 @@
 
     > .app-main {
         grid-area: main;
-        overflow: auto;
+        /* monday's board scrolls both ways, and its vertical bar is always there (scroll, not auto) */
+        overflow-x: auto;
+        overflow-y: scroll;
 
         /* monday's white content panel (page.boardArea in monday-design-values.json) */
         border-start-start-radius: 12px;
         background-color: var(--primary-background-color);
         box-shadow: var(--box-shadow-xs), -5px -5px 20px 0 var(--surface-color);
 
-        /* monday's scrollbar color (--scrollbar-color); the exact width wasn't extracted, so "thin" for now */
-        scrollbar-color: var(--scrollbar-color) transparent;
-        scrollbar-width: thin;
+        /* monday's scrollbar (monday-scrollbar.json): the native one restyled - 9px, a 4px-round thumb,
+           no track, no arrows, no hover change. It takes layout space */
+        &::-webkit-scrollbar {
+            width: 9px;
+            height: 9px;
+        }
+
+        &::-webkit-scrollbar-track,
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: var(--border-radius-small);
+            background-color: var(--scrollbar-color);
+        }
     }
 }
 
