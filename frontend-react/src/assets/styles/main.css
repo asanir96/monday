@@ -19,6 +19,7 @@
 @import "cmps/AppHeader";
 @import "cmps/MainSidebar";
 @import "cmps/Popover";
+@import "cmps/BoardDetails";
 @import "cmps/BoardHeader";
 @import "cmps/BoardMembers";
 @import "cmps/LabelPicker";

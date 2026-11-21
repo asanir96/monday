@@ -1,53 +1,129 @@
-/* Structural styles only - final look comes with the monday values pass */
+/* Values from monday (monday-design-values.json -> boardHeader.actions.membersAvatars / inviteButton / copyLinkButton) */
 .board-members {
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: var(--spacing-small);
 
     .btn-members {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        padding: 0;
-        border: 0;
-        background: none;
-        cursor: pointer;
+        justify-content: center;
+        height: 32px;
+        margin: 0; /* forms.css gives every button a margin */
+        /* 8px + the first avatar's -8px overlap = 16px on the left */
+        padding: var(--spacing-xs) var(--spacing-small) var(--spacing-xs) var(--spacing-medium);
+        border: none;
+        border-radius: var(--border-radius-small);
+        background-color: transparent;
 
-        .member-avatar:not(:first-child),
+        cursor: pointer;
+        transition: transform 0.07s;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        /* Avatars overlap by 8px */
+        .member-avatar,
         .members-more {
-            margin-inline-start: -.4rem;
+            margin-inline-start: -8px;
         }
     }
 
-    .member-avatar {
-        width: 1.75rem;
-        height: 1.75rem;
+    .member-avatar,
+    .members-more {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        border: 1px solid var(--primary-background-color);
         border-radius: 50%;
         object-fit: cover;
+    }
 
-        &.initials {
-            display: grid;
-            place-items: center;
-            font-size: .7rem;
-            background-color: #ccc;
+    .member-avatar.initials,
+    .members-more {
+        background-color: var(--ui-background-color);
+        color: var(--primary-text-color);
+        font-size: 12px;
+    }
+
+    /* Invite + copy link: one joined pair of bordered buttons */
+    .invite-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-invite,
+    .btn-copy-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        margin: 0;
+        border: 1px solid var(--ui-border-color);
+        background-color: transparent;
+
+        color: var(--primary-text-color);
+        font-family: inherit;
+
+        cursor: pointer;
+        transition: transform 0.07s;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px hsla(209, 100%, 50%, 0.5), 0 0 0 1px var(--primary-hover-color) inset;
         }
     }
 
+    .btn-invite {
+        padding: var(--spacing-xs) var(--spacing-small);
+        border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
+        font-size: 14px;
+        line-height: 22px;
+        white-space: nowrap;
+    }
+
+    .btn-copy-link {
+        width: 32px;
+        margin-inline-start: -1px;
+        padding: 0;
+        border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
+    }
+
+    /* Popover contents - not in the extracted values yet */
     .member-list {
-        list-style: none;
         margin: 0;
         padding: 0;
+        list-style: none;
 
         & li {
             display: flex;
             align-items: center;
-            gap: .5rem;
-            padding: .25rem 0;
+            gap: var(--spacing-small);
+            padding: var(--spacing-xs) 0;
+        }
+
+        .member-avatar {
+            margin: 0;
         }
     }
 
     .invite-form {
         display: flex;
-        gap: .5rem;
-        margin-bottom: .5rem;
+        gap: var(--spacing-small);
+        margin-bottom: var(--spacing-small);
     }
 }

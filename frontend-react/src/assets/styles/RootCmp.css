@@ -21,6 +21,11 @@
     > .app-main {
         grid-area: main;
         overflow: auto;
+
+        /* monday's white content panel (page.boardArea in monday-design-values.json) */
+        border-start-start-radius: 12px;
+        background-color: var(--primary-background-color);
+        box-shadow: var(--box-shadow-xs), -5px -5px 20px 0 var(--surface-color);
     }
 }
 
