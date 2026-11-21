@@ -1,6 +1,8 @@
 /* Values from monday (monday-design-values.json -> boardHeader, states.hover, states.stylesheetRules) */
 .board-header {
     display: grid;
+    /* minmax(0): the column may be narrower than the full title, so the title shrinks ("...") instead */
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: 32px 42px 64px;
 
     /* ---- Row 1: board info (title, star) + actions ---- */
@@ -18,7 +20,17 @@
         gap: var(--spacing-small);
     }
 
+    /* The title side gives up room first: a long title ends with "..." instead of wrapping */
+    .board-info {
+        min-width: 0;
+    }
+
+    .header-actions {
+        flex-shrink: 0;
+    }
+
     .board-title-container {
+        min-width: 0;
         display: flex;
         align-items: center;
         gap: var(--spacing-xs);
@@ -49,6 +61,12 @@
         font-weight: var(--font-weight-bold);
         line-height: 30px;
         letter-spacing: -0.1px;
+    }
+
+    .board-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .board-title-input {
@@ -205,5 +223,49 @@
     .header-actions .popover {
         inset-inline-start: auto;
         inset-inline-end: 0;
+    }
+}
+
+/* ---- Small screens (our own - see RootCmp.css) ---- */
+@media (max-width: 1199px) {
+    /* Integrate / Automate: icon only */
+    .board-header .btn-board-text {
+        width: 32px;
+        padding: 0;
+
+        .btn-label {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 639px) {
+    .board-header {
+        grid-template-rows: auto 42px auto;
+
+        /* Title on its own line, actions on the next one (right-aligned, so popovers stay on screen) */
+        .info-row {
+            flex-wrap: wrap;
+            row-gap: var(--spacing-small);
+        }
+
+        .board-info {
+            flex: 1 1 100%;
+        }
+
+        .board-title,
+        .board-title-input {
+            font-size: var(--font-size-h4);
+            line-height: 24px;
+        }
+
+        .header-actions {
+            margin-inline-start: auto;
+        }
+
+        .btn-board-text,
+        .btn-discussion {
+            display: none;
+        }
     }
 }

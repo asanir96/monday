@@ -74,13 +74,13 @@ export function BoardHeader({ board }) {
 
                 <div className="header-actions">
                     {/* Not working yet - visual only for now */}
-                    <button className="btn-board-text">
+                    <button className="btn-board-text" title="Integrate">
                         <Icon name="integrate" section="boardHeader" />
-                        Integrate
+                        <span className="btn-label">Integrate</span>
                     </button>
-                    <button className="btn-board-text">
+                    <button className="btn-board-text" title="Automate">
                         <Icon name="automate" section="boardHeader" />
-                        Automate
+                        <span className="btn-label">Automate</span>
                     </button>
                     <button className="btn-board-icon btn-discussion" title="Updates">
                         <Icon name="discussionBubble" section="boardHeader" />

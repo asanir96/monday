@@ -197,3 +197,26 @@
     }
 }
 
+/* ---- Small screens (our own - see RootCmp.css) ---- */
+@media (max-width: 1199px) {
+    /* Person / Filter / Sort / Hide / Group by: icon only */
+    .board-toolbar .btn-toolbar-item .item-title {
+        display: none;
+    }
+}
+
+@media (max-width: 639px) {
+    /* The row scrolls sideways instead of wrapping */
+    .board-toolbar {
+        overflow-x: auto;
+        scrollbar-width: none;
+
+        > * {
+            flex-shrink: 0;
+        }
+
+        .btn-collapse-header {
+            display: none;
+        }
+    }
+}

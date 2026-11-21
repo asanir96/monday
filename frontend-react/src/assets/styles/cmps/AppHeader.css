@@ -193,3 +193,83 @@
     }
     */
 }
+
+/* ---- Small screens (our own - see RootCmp.css) ---- */
+.app-header .btn-sidebar-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: var(--border-radius-small);
+    background-color: transparent;
+
+    color: var(--primary-text-color);
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--primary-background-hover-color);
+    }
+
+    & svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* The centered search would run into the side groups - it becomes a normal flexible item */
+@media (max-width: 1199px) {
+    .app-header .header-search {
+        position: static;
+        translate: none;
+        flex: 0 1 400px;
+        width: auto;
+        min-width: 0;
+        margin-inline: var(--spacing-medium);
+    }
+
+    .app-header .header-start,
+    .app-header .actions {
+        flex: 0 0 auto;
+    }
+
+    .app-header .header-search ~ .actions {
+        margin-inline-start: auto;
+    }
+}
+
+@media (max-width: 1023px) {
+    .app-header {
+        .btn-sidebar-toggle {
+            display: flex;
+        }
+
+        .logo {
+            margin-inline-start: 0;
+        }
+
+        /* Touch devices have no Ctrl K */
+        .search-shortcut {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 639px) {
+    .app-header {
+        padding-inline-end: var(--spacing-small);
+
+        .optional {
+            display: none;
+        }
+
+        .header-search {
+            flex: 1 1 auto;
+            margin-inline: var(--spacing-small);
+        }
+    }
+}

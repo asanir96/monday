@@ -2,3 +2,15 @@
 .board-details {
     padding: 18px 39px 0 38px;
 }
+
+@media (max-width: 1023px) {
+    .board-details {
+        padding: var(--spacing-medium) var(--spacing-large) 0;
+    }
+}
+
+@media (max-width: 639px) {
+    .board-details {
+        padding: 12px var(--spacing-medium) 0;
+    }
+}
