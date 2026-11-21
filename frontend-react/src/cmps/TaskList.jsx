@@ -29,6 +29,7 @@ export function TaskList({ group, members }) {
                     <th className="cell cell-owner">Owner</th>
                     <th className="cell cell-status">Status</th>
                     <th className="cell cell-priority">Priority</th>
+                    <th className="cell cell-date">Due date</th>
                     <th className="cell cell-actions" />
                 </tr>
             </thead>
@@ -39,7 +40,7 @@ export function TaskList({ group, members }) {
                 ))}
 
                 <tr className="task-row add-task-row">
-                    <td className="cell cell-title" colSpan={5}>
+                    <td className="cell cell-title" colSpan={6}>
                         <form onSubmit={onAddTask}>
                             <input
                                 className="add-task-input"

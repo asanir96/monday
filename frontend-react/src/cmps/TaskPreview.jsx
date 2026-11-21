@@ -7,10 +7,11 @@ import { InlineEdit } from './InlineEdit'
 import { Popover } from './Popover'
 import { StatusPicker } from './StatusPicker'
 import { PriorityPicker } from './PriorityPicker'
+import { DatePicker } from './DatePicker'
 
 const MAX_AVATARS = 2
 
-// One task row. Title is editable, status + priority have pickers; owner is display-only for now (picker comes later)
+// One task row. Title is editable, status, priority + due date have pickers; owner is display-only for now (picker comes later)
 export function TaskPreview({ task, groupId, members }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -62,6 +63,10 @@ export function TaskPreview({ task, groupId, members }) {
 
             <td className="cell cell-priority">
                 <PriorityPicker value={task.priority} onChange={priorityId => onUpdateTaskField('priority', priorityId)} />
+            </td>
+
+            <td className="cell cell-date">
+                <DatePicker value={task.dueDate} onChange={dueDate => onUpdateTaskField('dueDate', dueDate)} />
             </td>
 
             <td className="cell cell-actions">

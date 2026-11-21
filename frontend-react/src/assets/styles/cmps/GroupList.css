@@ -158,6 +158,11 @@
         padding: 0;
     }
 
+    .cell-date {
+        width: 8rem;
+        padding: 0;
+    }
+
     .cell-actions {
         width: 2.75rem;
         padding: 0;

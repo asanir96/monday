@@ -1,0 +1,23 @@
+/* Structural styles only - final look comes with the monday values pass */
+.date-picker {
+    & .popover-wrapper {
+        display: block;
+    }
+}
+
+.date-picker-btn {
+    display: block;
+    inline-size: 100%;
+    min-block-size: 2rem;
+    padding: .375rem .5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.date-picker-popover {
+    display: flex;
+    gap: .5rem;
+    min-width: auto;
+}

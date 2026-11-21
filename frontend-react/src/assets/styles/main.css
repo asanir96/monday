@@ -21,6 +21,7 @@
 @import "cmps/BoardHeader";
 @import "cmps/BoardMembers";
 @import "cmps/LabelPicker";
+@import "cmps/DatePicker";
 @import "cmps/GroupList";
 @import "cmps/BoardIndex";
 @import "cmps/AppFooter";
