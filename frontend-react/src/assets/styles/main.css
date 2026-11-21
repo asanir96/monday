@@ -25,6 +25,7 @@
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 @import "cmps/TaskText";
+@import "cmps/TaskFileInput";
 @import "cmps/EmptyCellTrigger";
 
 @import "cmps/car/CarIndex";

@@ -1,0 +1,57 @@
+.task-file-input {
+    height:100%;
+}
+.task-file-input label{
+    padding-inline:1em;
+    display: flex;
+    justify-content: start;
+    justify-self: center;
+    align-items: center;
+    color:black;
+    overflow:hidden;
+    gap:0.5em;
+    text-overflow: clip;
+    height:100%;
+}
+
+.file-input-icon{
+    font-size: 20px;
+}
+
+.task-file-input .file-name{
+    /* width: 100%; */
+    text-wrap: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.task-file-input .file-remove-btn{
+     right:0;
+    display: grid;
+    place-items: center;
+    /* line-height: 100%; */
+    place-content: center;
+    border-radius: 50%;
+    background-color: var(--gray2);
+    font-size: 0.6rem;
+    color:white;
+    padding: 0;
+    width:1rem;
+    height:1rem;
+    opacity: 0;
+    transition: 0.1s ease;
+}
+
+
+.task-file-input:hover .file-remove-btn{
+    opacity: 1;
+}
+.file-remove-btn:hover{
+    background-color: var(--gray3);
+}
+
+.task-file-preview{
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
