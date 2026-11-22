@@ -1,0 +1,192 @@
+/* Values from monday (monday-design-values-3.json -> boardInfoPopup, states.hover.boardInfo) */
+
+/* The popup: 422px wide, 8px under the title, left edges aligned */
+.board-info-popover.popover {
+    top: calc(100% + 8px);
+    width: 422px;
+    min-width: 0;
+    padding: var(--spacing-small);
+}
+
+.board-info-dialog {
+    padding: var(--spacing-small) var(--spacing-medium) var(--spacing-xs);
+    color: var(--color-blackish);
+
+    /* ---- Name + favorite star ---- */
+    .info-header {
+        display: flex;
+        align-items: center;
+        min-height: 32px;
+    }
+
+    /* InlineEdit (its base look is in GroupList.css) at monday's popup size.
+       .inline-edit in the selector: GroupList.css loads later and its editing state sets "font: inherit" */
+    .info-title.inline-edit {
+        flex: 1;
+        min-width: 0;
+        padding: 0 var(--spacing-xs);
+        color: var(--primary-text-color);
+        font-family: var(--title-font-family);
+        font-size: var(--font-size-h4);
+        font-weight: var(--font-weight-bold);
+        line-height: 24px;
+    }
+
+    .btn-star {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        margin: 0 0 0 auto;
+        padding: 0;
+        border: none;
+        border-radius: var(--border-radius-small);
+        background-color: transparent;
+
+        color: var(--icon-color);
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        &.starred {
+            color: var(--warning-color);
+        }
+    }
+
+    /* ---- Description ---- */
+    .info-description {
+        max-height: 130px;
+        margin: var(--spacing-xs) 0 0;
+        padding: 3px;
+        overflow: hidden;
+        border: 1px solid transparent;
+
+        color: var(--primary-text-color);
+        font-size: 14px;
+        line-height: 21px;
+        white-space: pre-wrap;
+    }
+
+    .info-divider {
+        height: 1px;
+        margin: var(--spacing-small) 0;
+        border: none;
+        background-color: var(--layout-border-color);
+    }
+
+    /* ---- Board info rows ---- */
+    .info-heading {
+        margin: var(--spacing-medium) 0 var(--spacing-small);
+        padding-inline-start: 6px;
+
+        color: var(--primary-text-color);
+        font-size: var(--font-size-h5);
+        font-weight: 600;
+        line-height: 22px;
+    }
+
+    .info-rows {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        padding: var(--spacing-small);
+    }
+
+    .row-label {
+        flex-shrink: 0;
+        width: 120px;
+
+        color: var(--secondary-text-color);
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .row-value {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-small);
+        width: 238px;
+        height: 32px;
+        margin: 0;
+        padding: 0 var(--spacing-small);
+        border: none;
+        border-radius: var(--border-radius-small);
+        background-color: transparent;
+
+        color: var(--primary-text-color);
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 20px;
+        white-space: nowrap;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+    }
+
+    /* Board type isn't clickable on monday either */
+    .board-type {
+        cursor: default;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    .row-icon {
+        width: 16px;
+        height: 16px;
+        color: var(--icon-color);
+    }
+
+    .row-chevron {
+        margin-inline-start: auto;
+        color: var(--primary-text-color);
+    }
+
+    .info-avatar {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: var(--ui-background-color);
+        font-size: 12px;
+    }
+
+    .owner-avatar {
+        width: 27px;
+        height: 27px;
+    }
+
+    .creator-avatar {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* ---- Phones (our own - see RootCmp.css): the popup fits the screen, 16px from each side ---- */
+@media (max-width: 639px) {
+    .board-info-popover.popover {
+        width: calc(100vw - 2 * var(--spacing-medium));
+    }
+
+    .board-info-dialog .row-value {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+    }
+}

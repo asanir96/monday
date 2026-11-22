@@ -1,75 +1,40 @@
 import { useState } from 'react'
 
+import { BoardInfo } from './BoardInfo'
 import { BoardMembers } from './BoardMembers'
 import { BoardToolbar } from './BoardToolbar'
 import { Icon } from './Icon'
-import { updateBoardOptimistic } from '../store/actions/board.actions'
-import { showErrorMsg } from '../services/event-bus.service'
+import { Popover } from './Popover'
 
 // Board header - title + actions row, view tabs, toolbar
 export function BoardHeader({ board }) {
-    const [isEditingTitle, setIsEditingTitle] = useState(false)
-    const [titleDraft, setTitleDraft] = useState('')
-
-    function onStartEditTitle() {
-        setTitleDraft(board.title)
-        setIsEditingTitle(true)
-    }
-
-    async function onSaveTitle() {
-        setIsEditingTitle(false)
-        const title = titleDraft.trim()
-        if (!title || title === board.title) return
-        try {
-            await updateBoardOptimistic({ ...board, title })
-        } catch (err) {
-            showErrorMsg('Cannot update board title')
-        }
-    }
-
-    function onTitleKeyDown(ev) {
-        if (ev.key === 'Enter') ev.target.blur() // blur saves
-        if (ev.key === 'Escape') setIsEditingTitle(false)
-    }
-
-    async function onToggleStar() {
-        try {
-            await updateBoardOptimistic({ ...board, isStarred: !board.isStarred })
-        } catch (err) {
-            showErrorMsg('Cannot update board')
-        }
-    }
+    // The title opens the board-info popup (name editing and the favorite star live there, as in monday)
+    const [isInfoOpen, setIsInfoOpen] = useState(false)
 
     return (
         <header className="board-header">
             <div className="info-row">
                 <div className="board-info">
-                    {isEditingTitle ? (
-                        <input
-                            className="board-title-input"
-                            type="text"
-                            value={titleDraft}
-                            autoFocus
-                            onChange={ev => setTitleDraft(ev.target.value)}
-                            onBlur={onSaveTitle}
-                            onKeyDown={onTitleKeyDown}
-                        />
-                    ) : (
-                        <div className="board-title-container" onClick={onStartEditTitle} title="Click to edit">
-                            <h1 className="board-title">{board.title}</h1>
-                            <Icon name="chevronDown" section="boardHeader" className="title-arrow" />
-                        </div>
-                    )}
-
-                    {/* monday's board didn't show a star, so there are no extracted values/icon for it yet */}
-                    <button
-                        className={`btn-board-icon btn-star ${board.isStarred ? 'starred' : ''}`}
-                        onClick={onToggleStar}
-                        aria-label={board.isStarred ? 'Remove from favorites' : 'Add to favorites'}
-                        aria-pressed={!!board.isStarred}
+                    <Popover
+                        isOpen={isInfoOpen}
+                        onClose={() => setIsInfoOpen(false)}
+                        className="board-info-popover"
+                        trigger={
+                            <h1 className="board-title-heading">
+                                <button
+                                    className={`board-title-container${isInfoOpen ? ' is-open' : ''}`}
+                                    onClick={() => setIsInfoOpen(isOpen => !isOpen)}
+                                    aria-haspopup="dialog"
+                                    aria-expanded={isInfoOpen}
+                                >
+                                    <span className="board-title">{board.title}</span>
+                                    <Icon name="chevronDown" section="boardHeader" className="title-arrow" />
+                                </button>
+                            </h1>
+                        }
                     >
-                        {board.isStarred ? '★' : '☆'}
-                    </button>
+                        <BoardInfo board={board} />
+                    </Popover>
                 </div>
 
                 <div className="header-actions">

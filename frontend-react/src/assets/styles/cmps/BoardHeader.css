@@ -29,19 +29,39 @@
         flex-shrink: 0;
     }
 
+    /* The title is a button that opens the board-info popup (BoardInfo.css) */
+    .board-info .popover-wrapper {
+        display: block;
+        min-width: 0;
+    }
+
+    .board-title-heading {
+        min-width: 0;
+        margin: 0;
+    }
+
     .board-title-container {
         min-width: 0;
+        max-width: 100%;
         display: flex;
         align-items: center;
         gap: var(--spacing-xs);
         height: 32px;
+        margin: 0; /* forms.css gives every button a margin */
         padding: 1px var(--spacing-xs);
+        border: none;
         border-radius: var(--border-radius-small);
+        background-color: transparent;
 
         cursor: pointer;
 
         &:hover {
             background-color: var(--primary-background-hover-color);
+        }
+
+        /* While the popup is open (hover still wins) */
+        &.is-open:not(:hover) {
+            background-color: var(--primary-selected-color);
         }
 
         .title-arrow {
@@ -51,8 +71,7 @@
         }
     }
 
-    .board-title,
-    .board-title-input {
+    .board-title {
         margin: 0;
 
         color: var(--primary-text-color);
@@ -67,14 +86,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-    }
-
-    .board-title-input {
-        height: 32px;
-        padding: 1px var(--spacing-xs);
-        border: 1px solid var(--primary-color);
-        border-radius: var(--border-radius-small);
-        outline: none;
     }
 
     /* Shared look of the header buttons (monday's "tertiary" buttons) */
@@ -129,15 +140,6 @@
     .btn-more .icon {
         width: 24px;
         height: 24px;
-    }
-
-    /* No extracted values for the star yet (monday's board didn't show one) */
-    .btn-star {
-        color: var(--icon-color);
-
-        &.starred {
-            color: var(--warning-color);
-        }
     }
 
     /* ---- Row 2: view tabs ---- */
@@ -253,8 +255,7 @@
             flex: 1 1 100%;
         }
 
-        .board-title,
-        .board-title-input {
+        .board-title {
             font-size: var(--font-size-h4);
             line-height: 24px;
         }

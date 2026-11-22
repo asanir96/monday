@@ -21,6 +21,7 @@
 @import "cmps/Popover";
 @import "cmps/BoardDetails";
 @import "cmps/BoardHeader";
+@import "cmps/BoardInfo";
 @import "cmps/BoardMembers";
 @import "cmps/BoardToolbar";
 @import "cmps/LabelPicker";
