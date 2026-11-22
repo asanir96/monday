@@ -81,8 +81,16 @@
         cursor: pointer;
         transition: background-color 0.1s cubic-bezier(0, 0, 0.35, 1);
 
-        &:hover:not(:focus-within) {
+        &:hover:not(.is-focused) {
             background-color: var(--primary-background-hover-color);
+        }
+
+        /* Focused (monday-design-values-4.json -> boardToolbarSearch.focused): blue border, grey stays,
+           the input grows 60 -> 163px and the settings button appears after it */
+        &.is-focused {
+            border-color: var(--primary-color);
+            background-color: var(--primary-background-hover-color);
+            cursor: default;
         }
 
         .glyph-search {
@@ -122,8 +130,55 @@
             }
 
             &:focus {
-                border-color: var(--primary-color);
                 cursor: text;
+            }
+        }
+
+        &.is-focused input {
+            width: 163px;
+
+            /* "Search this board" in monday's measured grey (Chrome's default placeholder color) */
+            &::placeholder {
+                color: rgb(117, 117, 117);
+            }
+        }
+
+        .search-settings {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 72px;
+            height: 24px;
+        }
+
+        .btn-search-settings {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            margin: 0; /* forms.css gives every button a margin */
+            padding: 0;
+            border: none;
+            border-radius: var(--border-radius-small);
+            background-color: transparent;
+
+            color: var(--primary-text-color);
+
+            cursor: pointer;
+            transition: transform 0.07s;
+
+            &:hover {
+                background-color: var(--primary-background-hover-color);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+
+            .icon {
+                width: 16px;
+                height: 16px;
             }
         }
     }

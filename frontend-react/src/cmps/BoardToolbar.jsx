@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Icon } from './Icon'
 
 // The row under the view tabs: New task, Search, Person, Filter, Sort, Hide, Group by.
@@ -11,6 +13,15 @@ const FILTER_ITEMS = [
 ]
 
 export function BoardToolbar() {
+    // Focused search grows wider and shows its settings button (monday-design-values-4.json -> boardToolbarSearch)
+    const [isSearchFocused, setIsSearchFocused] = useState(false)
+
+    // Focus moving to the settings button stays "inside" the search, so it doesn't collapse
+    function onSearchBlur(ev) {
+        if (ev.currentTarget.contains(ev.relatedTarget)) return
+        setIsSearchFocused(false)
+    }
+
     return (
         <section className="board-toolbar">
             <div className="new-task-group">
@@ -20,9 +31,20 @@ export function BoardToolbar() {
                 </button>
             </div>
 
-            <label className="toolbar-search">
+            <label
+                className={`toolbar-search${isSearchFocused ? ' is-focused' : ''}`}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={onSearchBlur}
+            >
                 <span className="glyph glyph-search" aria-hidden="true" />
-                <input type="search" placeholder="Search" />
+                <input type="search" placeholder={isSearchFocused ? 'Search this board' : 'Search'} aria-label="Search this board" />
+                {isSearchFocused && (
+                    <span className="search-settings">
+                        <button type="button" className="btn-search-settings" title="Search options">
+                            <Icon name="searchSettings" section="boardToolbar" />
+                        </button>
+                    </span>
+                )}
             </label>
 
             {FILTER_ITEMS.map(item => (
