@@ -41,14 +41,15 @@
     inset-inline-start: 50%;
     width: 200px;
     min-width: 0;
-    padding: var(--spacing-medium) var(--spacing-large) var(--spacing-small);
+    /* The labels start 24px down; the footer runs edge to edge */
+    padding: var(--spacing-large) 0 0;
     border-radius: var(--border-radius-medium);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.32);
     transform: translateX(-50%);
 
     & .label-picker-list {
         margin: 0;
-        padding: 0;
+        padding: 0 var(--spacing-large);
         list-style: none;
     }
 
@@ -76,5 +77,55 @@
         text-overflow: ellipsis;
 
         cursor: pointer;
+    }
+
+    /* Footer (monday-design-values-3.json -> statusPickerFooter): Edit Labels, a full-width line, Auto-assign */
+    & .footer-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        padding: 0 var(--spacing-medium);
+    }
+
+    & .footer-ai-row {
+        height: 40px;
+        padding: 0 var(--spacing-small) var(--spacing-small);
+    }
+
+    & .footer-divider {
+        height: 1px;
+        margin: var(--spacing-small) 0;
+        border: none;
+        background-color: var(--layout-border-color);
+    }
+
+    & .btn-picker-footer {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-small);
+        height: 32px;
+        margin: 0;
+        padding: var(--spacing-xs) var(--spacing-small);
+        border: none;
+        border-radius: var(--border-radius-small);
+        background-color: transparent;
+
+        color: var(--primary-text-color);
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 24px;
+        white-space: nowrap;
+
+        cursor: pointer;
+        transition: transform 0.07s;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
     }
 }

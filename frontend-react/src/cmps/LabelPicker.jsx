@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { Icon } from './Icon'
 import { Popover } from './Popover'
 
 const EMPTY_LABEL = { id: '', title: '', color: '#c4c4c4' }
@@ -50,6 +51,25 @@ export function LabelPicker({ options, value, onChange }) {
                         </li>
                     ))}
                 </ul>
+
+                {/* Not working yet - visual only for now */}
+                <footer className="label-picker-footer">
+                    <div className="footer-row">
+                        <button type="button" className="btn-picker-footer">
+                            <Icon name="editLabels" section="labelPicker" />
+                            Edit Labels
+                        </button>
+                    </div>
+
+                    <hr className="footer-divider" />
+
+                    <div className="footer-row footer-ai-row">
+                        <button type="button" className="btn-picker-footer">
+                            <Icon name="autoAssign" section="labelPicker" />
+                            Auto-assign labels
+                        </button>
+                    </div>
+                </footer>
             </Popover>
         </div>
     )
