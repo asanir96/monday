@@ -1,9 +1,12 @@
 import { useState } from 'react'
 
+import { boardService } from '../services/board'
+import { addGroup, addTask } from '../store/actions/board.actions'
+import { showErrorMsg } from '../services/event-bus.service'
 import { Icon } from './Icon'
 
 // The row under the view tabs: New task, Search, Person, Filter, Sort, Hide, Group by.
-// Visual only for now - the functionality comes near the end of the project.
+// New task works; the rest is visual only for now - the functionality comes near the end of the project.
 const FILTER_ITEMS = [
     { icon: 'person', title: 'Person' },
     { icon: 'filter', title: 'Filter' },
@@ -12,7 +15,7 @@ const FILTER_ITEMS = [
     { icon: 'groupBy', title: 'Group by' },
 ]
 
-export function BoardToolbar() {
+export function BoardToolbar({ board }) {
     // Focused search grows wider and shows its settings button (monday-design-values-4.json -> boardToolbarSearch)
     const [isSearchFocused, setIsSearchFocused] = useState(false)
 
@@ -22,10 +25,23 @@ export function BoardToolbar() {
         setIsSearchFocused(false)
     }
 
+    // Adds a task to the board's first group, like the group's "+ Add item" does.
+    // A board without groups gets a new group with the task in it.
+    async function onAddNewTask() {
+        const task = boardService.getEmptyTask('New task')
+        const firstGroup = board.groups?.[0]
+        try {
+            if (firstGroup) await addTask(firstGroup.id, task)
+            else await addGroup({ ...boardService.getEmptyGroup(), tasks: [task] })
+        } catch (err) {
+            showErrorMsg('Cannot add task')
+        }
+    }
+
     return (
         <section className="board-toolbar">
             <div className="new-task-group">
-                <button className="btn-new-task">New task</button>
+                <button className="btn-new-task" onClick={onAddNewTask}>New task</button>
                 <button className="btn-new-task-menu" title="More options">
                     <span className="glyph glyph-angle-down" aria-hidden="true" />
                 </button>

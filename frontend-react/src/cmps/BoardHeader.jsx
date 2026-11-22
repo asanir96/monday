@@ -74,7 +74,7 @@ export function BoardHeader({ board }) {
                 </ul>
             </nav>
 
-            <BoardToolbar />
+            <BoardToolbar board={board} />
         </header>
     )
 }
