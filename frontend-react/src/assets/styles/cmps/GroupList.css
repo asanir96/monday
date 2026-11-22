@@ -250,3 +250,20 @@
         }
     }
 }
+
+/* ---- Drag and drop (monday-design-values-2.json -> dragAndDrop) ---- */
+
+/* The groups sit in the drag list now, so their spacing is a margin (the library measures margins, not flex gaps) */
+.group-list-groups > .group-preview {
+    margin-bottom: 2.5rem;
+}
+
+.group-preview .group-header {
+    cursor: grab;
+}
+
+/* A dragged group covers what's under it with the board's own background */
+.group-preview.is-dragging {
+    background-color: var(--primary-background-color);
+}
+
