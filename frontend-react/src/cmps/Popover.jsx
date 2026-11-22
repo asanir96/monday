@@ -8,7 +8,11 @@ import { useEffect, useRef } from 'react'
 // <Popover isOpen={isOpen} onClose={() => setIsOpen(false)} trigger={<button onClick={...}>Open</button>}>
 //     content
 // </Popover>
-export function Popover({ isOpen, onClose, trigger, children, className = '' }) {
+//
+// animation: how it appears - monday picks one per popup (monday-design-values-5.json, Popover.css):
+// 'expand' (grows from the top), 'slide' (fades in from 20px higher), 'fade', or none.
+// Nothing animates on close, same as monday.
+export function Popover({ isOpen, onClose, trigger, children, className = '', animation = '' }) {
     const wrapperRef = useRef(null)
 
     useEffect(() => {
@@ -37,7 +41,7 @@ export function Popover({ isOpen, onClose, trigger, children, className = '' }) 
         <div className="popover-wrapper" ref={wrapperRef}>
             {trigger}
             {isOpen && (
-                <div className={`popover ${className}`} role="dialog">
+                <div className={`popover ${className}${animation ? ` appear-${animation}` : ''}`} role="dialog">
                     {children}
                 </div>
             )}

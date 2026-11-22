@@ -83,6 +83,7 @@ export function TaskPreview({ task, idx, groupId, members }) {
                             isOpen={isMenuOpen}
                             onClose={() => setIsMenuOpen(false)}
                             className="task-menu"
+                            animation="expand"
                             trigger={
                                 <button className="btn-icon" title="Item actions" onClick={() => setIsMenuOpen(isOpen => !isOpen)}>⋯</button>
                             }

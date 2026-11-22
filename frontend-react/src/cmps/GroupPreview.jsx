@@ -45,6 +45,7 @@ export function GroupPreview({ group, idx, members }) {
                             isOpen={isMenuOpen}
                             onClose={() => setIsMenuOpen(false)}
                             className="group-menu"
+                            animation="fade"
                             trigger={
                                 <button className="btn-icon btn-group-menu" title="Group actions" onClick={() => setIsMenuOpen(isOpen => !isOpen)}>
                                     ⋯

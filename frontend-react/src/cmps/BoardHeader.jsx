@@ -19,6 +19,7 @@ export function BoardHeader({ board }) {
                         isOpen={isInfoOpen}
                         onClose={() => setIsInfoOpen(false)}
                         className="board-info-popover"
+                        animation="expand"
                         trigger={
                             <h1 className="board-title-heading">
                                 <button

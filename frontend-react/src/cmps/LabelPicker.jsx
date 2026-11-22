@@ -24,6 +24,7 @@ export function LabelPicker({ options, value, onChange }) {
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
                 className="label-picker-popover"
+                animation="expand"
                 trigger={
                     <button
                         type="button"

@@ -40,6 +40,7 @@ export function DatePicker({ value, onChange }) {
                 isOpen={isOpen}
                 onClose={onClosePicker}
                 className="date-picker-popover"
+                animation="slide"
                 trigger={
                     <button
                         type="button"
