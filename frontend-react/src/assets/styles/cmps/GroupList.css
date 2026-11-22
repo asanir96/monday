@@ -267,3 +267,26 @@
     background-color: var(--primary-background-color);
 }
 
+.task-list .task-preview {
+    cursor: grab;
+
+    /* The dragged row: tilted 1deg, faded to 0.8, no blurred shadow */
+    &.is-dragging {
+        /* The floating row is outside the table's layout: lay it out as its own fixed table,
+           so the Task cell takes the rest of the width as it does at rest */
+        display: table;
+        table-layout: fixed;
+        opacity: 0.8;
+        cursor: grabbing;
+
+        /* rotate, not transform: the library moves the row with an inline transform, and rotate adds to it.
+           Straightens again while it lands */
+        &:not(.is-dropping) {
+            rotate: 1deg;
+        }
+
+        .cell {
+            background-color: var(--primary-background-color);
+        }
+    }
+}

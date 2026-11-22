@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Draggable } from '@hello-pangea/dnd'
 
 import { updateTask, removeTask } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
@@ -12,7 +13,8 @@ import { DatePicker } from './DatePicker'
 const MAX_AVATARS = 2
 
 // One task row. Title is editable, status, priority + due date have pickers; owner is display-only for now (picker comes later)
-export function TaskPreview({ task, groupId, members }) {
+// idx: the task's place in its group - the drag and drop needs it
+export function TaskPreview({ task, idx, groupId, members }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const owners = members.filter(member => task.memberIds?.includes(member._id))
@@ -44,43 +46,52 @@ export function TaskPreview({ task, groupId, members }) {
     }
 
     return (
-        <tr className="task-row task-preview">
-            <td className="cell cell-title">
-                <InlineEdit className="task-title" value={task.title} placeholder="Item name" onSave={onRenameTask} />
-            </td>
-
-            <td className="cell cell-owner">
-                {!owners.length && <span className="avatar avatar-placeholder" title="No owner">?</span>}
-                {owners.slice(0, MAX_AVATARS).map(member => (
-                    member.imgUrl ? <img key={member._id} className="avatar" src={member.imgUrl} alt={member.fullname} title={member.fullname} /> : <span key={member._id} className="avatar avatar-placeholder" title={member.fullname}>{getInitials(member.fullname)}</span>
-                ))}
-                {owners.length > MAX_AVATARS && <span className="avatar avatar-more">+{owners.length - MAX_AVATARS}</span>}
-            </td>
-
-            <td className="cell cell-status">
-                <StatusPicker value={task.status} onChange={statusId => onUpdateTaskField('status', statusId)} />
-            </td>
-
-            <td className="cell cell-priority">
-                <PriorityPicker value={task.priority} onChange={priorityId => onUpdateTaskField('priority', priorityId)} />
-            </td>
-
-            <td className="cell cell-date">
-                <DatePicker value={task.dueDate} onChange={dueDate => onUpdateTaskField('dueDate', dueDate)} />
-            </td>
-
-            <td className="cell cell-actions">
-                <Popover
-                    isOpen={isMenuOpen}
-                    onClose={() => setIsMenuOpen(false)}
-                    className="task-menu"
-                    trigger={
-                        <button className="btn-icon" title="Item actions" onClick={() => setIsMenuOpen(isOpen => !isOpen)}>⋯</button>
-                    }
+        <Draggable draggableId={task.id} index={idx}>
+            {(provided, snapshot) => (
+                <tr
+                    className={`task-row task-preview${snapshot.isDragging ? ' is-dragging' : ''}${snapshot.isDropAnimating ? ' is-dropping' : ''}`}
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
                 >
-                    <button className="menu-item danger" onClick={onRemoveTask}>Delete item</button>
-                </Popover>
-            </td>
-        </tr>
+                    <td className="cell cell-title">
+                        <InlineEdit className="task-title" value={task.title} placeholder="Item name" onSave={onRenameTask} />
+                    </td>
+
+                    <td className="cell cell-owner">
+                        {!owners.length && <span className="avatar avatar-placeholder" title="No owner">?</span>}
+                        {owners.slice(0, MAX_AVATARS).map(member => (
+                            member.imgUrl ? <img key={member._id} className="avatar" src={member.imgUrl} alt={member.fullname} title={member.fullname} /> : <span key={member._id} className="avatar avatar-placeholder" title={member.fullname}>{getInitials(member.fullname)}</span>
+                        ))}
+                        {owners.length > MAX_AVATARS && <span className="avatar avatar-more">+{owners.length - MAX_AVATARS}</span>}
+                    </td>
+
+                    <td className="cell cell-status">
+                        <StatusPicker value={task.status} onChange={statusId => onUpdateTaskField('status', statusId)} />
+                    </td>
+
+                    <td className="cell cell-priority">
+                        <PriorityPicker value={task.priority} onChange={priorityId => onUpdateTaskField('priority', priorityId)} />
+                    </td>
+
+                    <td className="cell cell-date">
+                        <DatePicker value={task.dueDate} onChange={dueDate => onUpdateTaskField('dueDate', dueDate)} />
+                    </td>
+
+                    <td className="cell cell-actions">
+                        <Popover
+                            isOpen={isMenuOpen}
+                            onClose={() => setIsMenuOpen(false)}
+                            className="task-menu"
+                            trigger={
+                                <button className="btn-icon" title="Item actions" onClick={() => setIsMenuOpen(isOpen => !isOpen)}>⋯</button>
+                            }
+                        >
+                            <button className="menu-item danger" onClick={onRemoveTask}>Delete item</button>
+                        </Popover>
+                    </td>
+                </tr>
+            )}
+        </Draggable>
     )
 }
