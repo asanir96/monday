@@ -16,7 +16,10 @@ export function Popover({ isOpen, onClose, trigger, children, className = '' }) 
 
         // The wrapper contains the trigger too, so clicking the trigger is not an "outside" click
         function onDocMouseDown(ev) {
-            if (wrapperRef.current && !wrapperRef.current.contains(ev.target)) onClose('outside')
+            if (!wrapperRef.current || wrapperRef.current.contains(ev.target)) return
+            // A field still being edited inside gets its blur (= save) before the content unmounts
+            if (wrapperRef.current.contains(document.activeElement)) document.activeElement.blur()
+            onClose('outside')
         }
         function onDocKeyDown(ev) {
             if (ev.key === 'Escape') onClose('escape')
