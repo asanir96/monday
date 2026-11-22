@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { updateBoardOptimistic } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { getInitials } from '../services/util.service'
@@ -8,6 +10,8 @@ import { InlineEdit } from './InlineEdit'
 // editable name + favorite star, description, then the board's info rows.
 export function BoardInfo({ board }) {
     const creator = board.createdBy
+    // 'star' / 'unstar' while the star's click animation runs (BoardInfo.css), '' otherwise
+    const [starAnimation, setStarAnimation] = useState('')
 
     async function onUpdateBoardField(field, value) {
         try {
@@ -15,6 +19,11 @@ export function BoardInfo({ board }) {
         } catch (err) {
             showErrorMsg('Cannot update board')
         }
+    }
+
+    function onToggleStar() {
+        setStarAnimation(board.isStarred ? 'unstar' : 'star')
+        onUpdateBoardField('isStarred', !board.isStarred)
     }
 
     return (
@@ -28,8 +37,9 @@ export function BoardInfo({ board }) {
                 />
 
                 <button
-                    className={`btn-star${board.isStarred ? ' starred' : ''}`}
-                    onClick={() => onUpdateBoardField('isStarred', !board.isStarred)}
+                    className={`btn-star${board.isStarred ? ' starred' : ''}${starAnimation ? ` animate-${starAnimation}` : ''}`}
+                    onClick={onToggleStar}
+                    onAnimationEnd={() => setStarAnimation('')}
                     aria-label={board.isStarred ? 'Remove from favorites' : 'Add to favorites'}
                     aria-pressed={!!board.isStarred}
                 >
