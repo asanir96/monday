@@ -1,9 +1,13 @@
+import { DragDropContext, Droppable } from '@hello-pangea/dnd'
+
 import { addGroup } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
+import { useBoardDnd } from '../customHooks/useBoardDnd'
 import { GroupPreview } from './GroupPreview'
 
 export function GroupList({ board }) {
     const groups = board.groups || []
+    const { onDragEnd } = useBoardDnd()
 
     async function onAddGroup() {
         try {
@@ -15,9 +19,19 @@ export function GroupList({ board }) {
 
     return (
         <section className="group-list">
-            {groups.map(group => (
-                <GroupPreview key={group.id} group={group} members={board.members || []} />
-            ))}
+            {/* One drag context for the whole board: groups move in the list, tasks move inside or between groups */}
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="groups" type="GROUP">
+                    {provided => (
+                        <div className="group-list-groups" ref={provided.innerRef} {...provided.droppableProps}>
+                            {groups.map((group, idx) => (
+                                <GroupPreview key={group.id} group={group} idx={idx} members={board.members || []} />
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
 
             {!groups.length && <p className="no-groups-msg">This board has no groups yet.</p>}
 

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Droppable } from '@hello-pangea/dnd'
 
 import { boardService } from '../services/board'
 import { addTask } from '../store/actions/board.actions'
@@ -34,25 +35,31 @@ export function TaskList({ group, members }) {
                 </tr>
             </thead>
 
-            <tbody>
-                {group.tasks.map(task => (
-                    <TaskPreview key={task.id} task={task} groupId={group.id} members={members} />
-                ))}
+            {/* Tasks can be dropped here from this group or any other (the list id is the group id) */}
+            <Droppable droppableId={group.id} type="TASK">
+                {provided => (
+                    <tbody ref={provided.innerRef} {...provided.droppableProps}>
+                        {group.tasks.map((task, idx) => (
+                            <TaskPreview key={task.id} task={task} idx={idx} groupId={group.id} members={members} />
+                        ))}
+                        {provided.placeholder}
 
-                <tr className="task-row add-task-row">
-                    <td className="cell cell-title" colSpan={6}>
-                        <form onSubmit={onAddTask}>
-                            <input
-                                className="add-task-input"
-                                value={newTaskTitle}
-                                placeholder="+ Add item"
-                                onChange={ev => setNewTaskTitle(ev.target.value)}
-                                onBlur={onAddTask}
-                            />
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
+                        <tr className="task-row add-task-row">
+                            <td className="cell cell-title" colSpan={6}>
+                                <form onSubmit={onAddTask}>
+                                    <input
+                                        className="add-task-input"
+                                        value={newTaskTitle}
+                                        placeholder="+ Add item"
+                                        onChange={ev => setNewTaskTitle(ev.target.value)}
+                                        onBlur={onAddTask}
+                                    />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                )}
+            </Droppable>
         </table>
     )
 }

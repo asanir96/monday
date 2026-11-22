@@ -14,6 +14,15 @@ export function getInitials(fullname = '') {
     return fullname.split(' ').filter(Boolean).map(word => word[0]).slice(0, 2).join('').toUpperCase()
 }
 
+// Returns a copy of the array with one item moved: moveItem(['a', 'b', 'c'], 0, 2) -> ['b', 'c', 'a']
+// Used by the drag and drop (groups, tasks - and later columns)
+export function moveItem(items, fromIdx, toIdx) {
+    const movedItems = [...items]
+    const [item] = movedItems.splice(fromIdx, 1)
+    movedItems.splice(toIdx, 0, item)
+    return movedItems
+}
+
 export function makeLorem(size = 100) {
     var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn']
     var txt = ''

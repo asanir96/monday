@@ -1,4 +1,5 @@
 import { boardService } from '../../services/board'
+import { moveItem } from '../../services/util.service'
 import { store } from '../store'
 import {
     ADD_BOARD,
@@ -126,6 +127,32 @@ export function updateTask(groupId, taskToSave) {
 
 export function removeTask(groupId, taskId) {
     return _updateGroupTasks(groupId, tasks => tasks.filter(task => task.id !== taskId))
+}
+
+// ---- Drag and drop ----
+
+// Moves a group from one place in the list to another (indexes in board.groups)
+export function moveGroup(fromIdx, toIdx) {
+    const board = _getOpenBoard()
+    return updateBoardOptimistic({ ...board, groups: moveItem(board.groups, fromIdx, toIdx) })
+}
+
+// Moves a task inside its group or into another group:
+// moveTask({ groupId: 'g101', idx: 0 }, { groupId: 'g102', idx: 3 })
+export function moveTask(from, to) {
+    if (from.groupId === to.groupId) {
+        return _updateGroupTasks(from.groupId, tasks => moveItem(tasks, from.idx, to.idx))
+    }
+
+    // Between groups: take it out of one, put it into the other
+    const board = _getOpenBoard()
+    const task = board.groups.find(group => group.id === from.groupId).tasks[from.idx]
+    const groups = board.groups.map(group => {
+        if (group.id === from.groupId) return { ...group, tasks: group.tasks.filter((_, idx) => idx !== from.idx) }
+        if (group.id === to.groupId) return { ...group, tasks: group.tasks.toSpliced(to.idx, 0, task) }
+        return group
+    })
+    return updateBoardOptimistic({ ...board, groups })
 }
 
 // Replaces one group's tasks array, using the given function to build the new array
