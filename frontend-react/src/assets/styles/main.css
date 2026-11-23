@@ -30,6 +30,7 @@
 @import "cmps/BoardIndex";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
+@import "cmps/GroupPreview";
 @import "cmps/TaskText";
 @import "cmps/TaskFileInput";
 @import "cmps/EmptyCellTrigger";

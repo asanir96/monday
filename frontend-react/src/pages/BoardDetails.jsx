@@ -26,7 +26,7 @@ export function BoardDetails() {
     if (!board) return <div>Loading...</div>
 
     return (
-        <section className="board-details">
+        <section className="board-details board-details-layout">
             <BoardHeader board={board} />
 
             <GroupList board={board} />

@@ -1,6 +1,6 @@
 /* The board page inside monday's white panel: 18px from the top, 38px from the left (monday-design-values.json) */
 .board-details {
-    padding: 18px 39px 0 38px;
+    padding-block:18px;
 }
 
 @media (max-width: 1023px) {

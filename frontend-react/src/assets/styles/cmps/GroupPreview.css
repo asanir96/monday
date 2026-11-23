@@ -1,0 +1,34 @@
+.group-preview {
+    display: grid;
+    grid-template-columns: 38px max-content auto;
+}
+
+.group-preview .popover-wrapper {
+    /* width: 1.75em; */
+    /* justify-content: start; */
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.group-preview .group-header {
+    grid-column: 2;
+    grid-row: 1;
+    padding-inline-start: 6px;
+}
+
+.group-preview .task-list {
+    grid-column: 2/4;
+    grid-row: 2;
+}
+
+.group-preview:has(.collapsed) {
+    .task-list {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .popover-wrapper {
+        grid-column: 1;
+        grid-row: 1;
+    }
+}

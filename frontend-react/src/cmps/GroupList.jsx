@@ -18,12 +18,12 @@ export function GroupList({ board }) {
     }
 
     return (
-        <section className="group-list">
+        <section className="group-list full board-details-layout">
             {/* One drag context for the whole board: groups move in the list, tasks move inside or between groups */}
             <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="groups" type="GROUP">
                     {provided => (
-                        <div className="group-list-groups" ref={provided.innerRef} {...provided.droppableProps}>
+                        <div className="group-list-groups full" ref={provided.innerRef} {...provided.droppableProps}>
                             {groups.map((group, idx) => (
                                 <GroupPreview key={group.id} group={group} idx={idx} members={board.members || []} />
                             ))}

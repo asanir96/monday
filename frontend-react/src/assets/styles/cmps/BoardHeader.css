@@ -47,7 +47,8 @@
         align-items: center;
         gap: var(--spacing-xs);
         height: 32px;
-        margin: 0; /* forms.css gives every button a margin */
+        margin: 0;
+        /* forms.css gives every button a margin */
         padding: 1px var(--spacing-xs);
         border: none;
         border-radius: var(--border-radius-small);
@@ -95,7 +96,8 @@
         align-items: center;
         justify-content: center;
         height: 32px;
-        margin: 0; /* forms.css gives every button a margin */
+        margin: 0;
+        /* forms.css gives every button a margin */
         border: none;
         border-radius: var(--border-radius-small);
         background-color: transparent;
@@ -230,6 +232,7 @@
 
 /* ---- Small screens (our own - see RootCmp.css) ---- */
 @media (max-width: 1199px) {
+
     /* Integrate / Automate: icon only */
     .board-header .btn-board-text {
         width: 32px;
