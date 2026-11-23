@@ -38,8 +38,22 @@
     .cell {
         padding-inline-start: 0;
     }
+
+    .cell-title {
+        vertical-align: top;
+    }
+
+    .group-header {
+        padding-inline-start: 0;
+        margin-block: -1px 0;
+    }
 }
 
+.task-count{
+
+    opacity: 1;
+    transition: 0.2s ease-in opacity;
+}
 .task-list.collapsed,
 .task-list.collapsed .task-list-header,
 .task-list.collapsed .thead,
