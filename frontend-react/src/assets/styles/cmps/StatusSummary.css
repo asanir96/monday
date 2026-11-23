@@ -1,0 +1,9 @@
+.status-summary{
+    width:100%;
+    height:20px;
+    display: flex;
+}
+
+.status-summary-portion{
+    height:100%
+}

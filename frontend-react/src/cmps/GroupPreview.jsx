@@ -8,12 +8,11 @@ import { Popover } from './Popover'
 import { TaskList } from './TaskList'
 
 import { GroupHeader } from './GroupHeader'
-import { StatusSummary } from './StatusSummary'
 
 // idx: the group's place in the board - the drag and drop needs it
 export function GroupPreview({ group, idx, members }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [isGroupExpanded, setIsGroupExpanded] = useState(false)
+    const [isGroupExpanded, setIsGroupExpanded] = useState(true)
     const taskCount = group.tasks.length
 
     async function onRenameGroup(title) {
@@ -57,7 +56,7 @@ export function GroupPreview({ group, idx, members }) {
                         <button className="menu-item danger" onClick={onRemoveGroup}>Delete group</button>
                     </Popover>
                     {/* The header is the drag handle */}
-                    <GroupHeader
+                    {isGroupExpanded && <GroupHeader
                         group={group}
                         isMenuOpen={isMenuOpen}
                         setIsMenuOpen={setIsMenuOpen}
@@ -66,9 +65,40 @@ export function GroupPreview({ group, idx, members }) {
                         onRenameGroup={onRenameGroup}
                         taskCount={taskCount}
                         isGroupExpanded={isGroupExpanded}
-                        setIsGroupExpanded={setIsGroupExpanded} />
+                        setIsGroupExpanded={setIsGroupExpanded} />}
 
-                   <TaskList group={group} members={members} />
+                    {isGroupExpanded ?
+                        <TaskList group={group} members={members} /> :
+
+                        <table className="task-list collapsed" {...provided.dragHandleProps}> 
+                            <thead>
+                                <tr className="task-row task-list-header">
+                                    <th className="cell cell-title">
+                                        <GroupHeader
+                                            group={group}
+                                            isMenuOpen={isMenuOpen}
+                                            setIsMenuOpen={setIsMenuOpen}
+                                            onRemoveGroup={onRemoveGroup}
+                                            provided={provided}
+                                            onRenameGroup={onRenameGroup}
+                                            isGroupExpanded={isGroupExpanded}
+                                            taskCount={taskCount}
+                                            setIsGroupExpanded={setIsGroupExpanded} />
+
+                                    </th>
+                                    <th className="cell cell-owner">
+                                        <span>Owner</span>
+                                    </th>
+                                    <th className="cell cell-status">
+                                        <div>Status</div>
+                                    </th>
+                                    <th className="cell cell-priority"><span>Priority</span></th>
+                                    <th className="cell cell-date"><span>Due date</span></th>
+                                    <th className="cell cell-actions" />
+                                </tr>
+                            </thead>
+                        </table>
+                    }
                 </section>
             )}
         </Draggable>
