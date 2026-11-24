@@ -32,6 +32,11 @@
         border-bottom-left-radius: var(--border-radius-small);
     }
 
+    .board-index-link {
+        border-top-right-radius: var(--border-radius-small);
+        border-bottom-right-radius: var(--border-radius-small);
+    }
+
     .popover-wrapper {
         height: 2rem;
         border-top-right-radius: var(--border-radius-small);
@@ -97,7 +102,7 @@
 
     .board-more-options:hover {
         background-color: var(--primary-selected-hover-color);
-        
+
         >*:not(.board-actions, .board-action) {
             background-color: var(--primary-selected-hover-color);
         }
@@ -131,5 +136,3 @@
 
     margin-block: 0;
 }
-
-

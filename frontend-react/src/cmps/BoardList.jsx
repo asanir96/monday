@@ -1,4 +1,4 @@
-import { useNavigate, useMatch } from 'react-router-dom';
+import { useNavigate, useMatch,NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { BoardListItem } from './BoardListItem';
 
@@ -19,10 +19,14 @@ export function BoardList({ boards }) {
         {sidebarView === 'workspace' &&
             <li className={`board-list-item 
             ${isIndex ? 'selected' : ''}`}>
-                <div className='board-table-cell preview-title sticky-col aligned-center' onClick={navToIndex}>
+
+                <NavLink to={`board`} className='board-link aligned-center board-index-link' >
                     <GridViewIcon sx={{ fontSize: '1em', lineHeight: '100%' }} />
-                    Manage your boards
-                </div>
+                    Manage your board
+                </NavLink>
+
+
+
             </li>}
         {boards && boards.map(board => <BoardListItem board={board} />)}
         {isAddingBoard &&
