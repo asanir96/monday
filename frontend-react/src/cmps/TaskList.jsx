@@ -45,7 +45,8 @@ export function TaskList({ group, members }) {
                         {provided.placeholder}
 
                         <tr className="task-row add-task-row">
-                            <td className="cell cell-title" colSpan={6}>
+                            {/* The input sits in the sticky Task column; the other columns are one empty cell */}
+                            <td className="cell cell-title">
                                 <form onSubmit={onAddTask}>
                                     <input
                                         className="add-task-input"
@@ -56,6 +57,7 @@ export function TaskList({ group, members }) {
                                     />
                                 </form>
                             </td>
+                            <td className="cell cell-filler" colSpan={5} />
                         </tr>
                     </tbody>
                 )}

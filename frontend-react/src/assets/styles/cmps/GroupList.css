@@ -1,6 +1,39 @@
 ﻿.group-list {
     color: #323338;
 
+    /* The board's scroller: scrolls both ways (the vertical bar always shown, like monday) */
+    overflow-x: auto;
+    overflow-y: scroll;
+
+    /* monday's scrollbar - same values as the panel's (RootCmp.css) */
+    &::-webkit-scrollbar {
+        width: 9px;
+        height: 9px;
+    }
+
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: var(--border-radius-small);
+        background-color: var(--scrollbar-color);
+    }
+
+    /* As wide as the widest table, so the sticky group headers can travel the whole scroll */
+    .group-list-groups {
+        width: max-content;
+        min-width: 100%;
+    }
+
+    /* These stay at the left edge while the tables scroll sideways */
+    .no-groups-msg,
+    .btn-add-group {
+        position: sticky;
+        left: 0;
+    }
+
     .no-groups-msg {
         margin: 0;
         color: #676879;
@@ -112,6 +145,11 @@
         padding:1px;
         margin-bottom: 6px;
         color: var(--group-color);
+
+        /* The group title stays at the left edge while the table scrolls sideways */
+        position: sticky;
+        left: 0;
+        width: fit-content;
     }
 
     /* The ⋯ button only shows when hovering the header (or while its menu is open) */
@@ -140,8 +178,9 @@
 }
 
 .task-list {
-    width: 100%;
-    max-width: 60rem;
+    /* Every column has a fixed width, and the table is exactly their sum (a fixed table never gets
+       narrower than its columns) - so on a narrow screen it overflows and scrolls instead of squeezing */
+    width: 0;
     border-collapse: separate;
     border-spacing: 0;
     table-layout: fixed;
@@ -155,9 +194,16 @@
         font-weight: 400;
     }
 
+    /* The Task column is sticky: it stays at the left edge and the other columns scroll under it */
     .cell-title {
+        width: 22rem;
         text-align: start;
         border-inline-start: 6px solid var(--group-color);
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        /* Opaque, so the columns scrolling under it don't show through */
+        background-color: var(--primary-background-color);
     }
 
     .cell-owner {
@@ -239,8 +285,8 @@
         font-size: .85rem;
     }
 
-    /* "+ Add item" row */
-    .add-task-row .cell {
+    /* "+ Add item" row: the input sits in the (sticky) Task column, the rest is empty */
+    .add-task-row .cell-filler {
         border-inline-end: none;
     }
 
