@@ -1,6 +1,7 @@
 .group-preview {
     display: grid;
     grid-template-columns: 38px max-content auto;
+    align-items: center;
 }
 
 .group-preview .popover-wrapper {
