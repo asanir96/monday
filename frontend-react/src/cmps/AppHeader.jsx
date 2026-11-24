@@ -35,7 +35,8 @@ export function AppHeader({ onToggleSidebar }) {
                     </svg>
                 </button>
 
-                <NavLink to="/board" className="logo" title="monday">
+                {/* The logo takes you back to the home page (like monday's) */}
+                <NavLink to="/" end className="logo" title="Home">
                     <Icon name="logo_multicolor" className="logo-icon" />
                 </NavLink>
 
