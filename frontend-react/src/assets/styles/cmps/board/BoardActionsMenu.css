@@ -1,5 +1,7 @@
 .board-actions {
-    width: 240px
+    width: 240px;
+     inset-inline-start: 47px;
+     inset-block-start: 0;
 }
 
 .board-actions>* {

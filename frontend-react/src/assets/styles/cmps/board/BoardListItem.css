@@ -16,7 +16,7 @@
     position: sticky;
     gap: 8px;
     width: 200px;
-    height: 40px;
+    height: 2rem;
     padding: 0.5em;
     overflow-inline: hidden;
     text-overflow: ellipsis;
@@ -24,31 +24,98 @@
     justify-self: start;
 }
 
-.boards-sidebar .board-list-item a {
-    border-radius: var(--border-radius-small);
+.boards-sidebar .board-list-item {
+    a {
+        width: 100%;
+        justify-content: start;
+        border-top-left-radius: var(--border-radius-small);
+        border-bottom-left-radius: var(--border-radius-small);
+    }
 
+    .popover-wrapper {
+        height: 2rem;
+        border-top-right-radius: var(--border-radius-small);
+        border-bottom-right-radius: var(--border-radius-small);
+        display: flex;
+        align-items: center;
+    }
+
+    >.preview-title {
+        height: 2rem
+    }
 }
 
-.boards-sidebar .board-list-item>.preview-title {
-    height: 2rem
-}
 
-.boards-sidebar a {
-    width: 100%;
-    justify-content: start;
-}
-
-.boards-sidebar .board-list-item:hover,
-.boards-sidebar .board-list-item:hover *,
-.boards-sidebar .board-list-item.focus,
-.boards-sidebar .board-list-item.focus * {
+.boards-sidebar .board-list-item:hover {
     background-color: rgb(242, 239, 239);
+
+    *:not(.board-actions, .board-actions *) {
+        background-color: rgb(242, 239, 239);
+    }
+
+    .board-more-options {
+        opacity: 1;
+    }
+
+    .board-more-options:hover {
+        background-color: rgb(229, 226, 226);
+
+        >*:not(.board-actions, .board-action) {
+            background-color: rgb(229, 226, 226);
+        }
+    }
+
 }
 
-.boards-sidebar .board-list-item.selected,
-.boards-sidebar .board-list-item.selected * {
-    background-color: var(--primary-selected-color)
+.boards-sidebar .board-list-item.focus {
+    background-color: rgb(242, 239, 239);
+
+    *:not(.board-actions, .board-actions *) {
+        background-color: rgb(242, 239, 239);
+    }
+
+    .board-more-options {
+        opacity: 1;
+    }
+
+    .board-more-options {
+        background-color: rgb(229, 226, 226);
+
+        >*:not(.board-actions, .board-action) {
+            background-color: rgb(229, 226, 226);
+        }
+    }
+
 }
+
+.boards-sidebar .board-list-item.selected {
+    background-color: var(--primary-selected-color);
+
+    *:not(.board-actions, .board-actions *) {
+        background-color: var(--primary-selected-color)
+    }
+
+    .board-more-options:hover {
+        background-color: var(--primary-selected-hover-color);
+        
+        >*:not(.board-actions, .board-action) {
+            background-color: var(--primary-selected-hover-color);
+        }
+    }
+
+}
+
+.boards-sidebar .board-list-item.selected.focus {
+    .board-more-options {
+        background-color: var(--primary-selected-hover-color);
+
+        >*:not(.board-actions) {
+            background-color: var(--primary-selected-hover-color);
+        }
+    }
+
+}
+
 
 .boards-sidebar .board-more-options {
     text-align: center;
@@ -57,35 +124,12 @@
     height: 24px
 }
 
-.boards-sidebar .board-list-item:hover .board-more-options,
-.boards-sidebar .board-list-item.focus .board-more-options {
-    opacity: 1;
-}
-
 .boards-sidebar .board-more-options {
     border-radius: var(--border-radius-small);
     margin-inline-start: auto;
     opacity: 0;
-    height: 100%;
+
     margin-block: 0;
 }
 
-.boards-sidebar .board-more-options:hover,
-.boards-sidebar .board-more-options:hover>*,
-.boards-sidebar .board-list-item.focus .board-more-options,
-.boards-sidebar .board-list-item.focus .board-more-options>* {
-    background-color: rgb(229, 226, 226);
 
-}
-
-.boards-sidebar .board-list-item.selected .board-more-options:hover,
-.boards-sidebar .board-list-item.selected .board-more-options:hover>*,
-.boards-sidebar .board-list-item.selected.focus .board-more-options,
-.boards-sidebar .board-list-item.selected.focus .board-more-options>* {
-    background-color: var(--primary-selected-hover-color);
-
-}
-
-.boards-sidebar .board-list-item.selected.focus .board-more-options> {
-    display: flex;
-}

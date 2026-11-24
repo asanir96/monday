@@ -9,32 +9,29 @@ import { useMatch } from 'react-router-dom'
 
 import { BoardPreview } from './BoardPreview'
 import { BoardPreviewEdit } from './BoardPreviewEdit';
-import { DropdownMenu } from './DropdownMenu'
+import { Popover } from './Popover';
 import { BoardActions } from './BoardActions'
 
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 
 export function BoardListItem({ board }) {
     const isActive = !!useMatch(`board/${board._id}`)
     const [isEdit, setIsEdit] = useState(false)
-    const [dropwdownAnchorEl, setDropwdownAnchorEl] = useState(null)
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const { onRemoveBoard, onUpdateBoard } = useBoardCrud()
 
-    const actionsMap = {
-        
-    }
-    const handleMoreOptsClick = (event) => {
-        event.preventDefault()
-        setDropwdownAnchorEl(event.currentTarget)
+    function onMoreOptionsToggle() {
+        setIsPopoverOpen(prev=>!prev)
     }
 
-    const handleMoreOptsClose = () => setDropwdownAnchorEl(null)
+    function handleMoreOptsClose() {
+        setIsPopoverOpen(false)
+    }
 
     async function onDelete(boardId) {
         try {
-            setDropwdownAnchorEl(null)
+            setIsPopoverOpen(false)
             await onRemoveBoard(boardId)
             showSuccessMsg('Board was deleted')
         } catch (err) {
@@ -43,18 +40,18 @@ export function BoardListItem({ board }) {
         }
     }
 
-    function onStopEdit(updatedBoard,ev) {
-        if (ev.key && ev.key!=='Enter') return
+    function onStopEdit(updatedBoard, ev) {
+        if (ev.key && ev.key !== 'Enter') return
 
         setIsEdit(false)
-        if (updatedBoard.title===board.title) return
+        if (updatedBoard.title === board.title) return
 
         onUpdateBoard(updatedBoard)
     }
 
     function onStartEdit() {
         setIsEdit(true)
-        setDropwdownAnchorEl(null)
+        setIsPopoverOpen(false)
     }
 
     function onStarToggle() {
@@ -64,21 +61,8 @@ export function BoardListItem({ board }) {
     return <li
         className={`board-list-item 
             ${isActive ? 'selected' : ''}
-            ${dropwdownAnchorEl ? 'focus' : ''}`}
+            ${isPopoverOpen ? 'focus' : ''}`}
         key={board._id} >
-
-        <DropdownMenu
-            handleClick={handleMoreOptsClick}
-            handleClose={handleMoreOptsClose}
-            anchorEl={dropwdownAnchorEl}>
-
-            <BoardActions
-                board={board}
-                onRemoveBoard={onDelete}
-                onStartEdit={onStartEdit}
-                onStarToggle={onStarToggle} />
-
-        </DropdownMenu>
 
         <NavLink to={`board/${board._id}`} className='board-link aligned-center' >
 
@@ -92,9 +76,25 @@ export function BoardListItem({ board }) {
                 <BoardPreview board={board} />
             }
 
-            <button id="board-more-options" className="board-more-options" onClick={handleMoreOptsClick} >
-                <FontAwesomeIcon icon={faEllipsis} />
-            </button>
+
         </NavLink>
+
+        <Popover
+            isOpen={isPopoverOpen}
+            onClose={handleMoreOptsClose}
+            trigger={<button
+                onClick={onMoreOptionsToggle}
+                id="board-more-options"
+                className="board-more-options">
+                <FontAwesomeIcon icon={faEllipsis} />
+            </button>}
+            className={"board-actions"}>
+
+            <BoardActions
+                board={board}
+                onRemoveBoard={onDelete}
+                onStartEdit={onStartEdit}
+                onStarToggle={onStarToggle} />
+        </Popover>
     </li>
 }

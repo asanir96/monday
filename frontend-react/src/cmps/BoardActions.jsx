@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 export function BoardActions({ board, onRemoveBoard, onStartEdit,onStarToggle }) {
 
-    return <div className='board-actions'>
+    return <div className='board-actions-menu'>
         <div className="actions-update">
             <button className="board-action" onClick={onStartEdit} >
                 <FontAwesomeIcon icon={faPen} />
