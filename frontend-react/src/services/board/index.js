@@ -1,7 +1,6 @@
 const { DEV, VITE_LOCAL } = import.meta.env
 
 import { getRandomIntInclusive, makeId } from '../util.service'
-
 import { boardService as local } from './board.service.local'
 import { boardService as remote } from './board.service.remote'
 
@@ -40,7 +39,9 @@ export function getEmptyBoard() {
             },
         ],
         activities: [],
-        cmpsOrder: ['StatusPicker', 'MemberPicker', 'DatePicker'],
+        columns: [
+            { id: 'col' + makeId(), type: 'status', title: 'Status', isVisible: true, width: 150 },
+            { id: 'col' + makeId(), type: 'date', title: 'Due Date', isVisible: true, width: 150 },],
     }
 }
 
@@ -71,6 +72,17 @@ export const priorityOptions = [
 
 const EMPTY_STATUS = { id: '', title: '', color: '#c4c4c4' }
 
+export const columnTypeOptions = [
+    'status',
+    'date',
+    'text',
+    'files',
+    'priority',
+    'timeline',
+    // 'numbers',
+    // 'timeline'
+]
+
 export function getStatusOption(statusId) {
     return statusOptions.find(option => option.id === statusId) || EMPTY_STATUS
 }
@@ -85,16 +97,12 @@ export function getEmptyGroup() {
     }
 }
 
-export function getEmptyTask(title = '') {
+export function getEmptyTask(title = '', board) {
     return {
         id: 'c' + makeId(),
         title,
-        status: '',
-        priority: '',
-        dueDate: '',
+        values: _getEmptyColumnValues(board.columns),
         description: '',
-        memberIds: [],
-        labelIds: [],
         byMember: null,
         comments: [],
         checklists: [],
@@ -103,8 +111,8 @@ export function getEmptyTask(title = '') {
 }
 
 function filterBoardsByView(boards, view) {
-    if (!boards.length) return 
-    
+    if (!boards.length) return
+
     let filteredBoards = [...boards]
 
     switch (view) {
@@ -121,8 +129,109 @@ function getDefaultFilter() {
     }
 }
 
+function removeColumnFromBoard(board, colId) {
+    const updatedBoard = JSON.parse(JSON.stringify(board))
+
+    updatedBoard.columns = updatedBoard.columns.filter(column => column.id !== colId)
+    updatedBoard.groups = updatedBoard.groups.map(group => {
+        return {
+            ...group,
+            tasks: group.tasks.map(task => {
+                const newTask = { ...task }
+                delete newTask[colId]
+                return newTask
+            })
+        }
+    })
+    return updatedBoard
+}
+
+
+
+
+function addColumnToBoard(board, column) {
+    const updatedBoard = JSON.parse(JSON.stringify(board))
+
+    const colId = 'col' + makeId()
+    updatedBoard.columns = [
+        ...updatedBoard.columns,
+        {
+            "id": colId,
+            "type": column.type,
+            "title": column.title || _getDefaultColumnTitle(column.type),
+            "isVisible": true,
+            "width": 150
+        },
+    ]
+    updatedBoard.groups = board.groups.map(group => {
+        return {
+            ...group,
+            tasks: group.tasks.map(task => {
+                const newTask = {
+                    ...task,
+                    values: {
+                        ...task.values,
+                        [colId]: _getDefaultColumnValues(column.type)
+                    }
+                }
+                return newTask
+            })
+        }
+    })
+
+    return updatedBoard
+
+
+}
+
+function _getDefaultColumnValues(columnType) {
+    const defaultValByType = {
+        status: '',
+        date: '',
+        text: '',
+        members: [],
+        files: [],
+        priority: '',
+        timeline: { startDate: '', endDate: '' }
+    }
+    return defaultValByType[columnType]
+}
+
+function _getDefaultColumnTitle(columnType) {
+    const defaultTitleByType = {
+        status: 'Status',
+        date: 'Date',
+        text: 'Text',
+        members: 'Members',
+        files: 'Files',
+        priority: 'Priority',
+        timeline: 'Timeline'
+    }
+    return defaultTitleByType[columnType]
+}
+
+function _getEmptyColumnValues(columns) {
+    const values = columns.reduce((acc, col) => {
+        console.log('col', col)
+        console.log('acc', acc)
+        acc[col.id] = _getDefaultColumnValues(col.type)
+        return acc
+    }, {})
+
+    return values
+}
+
 const service = (VITE_LOCAL === 'true') ? local : remote
-export const boardService = { getEmptyBoard, getEmptyGroup, getEmptyTask, filterBoardsByView, getDefaultFilter, ...service }
+export const boardService = {
+    removeColumnFromBoard,
+    getEmptyBoard,
+    getEmptyGroup,
+    getEmptyTask,
+    filterBoardsByView,
+    getDefaultFilter,
+    addColumnToBoard,
+    ...service
+}
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

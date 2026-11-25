@@ -3,7 +3,8 @@ import { storageService } from '../async-storage.service'
 import { getEmptyBoard } from '.'
 import { makeId } from '../util.service'
 import { userService } from '../user'
-import demoBoards from '../../assets/data/board.json'
+// import demoBoards from '../../assets/data/board.json'
+import demoBoards from '../../assets/data/demo-board.json'
 
 const STORAGE_KEY = 'board'
 _createBoards()
@@ -62,7 +63,8 @@ async function addCarMsg(carId, txt) {
 }
 
 function _createBoards() {
-    const boards = localStorage.getItem(STORAGE_KEY)
+    const boards = JSON.parse(localStorage.getItem(STORAGE_KEY))
+    console.log('boards',boards)
     if (!boards || !boards.length) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(demoBoards))
     }
