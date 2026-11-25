@@ -86,6 +86,21 @@
     z-index: 2;
 }
 
+.task-list.collapsed .cell-title {
+    z-index: 2;
+}
+.task-list.collapsed .label-summary {
+    height: unset;
+}
+
+.task-list.collapsed .cell{
+    vertical-align: top;
+
+    .column-title{
+        margin-top: 0.5em;
+    }
+}
+
 /* A collapsed group (GroupPreview): each column shows its title over its summary (notes 3) -
    a 20px title row 4px from the top, the summary in the 35.2px under it */
 .task-list.collapsed .collapsed-summary {

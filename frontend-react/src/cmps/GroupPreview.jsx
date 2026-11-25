@@ -90,16 +90,26 @@ export function GroupPreview({ group, idx }) {
 
                                     </th>
                                     <th className="cell cell-owner">
-                                        <span>Owner</span>
+                                        <div className='column-title'>Owner</div>
                                     </th>
-                                    <th className="cell cell-status">
-                                        <div>Status</div>
-                                    </th>
-                                    <th className="cell cell-priority"><span>Priority</span></th>
-                                    <th className="cell cell-date"><span>Due date</span></th>
+                                    {/* <th className="cell cell-priority"><span>Priority</span></th>
+                                    <th className="cell cell-date"><span>Due date</span></th> */}
 
                                     {/* Like monday: the column's title, and its summary (the progress bar) under it */}
-                                    <th className="cell cell-status">
+                                    {columns.map(column => {
+                                        const type = column.type
+                                        return getDynamicClassName(type) && <th className={`cell cell-${getDynamicClassName(type)}`}>
+                                            <div className='column-title'>{column.title}</div>
+                                            {type === 'priority' ||
+                                                type === 'status' &&
+                                                <LabelSummary
+                                                    tasks={group.tasks}
+                                                    columnId={column.id}
+                                                    options={statusOptions} />
+                                            }
+                                        </th>
+                                    })}
+                                    {/* <th className="cell cell-status">
                                         <div className="collapsed-summary">
                                             <span className="collapsed-title">Status</span>
                                             <LabelSummary tasks={group.tasks} field="status" options={statusOptions} />
@@ -108,14 +118,14 @@ export function GroupPreview({ group, idx }) {
                                     <th className="cell cell-priority">
                                         <div className="collapsed-summary">
                                             <span className="collapsed-title">Priority</span>
-                                            <LabelSummary tasks={group.tasks} field="priority" options={priorityOptions} />
+                                            <LabelSummary tasks={group.tasks} columnId="priority" options={priorityOptions} />
                                         </div>
                                     </th>
                                     <th className="cell cell-date">
                                         <div className="collapsed-summary">
                                             <span className="collapsed-title">Due date</span>
                                         </div>
-                                    </th>
+                                    </th> */}
                                     <th className="cell cell-actions" />
                                 </tr>
                             </thead>
@@ -126,6 +136,7 @@ export function GroupPreview({ group, idx }) {
         </Draggable>
     )
 }
+
 
 
 function getDynamicClassName(cmp) {

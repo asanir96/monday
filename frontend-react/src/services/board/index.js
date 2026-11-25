@@ -90,9 +90,9 @@ export function getStatusOption(statusId) {
 // How many of the tasks have each label - for the progress bar under a label column (LabelSummary).
 // getLabelSummary(group.tasks, 'status', statusOptions) -> [{ id, title, color, count }]
 // In the labels' order, only labels that are used, and the tasks with no label last (id '', grey) - like monday
-export function getLabelSummary(tasks, field, options) {
+export function getLabelSummary(tasks, columnId, options) {
     const countById = tasks.reduce((acc, task) => {
-        const labelId = options.some(option => option.id === task[field]) ? task[field] : ''
+        const labelId = options.some(option => option.id === task.values[columnId]) ? task.values[columnId] : ''
         acc[labelId] = (acc[labelId] || 0) + 1
         return acc
     }, {})

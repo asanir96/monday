@@ -10,10 +10,10 @@ const TOOLTIP_GAP = 6
 // monday's progress bar ("battery") under a label column: one colored part per label, as wide as its share of the tasks.
 // Hovering a part grows it and shows "Done 4/12   33.3%" above it.
 // <LabelSummary tasks={group.tasks} field="status" options={statusOptions} />
-export function LabelSummary({ tasks, field, options }) {
+export function LabelSummary({ tasks, columnId, options }) {
     // { txt, x, y }: the tooltip of the hovered part, and where its bottom-center goes on the screen
     const [tooltip, setTooltip] = useState(null)
-    const summary = getLabelSummary(tasks, field, options)
+    const summary = getLabelSummary(tasks, columnId, options)
     const total = tasks.length
 
     function onShowTooltip(ev, label) {
