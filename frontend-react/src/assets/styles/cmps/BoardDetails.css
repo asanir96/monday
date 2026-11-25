@@ -12,6 +12,13 @@
         flex: 1;
         min-height: 0;
     }
+
+    /* monday's 38px inset for the header (the groups area is full width - it has its own 38px columns) */
+    @media (min-width: 1024px) {
+        > .board-header {
+            padding-inline: 38px 39px;
+        }
+    }
 }
 
 /* On a board page the panel itself doesn't scroll - the groups area does (one scroller, also what the drag and drop needs) */
