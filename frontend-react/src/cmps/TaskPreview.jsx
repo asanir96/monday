@@ -19,11 +19,17 @@ const MAX_AVATARS = 2
 
 // One task row. Title is editable, status, priority + due date have pickers; owner is display-only for now (picker comes later)
 // idx: the task's place in its group - the drag and drop needs it
-export function TaskPreview({ task, idx, groupId, members }) {
+export function TaskPreview({ task, idx, groupId }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const columns = useSelector(storedState => storedState.boardModule.board.columns)
     const board = useSelector(storedState => storedState.boardModule.board)
-    const owners = members.filter(member => task.memberIds?.includes(member._id))
+    
+    const boardMembers = board.members
+    const memberColumnId = columns.find(column => column.type === 'members').id
+    
+    const taskMemberIds = task.values[memberColumnId]
+
+    const owners = boardMembers.filter(member => taskMemberIds.includes(member._id))
 
     async function onRenameTask(title) {
         try {
@@ -113,10 +119,6 @@ export function TaskPreview({ task, idx, groupId, members }) {
                                 return <button className="menu-item danger" onClick={() => onAddColumn(option)}>{`Add ${option} column`}</button>
 
                             })}
-                            {/* <button className="menu-item danger" onClick={() => onAddColumn('text')}>Add text column</button>
-                            <button className="menu-item danger" onClick={() => onAddColumn('files')}>Add file column</button>
-                            <button className="menu-item danger" onClick={() => onAddColumn('priority')}>Add priority column</button>
-                            <button className="menu-item danger" onClick={() => onAddColumn('status')}>Add status column</button> */}
                         </Popover>
                     </td>
                 </tr>
