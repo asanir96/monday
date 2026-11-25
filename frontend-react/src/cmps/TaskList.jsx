@@ -1,19 +1,54 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Droppable } from '@hello-pangea/dnd'
 
 import { boardService } from '../services/board'
 import { addTask } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { TaskPreview } from './TaskPreview'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Popover } from './Popover'
 import { updateBoardOptimistic } from '../store/actions/board.actions'
-
+import { SET_FIRST_COL_RECT } from '../store/reducers/board.reducer'
 export function TaskList({ group, members }) {
     const [newTaskTitle, setNewTaskTitle] = useState('')
     const [cmpIdxMenuOpen, setCmpIdxMenuOpen] = useState(null)
     const columns = useSelector(storedState => storedState.boardModule.board.columns)
     const board = useSelector(storedState => storedState.boardModule.board)
+    const firstColRef = useRef(null)
+    const dispatch = useDispatch()
+
+    function setFirstColRect() {
+        dispatch({
+            type: SET_FIRST_COL_RECT,
+            firstColRect: firstColRef.current.getBoundingClientRect()
+        })
+    }
+
+    useEffect(() => {
+        setFirstColRect()
+
+
+        window.addEventListener('scroll', setFirstColRect, { passive: true, capture: true });
+        window.addEventListener('resize', setFirstColRect);
+
+        return () => {
+            window.removeEventListener('scroll', setFirstColRect), { passive: true, capture: true };
+            window.removeEventListener('resize', setFirstColRect);
+        };
+    }, [cmpIdxMenuOpen]);
+
+
+    const callback = (entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Element entered the viewport
+                entry.target.classList.add('visible');
+
+                // Optional: Stop observing once triggered (great for lazy loading)
+                observer.unobserve(entry.target);
+            }
+        });
+    };
 
     // Runs on Enter (form submit) and when the input loses focus
     async function onAddTask(ev) {
@@ -46,7 +81,7 @@ export function TaskList({ group, members }) {
             <thead>
                 <tr className="task-row task-list-header">
 
-                    <th className="cell cell-title">Task</th>
+                    <th className="cell cell-title" ref={firstColRef}>Task</th>
                     <th className="cell cell-owner">Owner</th>
 
                     {columns.map((column, idx) => {
