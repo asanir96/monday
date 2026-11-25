@@ -154,12 +154,16 @@ export function TaskList({ group }) {
                     {columns.map(column => {
                         const type = column.type
                         return <td className={`cell cell-${getDynamicClassName(type)}`}>
-                            {type === 'priority' ||
-                                type === 'status' &&
+                            {type === 'status' &&
                                 <LabelSummary
                                     tasks={group.tasks}
                                     columnId={column.id}
-                                    options={statusOptions} />
+                                    options={statusOptions} /> ||
+
+                                type === 'priority' && <LabelSummary
+                                    tasks={group.tasks}
+                                    columnId={column.id}
+                                    options={priorityOptions} />
                             }
                         </td>
                     })}

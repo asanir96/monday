@@ -100,12 +100,16 @@ export function GroupPreview({ group, idx }) {
                                         const type = column.type
                                         return getDynamicClassName(type) && <th className={`cell cell-${getDynamicClassName(type)}`}>
                                             <div className='column-title'>{column.title}</div>
-                                            {type === 'priority' ||
-                                                type === 'status' &&
+                                            {type === 'status' &&
                                                 <LabelSummary
                                                     tasks={group.tasks}
                                                     columnId={column.id}
-                                                    options={statusOptions} />
+                                                    options={statusOptions} /> ||
+
+                                                type === 'priority' && <LabelSummary
+                                                    tasks={group.tasks}
+                                                    columnId={column.id}
+                                                    options={priorityOptions} />
                                             }
                                         </th>
                                     })}
