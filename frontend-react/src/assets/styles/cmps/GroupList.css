@@ -4,6 +4,7 @@
     /* The board's scroller: scrolls both ways (the vertical bar always shown, like monday) */
     overflow-y: scroll;
     min-height: 0;
+    height:150vh;
     /* monday's scrollbar - same values as the panel's (RootCmp.css) */
     &::-webkit-scrollbar {
         width: 9px;
@@ -80,6 +81,7 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
         border: none;
         border-radius: 8px;
+        z-index: 1000;
     }
 
     .menu-item {
@@ -136,10 +138,14 @@
 
     }
 }
+.group-preview:has(.popover){
+            z-index: 1;
 
+}
 .group-preview {
     position: sticky;
     width: max-content;
+
     :has(.collapsed){
         width: inherit;
     }
