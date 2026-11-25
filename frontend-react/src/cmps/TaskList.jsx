@@ -10,7 +10,7 @@ import { Popover } from './Popover'
 import { updateBoardOptimistic } from '../store/actions/board.actions'
 import { SET_FIRST_COL_RECT } from '../store/reducers/board.reducer'
 
-export function TaskList({ group, members }) {
+export function TaskList({ group }) {
     const [newTaskTitle, setNewTaskTitle] = useState('')
     const [cmpIdxMenuOpen, setCmpIdxMenuOpen] = useState(null)
     const columns = useSelector(storedState => storedState.boardModule.board.columns)
@@ -19,6 +19,8 @@ export function TaskList({ group, members }) {
     const dispatch = useDispatch()
 
     function setFirstColRect() {
+        if (!firstColRef) return
+
         dispatch({
             type: SET_FIRST_COL_RECT,
             firstColRect: firstColRef.current.getBoundingClientRect()
@@ -119,8 +121,7 @@ export function TaskList({ group, members }) {
                                 key={task.id}
                                 task={task}
                                 idx={idx}
-                                groupId={group.id}
-                                members={members} />
+                                groupId={group.id} />
                         ))}
                         {provided.placeholder}
 

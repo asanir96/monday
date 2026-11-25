@@ -10,7 +10,7 @@ import { TaskList } from './TaskList'
 import { GroupHeader } from './GroupHeader'
 
 // idx: the group's place in the board - the drag and drop needs it
-export function GroupPreview({ group, idx, members }) {
+export function GroupPreview({ group, idx }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isGroupExpanded, setIsGroupExpanded] = useState(true)
     const taskCount = group.tasks.length
@@ -69,7 +69,7 @@ export function GroupPreview({ group, idx, members }) {
                         setIsGroupExpanded={setIsGroupExpanded} />}
 
                     {isGroupExpanded ?
-                        <TaskList group={group} members={members} /> :
+                        <TaskList group={group}  /> :
 
                         <table className="task-list collapsed" {...provided.dragHandleProps}>
                             <thead>

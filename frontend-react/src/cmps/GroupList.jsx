@@ -25,7 +25,7 @@ export function GroupList({ board }) {
                     {provided => (
                         <div className="group-list-groups full" ref={provided.innerRef} {...provided.droppableProps}>
                             {groups.map((group, idx) => (
-                                <GroupPreview key={group.id} group={group} idx={idx} members={board.members || []} />
+                                <GroupPreview key={group.id} group={group} idx={idx}  />
                             ))}
                             {provided.placeholder}
                         </div>
