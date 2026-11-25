@@ -131,14 +131,17 @@ function getDefaultFilter() {
 
 function removeColumnFromBoard(board, colId) {
     const updatedBoard = JSON.parse(JSON.stringify(board))
-
+    console.log('updatedBoard before',updatedBoard)
+    
     updatedBoard.columns = updatedBoard.columns.filter(column => column.id !== colId)
     updatedBoard.groups = updatedBoard.groups.map(group => {
         return {
             ...group,
             tasks: group.tasks.map(task => {
+                console.log('task.values',task.values)
                 const newTask = { ...task }
-                delete newTask[colId]
+                delete newTask.values[colId]
+                console.log('newTask.values',newTask.values)
                 return newTask
             })
         }

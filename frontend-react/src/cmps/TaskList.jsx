@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Popover } from './Popover'
 import { updateBoardOptimistic } from '../store/actions/board.actions'
 import { SET_FIRST_COL_RECT } from '../store/reducers/board.reducer'
+
 export function TaskList({ group, members }) {
     const [newTaskTitle, setNewTaskTitle] = useState('')
     const [cmpIdxMenuOpen, setCmpIdxMenuOpen] = useState(null)
