@@ -49,14 +49,12 @@
 }
 
 /* "Done 4/12   33.3%" - monday's dark tooltip, above the part, ~300ms after the mouse enters.
+   Lives in <body> (LabelSummary.jsx gives it the part's top-center as left / top) and sits above that point.
    Appears with the popovers' expand (Popover.css), growing from its bottom; disappears at once */
 .battery-tooltip {
-    display: none;
-    position: absolute;
-    bottom: calc(100% + 6px);
-    left: 50%;
-    z-index: 10;
-    translate: -50% 0;
+    position: fixed;
+    z-index: 1000;
+    translate: -50% -100%;
     transform-origin: 50% 100%;
     padding: 8px 16px;
     border-radius: 4px;
@@ -68,13 +66,9 @@
     /* Keeps monday's three spaces before the percentage */
     white-space: pre;
     pointer-events: none;
-
-    .battery-part:hover > & {
-        display: block;
-        animation:
-            battery-tooltip-wait 300ms step-end,
-            popover-expand 100ms cubic-bezier(0, 0, .35, 1) 300ms backwards;
-    }
+    animation:
+        battery-tooltip-wait 300ms step-end,
+        popover-expand 100ms cubic-bezier(0, 0, .35, 1) 300ms backwards;
 }
 
 /* Hidden while the mouse rests on the part, then shown */
@@ -89,4 +83,21 @@
 .task-list .summary-row .cell-title {
     border-inline-start: none;
     border-bottom: none;
+}
+
+/* A collapsed group (GroupPreview): each column shows its title over its summary (notes 3) -
+   a 20px title row 4px from the top, the summary in the 35.2px under it */
+.task-list.collapsed .collapsed-summary {
+    display: grid;
+    grid-template-rows: 20px 1fr;
+    height: 100%;
+    /* monday's 4px from the top - our header cells already have a 1px top border */
+    padding-top: 3px;
+
+    .collapsed-title {
+        color: rgb(50, 51, 56);
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+    }
 }

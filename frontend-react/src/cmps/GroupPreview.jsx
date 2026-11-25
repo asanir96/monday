@@ -8,6 +8,8 @@ import { Popover } from './Popover'
 import { TaskList } from './TaskList'
 
 import { GroupHeader } from './GroupHeader'
+import { LabelSummary } from './LabelSummary'
+import { statusOptions, priorityOptions } from '../services/board'
 
 // idx: the group's place in the board - the drag and drop needs it
 export function GroupPreview({ group, idx, members }) {
@@ -89,11 +91,24 @@ export function GroupPreview({ group, idx, members }) {
                                     <th className="cell cell-owner">
                                         <span>Owner</span>
                                     </th>
+                                    {/* Like monday: the column's title, and its summary (the progress bar) under it */}
                                     <th className="cell cell-status">
-                                        <div>Status</div>
+                                        <div className="collapsed-summary">
+                                            <span className="collapsed-title">Status</span>
+                                            <LabelSummary tasks={group.tasks} field="status" options={statusOptions} />
+                                        </div>
                                     </th>
-                                    <th className="cell cell-priority"><span>Priority</span></th>
-                                    <th className="cell cell-date"><span>Due date</span></th>
+                                    <th className="cell cell-priority">
+                                        <div className="collapsed-summary">
+                                            <span className="collapsed-title">Priority</span>
+                                            <LabelSummary tasks={group.tasks} field="priority" options={priorityOptions} />
+                                        </div>
+                                    </th>
+                                    <th className="cell cell-date">
+                                        <div className="collapsed-summary">
+                                            <span className="collapsed-title">Due date</span>
+                                        </div>
+                                    </th>
                                     <th className="cell cell-actions" />
                                 </tr>
                             </thead>
