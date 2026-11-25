@@ -83,6 +83,7 @@
 .task-list .summary-row .cell-title {
     border-inline-start: none;
     border-bottom: none;
+    z-index: 2;
 }
 
 /* A collapsed group (GroupPreview): each column shows its title over its summary (notes 3) -
