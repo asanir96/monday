@@ -12,7 +12,7 @@ export function BoardHeader({ board }) {
     const [isInfoOpen, setIsInfoOpen] = useState(false)
 
     return (
-        <header className="board-header">
+        <header className="board-header full">
             <div className="info-row">
                 <div className="board-info">
                     <Popover
