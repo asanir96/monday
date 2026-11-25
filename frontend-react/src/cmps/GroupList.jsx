@@ -18,7 +18,7 @@ export function GroupList({ board }) {
     }
 
     return (
-        <section className="group-list full board-details-layout">
+        <section className="group-list full">
             {/* One drag context for the whole board: groups move in the list, tasks move inside or between groups */}
             <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="groups" type="GROUP">

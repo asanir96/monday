@@ -4,19 +4,19 @@
 
     /* Fill the white panel: the header stays put, only the groups area (.group-list) scrolls - both ways.
        The sticky Task column sticks to the edge of that scroller */
-    height: 100%;
+    /* height: 100%;
     display: flex;
     flex-direction: column;
 
     > .group-list {
         flex: 1;
         min-height: 0;
-    }
+    } */
 }
 
 /* On a board page the panel itself doesn't scroll - the groups area does (one scroller, also what the drag and drop needs) */
 .app-layout > .app-main:has(> .board-details) {
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 @media (max-width: 1023px) {

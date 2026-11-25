@@ -6,4 +6,5 @@
 .task-text:not(:focus){
     background-color: unset;
     border: unset;
+    text-align: center;
 }
