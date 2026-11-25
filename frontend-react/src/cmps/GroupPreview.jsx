@@ -98,7 +98,7 @@ export function GroupPreview({ group, idx }) {
                                     {/* Like monday: the column's title, and its summary (the progress bar) under it */}
                                     {columns.map(column => {
                                         const type = column.type
-                                        return getDynamicClassName(type) && <th className={`cell cell-${getDynamicClassName(type)}`}>
+                                        return getDynamicClassName(type)&& getDynamicClassName(type) && <th className={`cell cell-${getDynamicClassName(type)}`}>
                                             <div className='column-title'>{column.title}</div>
                                             {type === 'status' &&
                                                 <LabelSummary

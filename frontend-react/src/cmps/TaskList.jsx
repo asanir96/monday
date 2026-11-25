@@ -153,7 +153,7 @@ export function TaskList({ group }) {
 
                     {columns.map(column => {
                         const type = column.type
-                        return <td className={`cell cell-${getDynamicClassName(type)}`}>
+                        return getDynamicClassName(type) && <td className={`cell cell-${getDynamicClassName(type)}`}>
                             {type === 'status' &&
                                 <LabelSummary
                                     tasks={group.tasks}
