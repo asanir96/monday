@@ -5,9 +5,15 @@ import { boardService } from '../services/board'
 import { addTask } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { TaskPreview } from './TaskPreview'
+import { useSelector } from 'react-redux'
+import { Popover } from './Popover'
+import { updateBoardOptimistic } from '../store/actions/board.actions'
 
 export function TaskList({ group, members }) {
     const [newTaskTitle, setNewTaskTitle] = useState('')
+    const [cmpIdxMenuOpen, setCmpIdxMenuOpen] = useState(null)
+    const columns = useSelector(storedState => storedState.boardModule.board.columns)
+    const board = useSelector(storedState => storedState.boardModule.board)
 
     // Runs on Enter (form submit) and when the input loses focus
     async function onAddTask(ev) {
@@ -16,22 +22,55 @@ export function TaskList({ group, members }) {
         if (!title) return
         setNewTaskTitle('')
         try {
-            await addTask(group.id, boardService.getEmptyTask(title))
+            await addTask(group.id, boardService.getEmptyTask(title, board))
         } catch (err) {
+            console.log(err)
             showErrorMsg('Cannot add item')
         }
     }
+
+    async function onRemoveColumn(colId) {
+        try {
+            setCmpIdxMenuOpen(null)
+            const boardToUpdate = boardService.removeColumnFromBoard(board, colId)
+            await updateBoardOptimistic(boardToUpdate)
+        } catch (err) {
+            console.log(err)
+            showErrorMsg(`Cannot add column`)
+        }
+    }
+
 
     return (
         <table className="task-list">
             <thead>
                 <tr className="task-row task-list-header">
+
                     <th className="cell cell-title">Task</th>
                     <th className="cell cell-owner">Owner</th>
-                    <th className="cell cell-status">Status</th>
-                    <th className="cell cell-priority">Priority</th>
-                    <th className="cell cell-date">Due date</th>
+
+                    {columns.map((column, idx) => {
+                        {
+                            const { type, id: columnId, title } = column
+                            return getDynamicClassName(type) && <th className={`cell cell-${getDynamicClassName(type)} position-relative`}>
+                                {title}
+                                <Popover
+                                    isOpen={cmpIdxMenuOpen === idx}
+                                    onClose={() => setCmpIdxMenuOpen(null)}
+                                    className="task-menu"
+                                    animation="expand"
+                                    trigger={
+                                        <button className="btn-icon" title="Item actions" onClick={() => setCmpIdxMenuOpen(idx)}>⋯</button>
+                                    }
+                                >
+                                    <button className="menu-item danger" onClick={() => onRemoveColumn(columnId)}>Delete column</button>
+                                </Popover>
+                            </th>
+                        }
+                    })}
+
                     <th className="cell cell-actions" />
+
                 </tr>
             </thead>
 
@@ -40,7 +79,12 @@ export function TaskList({ group, members }) {
                 {provided => (
                     <tbody ref={provided.innerRef} {...provided.droppableProps}>
                         {group.tasks.map((task, idx) => (
-                            <TaskPreview key={task.id} task={task} idx={idx} groupId={group.id} members={members} />
+                            <TaskPreview
+                                key={task.id}
+                                task={task}
+                                idx={idx}
+                                groupId={group.id}
+                                members={members} />
                         ))}
                         {provided.placeholder}
 
@@ -64,4 +108,32 @@ export function TaskList({ group, members }) {
             </Droppable>
         </table>
     )
+}
+
+function getDynamicColumnName(cmp) {
+    const cmpFieldMap = {
+        'status': 'Status',
+        'priority': 'Priority',
+        'labels': 'Labels',
+        'date': 'Date',
+        'text': 'Text',
+        'file': 'Files'
+    }
+
+    return cmpFieldMap[cmp]
+
+}
+
+function getDynamicClassName(cmp) {
+    const cmpFieldMap = {
+        'status': 'status',
+        'labels': 'status',
+        'priority': 'priority',
+        'date': 'date',
+        'text': 'status',
+        'files': 'status'
+    }
+
+    return cmpFieldMap[cmp]
+
 }

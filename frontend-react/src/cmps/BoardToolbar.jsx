@@ -28,7 +28,7 @@ export function BoardToolbar({ board }) {
     // Adds a task to the board's first group, like the group's "+ Add item" does.
     // A board without groups gets a new group with the task in it.
     async function onAddNewTask() {
-        const task = boardService.getEmptyTask('New task')
+        const task = boardService.getEmptyTask('New task',board)
         const firstGroup = board.groups?.[0]
         try {
             if (firstGroup) await addTask(firstGroup.id, task)
