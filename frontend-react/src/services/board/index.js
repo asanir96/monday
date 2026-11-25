@@ -57,7 +57,7 @@ export const statusOptions = [
     { id: 'done', title: 'Done', color: '#00c875' },
     { id: 'workingOnIt', title: 'Working on it', color: '#fdab3d' },
     { id: 'inProgress', title: 'In progress', color: '#579bfc' },
-    { id: 'stuck', title: 'Stuck', color: '#e2445c' },
+    { id: 'stuck', title: 'Stuck', color: '#df2f4a' },
     { id: 'notStarted', title: 'Not started', color: '#797e93' },
 ]
 
@@ -73,6 +73,21 @@ const EMPTY_STATUS = { id: '', title: '', color: '#c4c4c4' }
 
 export function getStatusOption(statusId) {
     return statusOptions.find(option => option.id === statusId) || EMPTY_STATUS
+}
+
+// How many of the tasks have each label - for the progress bar under a label column (LabelSummary).
+// getLabelSummary(group.tasks, 'status', statusOptions) -> [{ id, title, color, count }]
+// In the labels' order, only labels that are used, and the tasks with no label last (id '', grey) - like monday
+export function getLabelSummary(tasks, field, options) {
+    const countById = tasks.reduce((acc, task) => {
+        const labelId = options.some(option => option.id === task[field]) ? task[field] : ''
+        acc[labelId] = (acc[labelId] || 0) + 1
+        return acc
+    }, {})
+
+    return [...options, EMPTY_STATUS]
+        .filter(option => countById[option.id])
+        .map(option => ({ ...option, count: countById[option.id] }))
 }
 
 export function getEmptyGroup() {

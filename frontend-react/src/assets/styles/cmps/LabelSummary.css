@@ -1,0 +1,92 @@
+/* monday's progress bar under a label column (monday-design-values-6.json -> notes 1, 2, 5):
+   24px tall, 8px in from the cell's sides, grey under the parts. The parts touch - no gaps, no rounding */
+.label-summary {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.battery {
+    position: relative;
+    flex: 1;
+    height: 27px;
+    margin: 0 8px;
+    border-radius: 2px;
+}
+
+.battery-background,
+.battery-parts {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    width: 100%;
+}
+
+.battery-background {
+    height: 24px;
+    background-color: #c4c4c4;
+}
+
+.battery-parts {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+}
+
+.battery-part {
+    position: relative;
+    height: 24px;
+    background-color: var(--label-color);
+    /* A part's width animates when a task's label changes; shrinking back after a hover too */
+    transition: .2s ease-in-out;
+
+    /* The hovered part grows 3px up and down at once (monday's hover has no transition) */
+    &:hover {
+        height: 30px;
+        border-radius: 2px;
+        transition: none;
+    }
+}
+
+/* "Done 4/12   33.3%" - monday's dark tooltip, above the part, ~300ms after the mouse enters.
+   Appears with the popovers' expand (Popover.css), growing from its bottom; disappears at once */
+.battery-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    z-index: 10;
+    translate: -50% 0;
+    transform-origin: 50% 100%;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: rgb(50, 51, 56);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+    color: white;
+    font-size: 14px;
+    line-height: 20px;
+    /* Keeps monday's three spaces before the percentage */
+    white-space: pre;
+    pointer-events: none;
+
+    .battery-part:hover > & {
+        display: block;
+        animation:
+            battery-tooltip-wait 300ms step-end,
+            popover-expand 100ms cubic-bezier(0, 0, .35, 1) 300ms backwards;
+    }
+}
+
+/* Hidden while the mouse rests on the part, then shown */
+@keyframes battery-tooltip-wait {
+    from {
+        visibility: hidden;
+    }
+}
+
+/* The group's summary row (TaskList's <tfoot>), under "+ Add item" (notes 4): the Task column part is empty -
+   the group's color bar and the borders stop at the row above */
+.task-list .summary-row .cell-title {
+    border-inline-start: none;
+    border-bottom: none;
+}

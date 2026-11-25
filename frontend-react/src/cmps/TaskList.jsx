@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Droppable } from '@hello-pangea/dnd'
 
-import { boardService } from '../services/board'
+import { boardService, statusOptions, priorityOptions } from '../services/board'
 import { addTask } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { TaskPreview } from './TaskPreview'
+import { LabelSummary } from './LabelSummary'
 
 export function TaskList({ group, members }) {
     const [newTaskTitle, setNewTaskTitle] = useState('')
@@ -62,6 +63,22 @@ export function TaskList({ group, members }) {
                     </tbody>
                 )}
             </Droppable>
+
+            {/* monday's summary row under the group: progress bars under Status and Priority */}
+            <tfoot>
+                <tr className="task-row summary-row">
+                    <td className="cell cell-title" />
+                    <td className="cell cell-owner" />
+                    <td className="cell cell-status">
+                        <LabelSummary tasks={group.tasks} field="status" options={statusOptions} />
+                    </td>
+                    <td className="cell cell-priority">
+                        <LabelSummary tasks={group.tasks} field="priority" options={priorityOptions} />
+                    </td>
+                    <td className="cell cell-date" />
+                    <td className="cell cell-actions" />
+                </tr>
+            </tfoot>
         </table>
     )
 }
