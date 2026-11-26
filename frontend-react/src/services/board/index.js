@@ -88,8 +88,8 @@ export const columnTypeOptions = [
 ]
 
 // The column types the table has a cell for (same list as getDynamicClassName in TaskList / TaskPreview / GroupPreview).
-// The others (members, timeline) aren't drawn yet
-const SHOWN_COLUMN_TYPES = ['status', 'labels', 'priority', 'date', 'text', 'files', 'number']
+// The others (timeline) aren't drawn yet
+const SHOWN_COLUMN_TYPES = ['status', 'labels', 'priority', 'date', 'text', 'files', 'number', 'members']
 
 export function getStatusOption(statusId) {
     return statusOptions.find(option => option.id === statusId) || EMPTY_STATUS

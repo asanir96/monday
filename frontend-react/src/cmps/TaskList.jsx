@@ -100,7 +100,6 @@ export function TaskList({ group }) {
             {/* The columns' widths (from the same classes as the cells) */}
             <colgroup>
                 <col className="cell-title" />
-                <col className="cell-owner" />
                 {shownColumns.map(column => (
                     <col key={column.id} className={`cell-${getDynamicClassName(column.type)}`} />
                 ))}
@@ -109,11 +108,10 @@ export function TaskList({ group }) {
 
             <thead>
                 {/* A column header can be dragged to move the whole column (useColumnDrag) - for every group.
-                    Task and Owner stay in place: they aren't in the board's columns */}
+                    Task stays in place: it isn't one of the board's columns */}
                 <tr className="task-row task-list-header">
 
                     <th className="cell cell-title" ref={firstColRef}>Task</th>
-                    <th className="cell cell-owner">Owner</th>
 
                     {shownColumns.map((column, idx) => {
                         const { type, id: columnId, title } = column
@@ -171,7 +169,7 @@ export function TaskList({ group }) {
                                     />
                                 </form>
                             </td>
-                            <td className="cell cell-filler" colSpan={5} />
+                            <td className="cell cell-filler" colSpan={shownColumns.length + 1} />
                         </tr>
                     </tbody>
                 )}
@@ -181,7 +179,6 @@ export function TaskList({ group }) {
             <tfoot>
                 <tr className="task-row summary-row">
                     <td className="cell cell-title" />
-                    <td className="cell cell-owner" />
 
                     {columns.map(column => {
                         const type = column.type
@@ -231,7 +228,8 @@ function getDynamicClassName(cmp) {
         'date': 'date',
         'text': 'status',
         'files': 'status',
-        'number': 'status'
+        'number': 'status',
+        'members': 'owner'
     }
 
     return cmpFieldMap[cmp]

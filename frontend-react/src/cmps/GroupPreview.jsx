@@ -90,9 +90,6 @@ export function GroupPreview({ group, idx }) {
                                             setIsGroupExpanded={setIsGroupExpanded} />
 
                                     </th>
-                                    <th className="cell cell-owner">
-                                        <div className='column-title'>Owner</div>
-                                    </th>
 
                                     {/* Like monday: the column's title, and its summary (the progress bar) under it */}
                                     {columns.map(column => {
@@ -131,7 +128,8 @@ function getDynamicClassName(cmp) {
         'date': 'date',
         'text': 'status',
         'files': 'status',
-        'number': 'status'
+        'number': 'status',
+        'members': 'owner'
     }
 
     return cmpFieldMap[cmp]

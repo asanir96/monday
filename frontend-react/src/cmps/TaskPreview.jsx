@@ -3,7 +3,6 @@ import { Draggable } from '@hello-pangea/dnd'
 
 import { updateTask, removeTask, updateBoardOptimistic } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
-import { getInitials } from '../services/util.service'
 import { InlineEdit } from './InlineEdit'
 import { Popover } from './Popover'
 import { StatusPicker } from './StatusPicker'
@@ -15,7 +14,7 @@ import { useSelector } from 'react-redux'
 import { LabelPicker } from './LabelPicker'
 import { boardService, columnTypeOptions } from '../services/board'
 import { NumberPicker } from './NumberPicker'
-const MAX_AVATARS = 2
+import { TaskMembers } from './TaskMembers'
 
 // One task row. Title is editable, status, priority + due date have pickers; owner is display-only for now (picker comes later)
 // idx: the task's place in its group - the drag and drop needs it
@@ -23,13 +22,6 @@ export function TaskPreview({ task, idx, groupId }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const columns = useSelector(storedState => storedState.boardModule.board.columns)
     const board = useSelector(storedState => storedState.boardModule.board)
-    
-    const boardMembers = board.members
-    const memberColumnId = columns.find(column => column.type === 'members').id
-    
-    const taskMemberIds = task.values[memberColumnId]
-
-    const owners = boardMembers.filter(member => taskMemberIds.includes(member._id))
 
     async function onRenameTask(title) {
         try {
@@ -83,14 +75,7 @@ export function TaskPreview({ task, idx, groupId }) {
                         <InlineEdit className="task-title" value={task.title} placeholder="Item name" onSave={onRenameTask} />
                     </td>
 
-                    <td className="cell cell-owner">
-                        {!owners.length && <span className="avatar avatar-placeholder" title="No owner">?</span>}
-                        {owners.slice(0, MAX_AVATARS).map(member => (
-                            member.imgUrl ? <img key={member._id} className="avatar" src={member.imgUrl} alt={member.fullname} title={member.fullname} /> : <span key={member._id} className="avatar avatar-placeholder" title={member.fullname}>{getInitials(member.fullname)}</span>
-                        ))}
-                        {owners.length > MAX_AVATARS && <span className="avatar avatar-more">+{owners.length - MAX_AVATARS}</span>}
-                    </td>
-
+                    {/* Every column's cell - the people (Owner) too: a 'members' column like the rest */}
                     {columns.map(column => {
                         const { type, id: columnId } = column
                         const taskValues = task.values
@@ -98,6 +83,7 @@ export function TaskPreview({ task, idx, groupId }) {
                             <DynamicColumn
                                 cmpType={type}
                                 options={board.labels}
+                                members={board.members}
                                 value={taskValues[columnId]}
                                 onChange={value => onUpdateTaskField(columnId, value)} />
                         </td>
@@ -181,7 +167,8 @@ function DynamicColumn(props) {
         'date': <DatePicker {...props} />,
         'text': <TaskText {...props} />,
         'files': <TaskFile {...props} />,
-        'number':<NumberPicker {...props}/>
+        'number':<NumberPicker {...props}/>,
+        'members': <TaskMembers {...props} />
 
     }
     return cmpMap[props.cmpType]
@@ -208,7 +195,8 @@ function getDynamicClassName(cmp) {
         'date': 'date',
         'text': 'status',
         'files': 'status',
-        'number':'status'
+        'number':'status',
+        'members': 'owner'
     }
 
     return cmpFieldMap[cmp]
