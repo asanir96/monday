@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react'
 
 import { Icon } from './Icon'
 import { Popover } from './Popover'
-import { useSelector } from 'react-redux'
 
 const EMPTY_LABEL = { id: '', title: '', color: '#c4c4c4' }
 
@@ -13,8 +12,6 @@ const EMPTY_LABEL = { id: '', title: '', color: '#c4c4c4' }
 export function LabelPicker({ options, value, onChange }) {
     const [isOpen, setIsOpen] = useState(false)
     const currentLabel = options.find(option => option.id === value) || EMPTY_LABEL
-    const firstColRect = useSelector(storedState => storedState.boardModule.firstColRect)
-    const [isIntersecting, setIsIntersecting] = useState(null)
     const popoverRef = useRef(null)
 
 

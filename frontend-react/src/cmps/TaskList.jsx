@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { Droppable } from '@hello-pangea/dnd'
 import { createPortal } from 'react-dom'
 
@@ -6,11 +6,10 @@ import { boardService, statusOptions, priorityOptions, getShownColumns } from '.
 import { addTask } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { TaskPreview } from './TaskPreview'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Popover } from './Popover'
 import { updateBoardOptimistic, moveColumn } from '../store/actions/board.actions'
 import { useColumnDrag } from '../customHooks/useColumnDrag'
-import { SET_FIRST_COL_RECT } from '../store/reducers/board.reducer'
 import { LabelSummary } from './LabelSummary'
 import { NumbersSummary } from './NumbersSummary'
 
@@ -19,33 +18,8 @@ export function TaskList({ group }) {
     const [cmpIdxMenuOpen, setCmpIdxMenuOpen] = useState(null)
     const columns = useSelector(storedState => storedState.boardModule.board.columns)
     const board = useSelector(storedState => storedState.boardModule.board)
-    const firstColRef = useRef(null)
-    const dispatch = useDispatch()
     const shownColumns = getShownColumns(columns)
     const { drag: columnDrag, onColumnPointerDown } = useColumnDrag(shownColumns, onMoveColumn)
-
-    function setFirstColRect() {
-        if (!firstColRef.current) return
-
-        dispatch({
-            type: SET_FIRST_COL_RECT,
-            firstColRect: firstColRef.current.getBoundingClientRect()
-        })
-    }
-
-    useEffect(() => {
-        setFirstColRect()
-
-
-        window.addEventListener('scroll', setFirstColRect, { passive: true, capture: true });
-        window.addEventListener('resize', setFirstColRect);
-
-        return () => {
-            window.removeEventListener('scroll', setFirstColRect, { passive: true, capture: true });
-            window.removeEventListener('resize', setFirstColRect);
-        };
-    }, [cmpIdxMenuOpen]);
-
 
     const callback = (entries, observer) => {
         entries.forEach((entry) => {
@@ -111,7 +85,7 @@ export function TaskList({ group }) {
                     Task stays in place: it isn't one of the board's columns */}
                 <tr className="task-row task-list-header">
 
-                    <th className="cell cell-title" ref={firstColRef}>Task</th>
+                    <th className="cell cell-title">Task</th>
 
                     {shownColumns.map((column, idx) => {
                         const { type, id: columnId, title } = column

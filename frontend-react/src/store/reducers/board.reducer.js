@@ -6,23 +6,18 @@ export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const ADD_BOARD_MSG = 'ADD_BOARD_MSG'
 export const SET_IS_ADDING_BOARD = 'SET_IS_ADDING_BOARD'
 export const SET_SIDEBAR_VIEW = ' SET_SIDEBAR_VIEW'
-export const SET_FIRST_COL_RECT= 'SET_FIRST_COL_RECT'
 
 const initialState = {
     boards: [],
     board: null,
     isAddingBoard: false,
     sidebarView: 'workspace',
-    firstColRect: null
 }
 
 export function boardReducer(state = initialState, action) {
     var newState = state
     var boards
     switch (action.type) {
-        case SET_FIRST_COL_RECT:
-            newState = { ...state, firstColRect: action.firstColRect }
-            break
         case SET_IS_ADDING_BOARD:
             newState = { ...state, isAddingBoard: action.isAddingBoard }
             break
