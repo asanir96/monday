@@ -4,6 +4,13 @@
      inset-block-start: 0;
 }
 
+@media (max-width: 1023px) {
+    .board-actions{
+        inset-inline-start: -214px;
+        inset-block-start:37px
+    }
+}
+
 .board-actions>* {
     width: 100%;
 }
