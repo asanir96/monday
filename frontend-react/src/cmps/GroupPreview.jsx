@@ -74,7 +74,7 @@ export function GroupPreview({ group, idx }) {
                     {isGroupExpanded ?
                         <TaskList group={group} /> :
 
-                        <table className="task-list collapsed" {...provided.dragHandleProps}>
+                        <table className="task-list collapsed">
                             <thead>
                                 <tr className="task-row task-list-header">
                                     <th className="cell cell-title">
