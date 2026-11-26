@@ -1,10 +1,11 @@
 ﻿.group-list {
     color: #323338;
 
-    /* The board's scroller: scrolls both ways (the vertical bar always shown, like monday) */
+    /* The board's scroller: scrolls both ways (the vertical bar always shown, like monday). It fills the panel
+       under the board header (BoardDetails.css), so its sideways scrollbar is always at the bottom of the screen */
+    overflow-x: auto;
     overflow-y: scroll;
     min-height: 0;
-    height:150vh;
     /* monday's scrollbar - same values as the panel's (RootCmp.css) */
     &::-webkit-scrollbar {
         width: 9px;
@@ -23,9 +24,7 @@
 
     /* As wide as the widest table, so the sticky group headers can travel the whole scroll */
     .group-list-groups {
-        overflow-x: auto;
-
-        /* width: max-content; */
+        width: max-content;
         min-width: 100%;
     }
 
