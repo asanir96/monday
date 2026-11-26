@@ -1,0 +1,107 @@
+/* The task's side panel (/board/:boardId/task/:taskId) - slides in from the right, over the board */
+.task-details {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    width: min(40rem, 100vw);
+    height: 100vh;
+    background-color: var(--primary-background-color);
+    box-shadow: var(--box-shadow-large);
+    color: var(--primary-text-color);
+    animation: task-details-slide-in .25s ease-out;
+
+    .task-details-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-small);
+        padding: var(--spacing-medium) var(--spacing-large) 0;
+    }
+
+    .btn-close {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        margin: 0;
+        padding: 0;
+        border-radius: var(--border-radius-small);
+        background: none;
+        color: var(--icon-color);
+        font-size: 1rem;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+    }
+
+    .task-details-title {
+        font-size: var(--font-size-h2);
+        line-height: var(--font-line-height-h2);
+        font-weight: var(--font-weight-bold);
+    }
+
+    /* The group name with a dot in the group's color */
+    .task-details-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--secondary-text-color);
+        font-size: var(--font-size-subtext);
+
+        &::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--group-color);
+        }
+    }
+
+    .task-details-tabs {
+        display: flex;
+        gap: var(--spacing-medium);
+        padding: var(--spacing-medium) var(--spacing-large) 0;
+        border-bottom: 1px solid var(--layout-border-color);
+    }
+
+    .task-details-tab {
+        margin: 0;
+        padding: var(--spacing-small) var(--spacing-xs);
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        background: none;
+        color: var(--secondary-text-color);
+
+        &:hover {
+            color: var(--primary-text-color);
+        }
+
+        &.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-text-color);
+        }
+    }
+
+    .task-details-content {
+        flex: 1;
+        overflow: auto;
+        padding: var(--spacing-large);
+        background-color: var(--allgrey-background-color);
+    }
+
+    .task-details-empty {
+        margin: var(--spacing-xl) 0 0;
+        color: var(--secondary-text-color);
+        text-align: center;
+    }
+}
+
+@keyframes task-details-slide-in {
+    from {
+        transform: translateX(100%);
+    }
+}

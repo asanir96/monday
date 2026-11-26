@@ -27,6 +27,7 @@
 @import "cmps/LabelPicker";
 @import "cmps/DatePicker";
 @import "cmps/GroupList";
+@import "cmps/TaskDetails";
 @import "cmps/BoardIndex";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";

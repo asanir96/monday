@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Draggable } from '@hello-pangea/dnd'
+import { Link } from 'react-router-dom'
 
 import { updateTask, removeTask, updateBoardOptimistic } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
@@ -72,7 +73,13 @@ export function TaskPreview({ task, idx, groupId }) {
                     {...provided.dragHandleProps}>
 
                     <td className="cell cell-title">
-                        <InlineEdit className="task-title" value={task.title} placeholder="Item name" onSave={onRenameTask} />
+                        <div className="task-title-wrap">
+                            <InlineEdit className="task-title" value={task.title} placeholder="Item name" onSave={onRenameTask} />
+                            {/* Opens the task's side panel (TaskDetails, a nested route of the board) */}
+                            <Link to={`/board/${board._id}/task/${task.id}`} className="btn-open-task" title="Open item">
+                                ⤢ Open
+                            </Link>
+                        </div>
                     </td>
 
                     {/* Every column's cell - the people (Owner) too: a 'members' column like the rest */}

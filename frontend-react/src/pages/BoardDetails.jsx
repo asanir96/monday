@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router'
+import { Outlet, useNavigate, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
 import { loadBoard } from '../store/actions/board.actions'
@@ -40,6 +40,9 @@ export function BoardDetails() {
             <BoardHeader board={board} />
 
             <GroupList board={board} />
+
+            {/* The open task's side panel (/board/:boardId/task/:taskId) - empty on the board's own url */}
+            <Outlet />
         </section>
     )
 }

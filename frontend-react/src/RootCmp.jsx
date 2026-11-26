@@ -9,6 +9,7 @@ import { HomePage } from './pages/HomePage'
 // import { AdminIndex } from './pages/AdminIndex.jsx'
 import { BoardIndex } from './pages/BoardIndex'
 import { BoardDetails } from './pages/BoardDetails'
+import { TaskDetails } from './cmps/TaskDetails'
 import { BoardSidebar } from './cmps/BoardSidebar'
 // import { CarDetails } from './pages/CarDetails'
 // import { UserDetails } from './pages/UserDetails'
@@ -33,7 +34,10 @@ export function RootCmp() {
                     A layout route has no path of its own - it only wraps its children */}
                 <Route element={<AppLayout />}>
                     <Route path="board" element={<BoardIndex />} />
-                    <Route path="board/:boardId" element={<BoardDetails />} />
+                    {/* A task opens as a side panel over its board: TaskDetails renders in BoardDetails' <Outlet /> */}
+                    <Route path="board/:boardId" element={<BoardDetails />}>
+                        <Route path="task/:taskId" element={<TaskDetails />} />
+                    </Route>
                     {/* <Route path="about" element={<AboutUs />}>
                         <Route path="team" element={<AboutTeam />} />
                         <Route path="vision" element={<AboutVision />} />
