@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { Droppable } from '@hello-pangea/dnd'
+import { createPortal } from 'react-dom'
 
-import { boardService, statusOptions, priorityOptions } from '../services/board'
+import { boardService, statusOptions, priorityOptions, getShownColumns } from '../services/board'
 import { addTask } from '../store/actions/board.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { TaskPreview } from './TaskPreview'
 import { useDispatch, useSelector } from 'react-redux'
 import { Popover } from './Popover'
-import { updateBoardOptimistic } from '../store/actions/board.actions'
+import { updateBoardOptimistic, moveColumn } from '../store/actions/board.actions'
+import { useColumnDrag } from '../customHooks/useColumnDrag'
 import { SET_FIRST_COL_RECT } from '../store/reducers/board.reducer'
 import { LabelSummary } from './LabelSummary'
 import { NumbersSummary } from './NumbersSummary'
@@ -19,6 +21,8 @@ export function TaskList({ group }) {
     const board = useSelector(storedState => storedState.boardModule.board)
     const firstColRef = useRef(null)
     const dispatch = useDispatch()
+    const shownColumns = getShownColumns(columns)
+    const { drag: columnDrag, onColumnPointerDown } = useColumnDrag(shownColumns, onMoveColumn)
 
     function setFirstColRect() {
         if (!firstColRef.current) return
@@ -69,6 +73,14 @@ export function TaskList({ group }) {
         }
     }
 
+    async function onMoveColumn(columnId, toColumnId) {
+        try {
+            await moveColumn(columnId, toColumnId)
+        } catch (err) {
+            showErrorMsg('Cannot move the column')
+        }
+    }
+
     async function onRemoveColumn(colId) {
         try {
             setCmpIdxMenuOpen(null)
@@ -82,17 +94,36 @@ export function TaskList({ group }) {
 
 
     return (
+        <>
+        {columnDrag && <ColumnDragCard drag={columnDrag} />}
         <table className="task-list">
+            {/* The columns' widths (from the same classes as the cells) */}
+            <colgroup>
+                <col className="cell-title" />
+                <col className="cell-owner" />
+                {shownColumns.map(column => (
+                    <col key={column.id} className={`cell-${getDynamicClassName(column.type)}`} />
+                ))}
+                <col className="cell-actions" />
+            </colgroup>
+
             <thead>
+                {/* A column header can be dragged to move the whole column (useColumnDrag) - for every group.
+                    Task and Owner stay in place: they aren't in the board's columns */}
                 <tr className="task-row task-list-header">
 
                     <th className="cell cell-title" ref={firstColRef}>Task</th>
                     <th className="cell cell-owner">Owner</th>
 
-                    {columns.map((column, idx) => {
-                        {
-                            const { type, id: columnId, title } = column
-                            return getDynamicClassName(type) && <th className={`cell cell-${getDynamicClassName(type)} position-relative`}>
+                    {shownColumns.map((column, idx) => {
+                        const { type, id: columnId, title } = column
+                        return (
+                            <th
+                                key={columnId}
+                                className={`cell cell-${getDynamicClassName(type)} position-relative column-header${columnId === columnDrag?.columnId ? ' is-drag-source' : ''}`}
+                                data-title={title}
+                                onPointerDown={ev => onColumnPointerDown(ev, columnId)}
+                            >
                                 {title}
                                 <Popover
                                     isOpen={cmpIdxMenuOpen === idx}
@@ -106,7 +137,7 @@ export function TaskList({ group }) {
                                     <button className="menu-item danger" onClick={() => onRemoveColumn(columnId)}>Delete column</button>
                                 </Popover>
                             </th>
-                        }
+                        )
                     })}
 
                     <th className="cell cell-actions" />
@@ -168,6 +199,18 @@ export function TaskList({ group }) {
                 </tr>
             </tfoot>
         </table>
+        </>
+    )
+}
+
+// The dragged column: its header and an empty box per task row, following the mouse (in <body>, above everything)
+function ColumnDragCard({ drag }) {
+    return createPortal(
+        <div className="column-drag-card" style={{ left: drag.left, top: drag.top, width: drag.width }}>
+            <div className="column-drag-card-header" style={{ height: drag.headerHeight, lineHeight: `${drag.headerHeight}px` }}>{drag.title}</div>
+            {drag.rowHeights.map((height, idx) => <div key={idx} className="column-drag-card-row" style={{ height }} />)}
+        </div>,
+        document.body
     )
 }
 

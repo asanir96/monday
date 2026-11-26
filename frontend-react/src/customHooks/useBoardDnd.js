@@ -3,7 +3,8 @@ import { showErrorMsg } from '../services/event-bus.service'
 
 // The board's drag and drop: returns the onDragEnd for the board's <DragDropContext>.
 // Each <Droppable> has a type, and a drop is sent to the action for that type.
-// Something new to drag (columns...): give its Droppable a new type and add a case here.
+// Something new to drag: give its Droppable a new type and add a case here.
+// (Columns aren't one element - their cells sit in every row - so they have their own drag: useColumnDrag)
 //
 // const { onDragEnd } = useBoardDnd()
 // <DragDropContext onDragEnd={onDragEnd}> ... </DragDropContext>

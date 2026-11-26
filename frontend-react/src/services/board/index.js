@@ -87,6 +87,10 @@ export const columnTypeOptions = [
     // 'timeline'
 ]
 
+// The column types the table has a cell for (same list as getDynamicClassName in TaskList / TaskPreview / GroupPreview).
+// The others (members, timeline) aren't drawn yet
+const SHOWN_COLUMN_TYPES = ['status', 'labels', 'priority', 'date', 'text', 'files', 'number']
+
 export function getStatusOption(statusId) {
     return statusOptions.find(option => option.id === statusId) || EMPTY_STATUS
 }
@@ -114,6 +118,11 @@ export function getNumbersSum(tasks, columnId) {
     }, 0)
 
     return numberSum
+}
+
+// The board's columns that the table shows, in their order - the column drag and drop counts its places in this list
+export function getShownColumns(columns) {
+    return columns.filter(column => SHOWN_COLUMN_TYPES.includes(column.type))
 }
 
 export function getEmptyGroup() {

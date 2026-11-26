@@ -393,3 +393,52 @@
         }
     }
 }
+/* Column drag and drop (useColumnDrag) - monday-design-values-7.json (monday's stylesheet rules; the live drag
+   wasn't observed, so the card's contents and width are ours: the column's header and a box per task row) */
+.task-list .column-header {
+    cursor: grab;
+
+    /* The dragged column's place stays, outlined (monday's .column-header.dragging) */
+    &.is-drag-source {
+        outline: 1px dashed #d0d4e4;
+        outline-offset: -1px;
+        background-color: #f5f6f8;
+    }
+}
+
+/* While a column is dragged: no text selection, the grabbing cursor everywhere */
+body.is-dragging-column {
+    user-select: none;
+    cursor: grabbing;
+}
+
+/* The card that follows the mouse: see-through, tilted 3deg and a bit bigger, with monday's wide soft shadow */
+.column-drag-card {
+    position: fixed;
+    z-index: 1000001;
+    overflow: hidden;
+    border: 1px solid #c3c6d4;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 15px 18px 112px -12px #c3c6d4;
+    opacity: .75;
+    rotate: 3deg;
+    scale: 1.05;
+    pointer-events: none;
+}
+
+.column-drag-card-header {
+    padding-inline: 8px;
+    text-align: center;
+    border-bottom: 1px solid #e6e9ef;
+    color: #676879;
+    font-size: 13px;
+    /* A long title ends with "..." */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.column-drag-card-row {
+    border-bottom: 1px solid #e6e9ef;
+}

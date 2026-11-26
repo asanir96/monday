@@ -137,6 +137,15 @@ export function moveGroup(fromIdx, toIdx) {
     return updateBoardOptimistic({ ...board, groups: moveItem(board.groups, fromIdx, toIdx) })
 }
 
+// Moves a column to another place in the table (for the whole board - every group shows the same columns).
+// toColumnId: the column now at the place it was dropped on; the moved column takes its place
+export function moveColumn(columnId, toColumnId) {
+    const board = _getOpenBoard()
+    const fromIdx = board.columns.findIndex(column => column.id === columnId)
+    const toIdx = board.columns.findIndex(column => column.id === toColumnId)
+    return updateBoardOptimistic({ ...board, columns: moveItem(board.columns, fromIdx, toIdx) })
+}
+
 // Moves a task inside its group or into another group:
 // moveTask({ groupId: 'g101', idx: 0 }, { groupId: 'g102', idx: 3 })
 export function moveTask(from, to) {
