@@ -43,7 +43,7 @@ export function getEmptyBoard() {
         activities: [],
         columns: [
             // The task's people - shown in the Owner cell (TaskPreview needs every board to have one)
-            { id: 'col' + makeId(), type: 'members', title: 'Members', isVisible: true, width: 150 },
+            { id: 'col' + makeId(), type: 'members', title: 'Owner', isVisible: true, width: 150 },
             { id: 'col' + makeId(), type: 'status', title: 'Status', isVisible: true, width: 150 },
             { id: 'col' + makeId(), type: 'date', title: 'Due Date', isVisible: true, width: 150 },],
     }
@@ -243,7 +243,7 @@ function _getDefaultColumnTitle(columnType) {
         status: 'Status',
         date: 'Date',
         text: 'Text',
-        members: 'Members',
+        members: 'Owner',
         files: 'Files',
         priority: 'Priority',
         timeline: 'Timeline',

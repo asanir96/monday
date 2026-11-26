@@ -81,7 +81,7 @@
       {
         "id": "col105",
         "type": "members",
-        "title": "Members",
+        "title": "Owner",
         "isVisible": true,
         "width": 150
       },
@@ -518,7 +518,7 @@
       {
         "id": "col105",
         "type": "members",
-        "title": "Members",
+        "title": "Owner",
         "isVisible": true,
         "width": 150
       },
@@ -878,7 +878,7 @@
       {
         "id": "col105",
         "type": "members",
-        "title": "Members",
+        "title": "Owner",
         "isVisible": true,
         "width": 150
       },
