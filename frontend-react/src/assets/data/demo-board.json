@@ -120,9 +120,7 @@
                 "u102"
               ],
               "col104": "2026-11-10",
-              "col106": [
-                "l102"
-              ]
+              "col106": "l102"
             },
             "description": "Define the frontend and backend architecture, project structure and coding conventions.",
             "byMember": {
@@ -144,9 +142,7 @@
                 "u102"
               ],
               "col104": "2026-11-12",
-              "col106": [
-                "l102"
-              ]
+              "col106": "l102"
             },
             "description": "Implement login, signup, logout and session persistence.",
             "byMember": {
@@ -179,9 +175,7 @@
                 "u104"
               ],
               "col104": "2026-11-13",
-              "col106": [
-                "l102"
-              ]
+              "col106": "l102"
             },
             "description": "Create schemas for users, boards, groups and tasks.",
             "byMember": {
@@ -214,9 +208,7 @@
                 "u103"
               ],
               "col104": "2026-11-20",
-              "col106": [
-                "l102"
-              ]
+              "col106": "l102"
             },
             "description": "Allow users to create, rename, duplicate and delete boards.",
             "byMember": {
@@ -272,10 +264,7 @@
                 "u104"
               ],
               "col104": "2026-11-22",
-              "col106": [
-                "l102",
-                "l103"
-              ]
+              "col106": "l102"
             },
             "description": "Support reordering groups and moving tasks between groups.",
             "byMember": {
@@ -297,9 +286,7 @@
                 "u104"
               ],
               "col104": "2026-11-18",
-              "col106": [
-                "l101"
-              ]
+              "col106": "l101"
             },
             "description": "Duplicated tasks sometimes inherit incorrect member assignments.",
             "byMember": {
@@ -332,10 +319,7 @@
                 "u102"
               ],
               "col104": "2026-11-25",
-              "col106": [
-                "l102",
-                "l104"
-              ]
+              "col106": "l102"
             },
             "description": "Use Socket.IO to synchronize board changes between connected users.",
             "byMember": {
@@ -365,9 +349,7 @@
                 "u103"
               ],
               "col104": null,
-              "col106": [
-                "l102"
-              ]
+              "col106": "l102"
             },
             "description": "Allow users to create boards from predefined templates.",
             "byMember": {
@@ -387,9 +369,7 @@
               "col103": "medium",
               "col105": [],
               "col104": null,
-              "col106": [
-                "l103"
-              ]
+              "col106": "l103"
             },
             "description": "Add global search across boards and tasks.",
             "byMember": {
@@ -562,9 +542,7 @@
               ],
               "col104": "2026-11-12",
               "col103": "high",
-              "col106": [
-                "l202"
-              ]
+              "col106": "l202"
             },
             "description": "Set measurable objectives for the upcoming product launch.",
             "byMember": {
@@ -586,9 +564,7 @@
               ],
               "col104": "2026-11-14",
               "col103": "medium",
-              "col106": [
-                "l202"
-              ]
+              "col106": "l202"
             },
             "description": "Identify audience segments and customer interests.",
             "byMember": {
@@ -619,9 +595,7 @@
               ],
               "col104": "2026-11-21",
               "col103": "high",
-              "col106": [
-                "l201"
-              ]
+              "col106": "l201"
             },
             "description": "Create a set of branded Instagram posts and stories.",
             "byMember": {
@@ -676,9 +650,7 @@
               ],
               "col104": "2026-11-23",
               "col103": "medium",
-              "col106": [
-                "l202"
-              ]
+              "col106": "l202"
             },
             "description": "Prepare the email announcement for existing customers.",
             "byMember": {
@@ -700,10 +672,7 @@
               ],
               "col104": "2026-11-26",
               "col103": "high",
-              "col106": [
-                "l203",
-                "l204"
-              ]
+              "col106": "l203"
             },
             "description": "Prepare creatives for Google Ads and Meta campaigns.",
             "byMember": {
@@ -733,9 +702,7 @@
               ],
               "col104": "2026-11-08",
               "col103": "medium",
-              "col106": [
-                "l201"
-              ]
+              "col106": "l201"
             },
             "description": "Publish the initial teaser across social channels.",
             "byMember": {
@@ -908,9 +875,7 @@
                 "u101",
                 "u105"
               ],
-              "col106": [
-                "l301"
-              ]
+              "col106": "l301"
             },
             "description": "Identify usability issues and opportunities for improvement.",
             "byMember": {
@@ -932,9 +897,7 @@
               "col105": [
                 "u105"
               ],
-              "col106": [
-                "l301"
-              ]
+              "col106": "l301"
             },
             "description": "Define the primary user personas based on research.",
             "byMember": {
@@ -965,10 +928,7 @@
                 "u105",
                 "u107"
               ],
-              "col106": [
-                "l301",
-                "l302"
-              ]
+              "col106": "l301"
             },
             "description": "Create low-fidelity wireframes for desktop and mobile.",
             "byMember": {
@@ -1001,9 +961,7 @@
               "col105": [
                 "u105"
               ],
-              "col106": [
-                "l302"
-              ]
+              "col106": "l302"
             },
             "description": "Define reusable components, colors, typography and spacing.",
             "byMember": {
@@ -1060,9 +1018,7 @@
               "col105": [
                 "u102"
               ],
-              "col106": [
-                "l303"
-              ]
+              "col106": "l303"
             },
             "description": "Build the responsive header and navigation menu.",
             "byMember": {
@@ -1085,9 +1041,7 @@
                 "u102",
                 "u107"
               ],
-              "col106": [
-                "l303"
-              ]
+              "col106": "l303"
             },
             "description": "Optimize images, loading states and frontend bundle size.",
             "byMember": {

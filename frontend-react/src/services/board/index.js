@@ -233,6 +233,8 @@ function _getDefaultColumnValues(columnType) {
         members: [],
         files: [],
         priority: '',
+        // One label id, like status (the board's labels)
+        labels: '',
         timeline: { startDate: '', endDate: '' }
     }
     return defaultValByType[columnType]
