@@ -1,29 +1,40 @@
+/* "Manage your boards" page (/board) - styled after monday's boards page */
 .board-index {
-    padding: 1.5rem;
-    color: #323338;
+    max-width: 64rem;
+    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-large);
+    color: var(--primary-text-color);
 
     .board-index-header {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
-        max-width: 60rem;
-        margin-bottom: 1rem;
+        gap: var(--spacing-medium);
+        margin-bottom: var(--spacing-large);
 
         & h1 {
             margin: 0;
-            font-size: 1.5rem;
+            font-family: var(--title-font-family);
+            font-size: var(--font-size-h1);
+            line-height: var(--font-line-height-h1);
+            font-weight: var(--font-weight-bold);
+        }
+
+        & p {
+            margin: 0;
+            color: var(--secondary-text-color);
         }
     }
 
     .btn-new-board {
+        flex-shrink: 0;
         margin: 0;
-        padding: .45rem .9rem;
-        border-radius: 4px;
-        background-color: #0073ea;
-        color: white;
+        padding: var(--spacing-small) var(--spacing-medium);
+        border-radius: var(--border-radius-small);
+        background-color: var(--primary-color);
+        color: var(--text-color-on-primary);
 
         &:hover {
-            background-color: #0060b9;
+            background-color: var(--primary-hover-color);
         }
 
         &:disabled {
@@ -32,83 +43,227 @@
         }
     }
 
+    /* Search box: an icon + input in one bordered box, blue border while typing */
+    .board-index-search {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-small);
+        width: min(100%, 18rem);
+        height: 36px;
+        margin-bottom: var(--spacing-medium);
+        padding-inline: var(--spacing-small);
+        border: 1px solid var(--ui-border-color);
+        border-radius: var(--border-radius-small);
+        color: var(--icon-color);
+        cursor: text;
+
+        &:hover {
+            border-color: var(--primary-text-color);
+        }
+
+        &:focus-within {
+            border-color: var(--primary-color);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        & input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            outline: none;
+            background: none;
+            font: inherit;
+            color: var(--primary-text-color);
+        }
+    }
+
     .board-index-msg {
-        color: #676879;
+        color: var(--secondary-text-color);
+    }
+
+    .board-index-count {
+        margin: var(--spacing-small) 0 0;
+        color: var(--secondary-text-color);
+        font-size: var(--font-size-subtext);
     }
 }
 
+/* The boards table: one bordered, rounded box */
 .board-table {
     width: 100%;
-    max-width: 60rem;
-    border-collapse: collapse;
+    border: 1px solid var(--layout-border-color);
+    border-radius: var(--border-radius-medium);
+    border-spacing: 0;
+    /* The columns keep their set widths and Board gets the rest - a long name gets "..." instead of widening the table */
+    table-layout: fixed;
 
     & th,
     & td {
-        height: 2.5rem;
-        padding: 0 .75rem;
-        border-bottom: 1px solid #e6e9ef;
+        height: 48px;
+        padding: 0 var(--spacing-medium);
+        border-bottom: 1px solid var(--layout-border-color);
         text-align: start;
     }
 
+    & tbody tr:last-child td {
+        border-bottom: none;
+    }
+
     & th {
-        color: #676879;
-        font-size: .85rem;
-        font-weight: 400;
+        height: 40px;
+        color: var(--secondary-text-color);
+        font-size: var(--font-size-subtext);
+        font-weight: var(--font-weight-normal);
     }
 
     .col-count {
-        width: 5rem;
+        width: 6rem;
         text-align: center;
     }
 
     .col-created-by {
-        width: 11rem;
+        width: 14rem;
     }
 
     .col-actions {
-        width: 10rem;
+        width: 3.5rem;
+        padding-inline: var(--spacing-small);
         text-align: end;
     }
 
-    .board-table-row:hover {
-        background-color: #f5f6f8;
+    .board-table-row:hover td,
+    .board-table-row.menu-open td {
+        background-color: var(--primary-background-hover-color);
+    }
+
+    .board-title {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-small);
+
+        .board-icon {
+            flex-shrink: 0;
+            color: var(--icon-color);
+        }
     }
 
     .board-link {
-        font-weight: 500;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: var(--primary-text-color);
+        font-weight: var(--font-weight-bold);
 
         &:hover {
-            color: #0073ea;
+            color: var(--primary-color);
+            text-decoration: none;
         }
     }
 
     .board-title-input {
-        width: 100%;
-        padding: 2px 4px;
-        border: 1px solid #0073ea;
-        border-radius: 4px;
+        flex: 1;
+        padding: 2px 6px;
+        border: 1px solid var(--primary-color);
+        border-radius: var(--border-radius-small);
         font: inherit;
         outline: none;
     }
 
-    .btn-board-action {
-        margin: 0 0 0 .25rem;
-        padding: .25rem .5rem;
-        border-radius: 4px;
+    .board-owner {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-small);
+        font-size: var(--font-size-subtext);
+    }
+
+    .board-owner-img {
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: var(--primary-color);
+        color: var(--text-color-on-primary);
+        font-size: 12px;
+    }
+
+    /* The ⋯ button shows on row hover (or while its menu is open) */
+    .btn-board-menu {
+        width: 32px;
+        height: 32px;
+        margin: 0;
+        padding: 0;
+        border-radius: var(--border-radius-small);
         background: none;
-        color: #676879;
+        color: var(--icon-color);
+        font-size: 1.1rem;
         visibility: hidden;
 
         &:hover {
-            background-color: #dcdfec;
-        }
-
-        &.danger:hover {
-            color: #d83a52;
+            background-color: var(--ui-background-hover-color);
         }
     }
 
-    .board-table-row:hover .btn-board-action {
+    .board-table-row:hover .btn-board-menu,
+    .board-table-row.menu-open .btn-board-menu {
         visibility: visible;
+    }
+
+    /* The menu opens to the left of the ⋯ (it's at the table's right edge) */
+    .board-menu {
+        inset-inline-start: auto;
+        inset-inline-end: 0;
+        min-width: 9rem;
+    }
+
+    .board-menu-item {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 6px var(--spacing-small);
+        border-radius: var(--border-radius-small);
+        background: none;
+        text-align: start;
+
+        &:hover {
+            background-color: var(--primary-background-hover-color);
+        }
+
+        &.danger {
+            color: var(--negative-color);
+        }
+    }
+}
+
+/* Phones: less padding, and no Owner / Groups columns */
+@media (max-width: 639px) {
+    .board-index {
+        padding: var(--spacing-medium);
+    }
+
+    /* Owner is the 2nd column, Groups the 3rd */
+    .board-table :is(th, td):nth-child(2),
+    .board-table :is(th, td):nth-child(3) {
+        display: none;
+    }
+
+    /* Narrower Items and ⋯ columns, so the board names get more room */
+    .board-table .col-count {
+        width: 4rem;
+    }
+
+    .board-table .col-actions {
+        width: 3rem;
+    }
+
+    .board-table :is(th, td) {
+        padding-inline: var(--spacing-small);
     }
 }

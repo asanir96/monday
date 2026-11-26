@@ -1,15 +1,16 @@
 import { BoardTableRow } from './BoardTableRow'
 
 // The boards table on the BoardIndex page
-export function BoardTable({ boards, onRenameBoard, onDeleteBoard }) {
-    if (!boards.length) return <p className="board-index-msg">No boards yet - create your first one.</p>
+// emptyMsg: what to show when there are no boards to show (none at all, or none match the search)
+export function BoardTable({ boards, emptyMsg, onRenameBoard, onDeleteBoard }) {
+    if (!boards.length) return <p className="board-index-msg">{emptyMsg}</p>
 
     return (
         <table className="board-table">
             <thead>
                 <tr>
                     <th className="col-title">Board</th>
-                    <th className="col-created-by">Created by</th>
+                    <th className="col-created-by">Owner</th>
                     <th className="col-count">Groups</th>
                     <th className="col-count">Items</th>
                     <th className="col-actions" />
