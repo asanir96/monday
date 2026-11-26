@@ -79,7 +79,7 @@ export const columnTypeOptions = [
     'files',
     'priority',
     'timeline',
-    // 'numbers',
+    'number',
     // 'timeline'
 ]
 
@@ -223,7 +223,8 @@ function _getDefaultColumnTitle(columnType) {
         members: 'Members',
         files: 'Files',
         priority: 'Priority',
-        timeline: 'Timeline'
+        timeline: 'Timeline',
+        number: 'Numbers'
     }
     return defaultTitleByType[columnType]
 }

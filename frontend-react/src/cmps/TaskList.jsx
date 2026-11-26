@@ -194,7 +194,8 @@ function getDynamicClassName(cmp) {
         'priority': 'priority',
         'date': 'date',
         'text': 'status',
-        'files': 'status'
+        'files': 'status',
+        'number': 'status'
     }
 
     return cmpFieldMap[cmp]

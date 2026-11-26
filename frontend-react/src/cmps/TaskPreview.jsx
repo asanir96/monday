@@ -14,7 +14,7 @@ import { TaskFile } from './TaskFile'
 import { useSelector } from 'react-redux'
 import { LabelPicker } from './LabelPicker'
 import { boardService, columnTypeOptions } from '../services/board'
-
+import { NumberPicker } from './NumberPicker'
 const MAX_AVATARS = 2
 
 // One task row. Title is editable, status, priority + due date have pickers; owner is display-only for now (picker comes later)
@@ -180,7 +180,8 @@ function DynamicColumn(props) {
         'labels': <LabelPicker {...props} />,
         'date': <DatePicker {...props} />,
         'text': <TaskText {...props} />,
-        'files': <TaskFile {...props} />
+        'files': <TaskFile {...props} />,
+        'number':<NumberPicker {...props}/>
 
     }
     return cmpMap[props.cmpType]
@@ -206,7 +207,8 @@ function getDynamicClassName(cmp) {
         'priority': 'priority',
         'date': 'date',
         'text': 'status',
-        'files': 'status'
+        'files': 'status',
+        'number':'status'
     }
 
     return cmpFieldMap[cmp]
