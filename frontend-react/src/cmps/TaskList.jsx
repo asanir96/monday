@@ -10,6 +10,7 @@ import { Popover } from './Popover'
 import { updateBoardOptimistic } from '../store/actions/board.actions'
 import { SET_FIRST_COL_RECT } from '../store/reducers/board.reducer'
 import { LabelSummary } from './LabelSummary'
+import { NumbersSummary } from './NumbersSummary'
 
 export function TaskList({ group }) {
     const [newTaskTitle, setNewTaskTitle] = useState('')
@@ -36,7 +37,7 @@ export function TaskList({ group }) {
         window.addEventListener('resize', setFirstColRect);
 
         return () => {
-            window.removeEventListener('scroll', setFirstColRect,{ passive: true, capture: true });
+            window.removeEventListener('scroll', setFirstColRect, { passive: true, capture: true });
             window.removeEventListener('resize', setFirstColRect);
         };
     }, [cmpIdxMenuOpen]);
@@ -154,17 +155,14 @@ export function TaskList({ group }) {
                     {columns.map(column => {
                         const type = column.type
                         return getDynamicClassName(type) && <td className={`cell cell-${getDynamicClassName(type)}`}>
-                            {type === 'status' &&
-                                <LabelSummary
-                                    tasks={group.tasks}
-                                    columnId={column.id}
-                                    options={statusOptions} /> ||
+                            <DynamicColumnSummary
+                                type={type}
+                                tasks={group.tasks}
+                                columnId={column.id}
+                                priorityOptions={priorityOptions}
+                                statusOptions={statusOptions}
 
-                                type === 'priority' && <LabelSummary
-                                    tasks={group.tasks}
-                                    columnId={column.id}
-                                    options={priorityOptions} />
-                            }
+                            />
                         </td>
                     })}
                 </tr>
@@ -173,18 +171,13 @@ export function TaskList({ group }) {
     )
 }
 
-function getDynamicColumnName(cmp) {
-    const cmpFieldMap = {
-        'status': 'Status',
-        'priority': 'Priority',
-        'labels': 'Labels',
-        'date': 'Date',
-        'text': 'Text',
-        'file': 'Files'
+function DynamicColumnSummary(props) {
+    const cmpMap = {
+        'status': <LabelSummary {...props} options={props.statusOptions} />,
+        'priority': <LabelSummary {...props} options={props.priorityOptions} />,
+        'number': <NumbersSummary {...props} />
     }
-
-    return cmpFieldMap[cmp]
-
+    return cmpMap[props.type]
 }
 
 function getDynamicClassName(cmp) {

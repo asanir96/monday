@@ -10,6 +10,7 @@ import { TaskList } from './TaskList'
 import { GroupHeader } from './GroupHeader'
 import { LabelSummary } from './LabelSummary'
 import { statusOptions, priorityOptions } from '../services/board'
+import { NumbersSummary } from './NumbersSummary'
 
 // idx: the group's place in the board - the drag and drop needs it
 export function GroupPreview({ group, idx }) {
@@ -92,44 +93,23 @@ export function GroupPreview({ group, idx }) {
                                     <th className="cell cell-owner">
                                         <div className='column-title'>Owner</div>
                                     </th>
-                                    {/* <th className="cell cell-priority"><span>Priority</span></th>
-                                    <th className="cell cell-date"><span>Due date</span></th> */}
 
                                     {/* Like monday: the column's title, and its summary (the progress bar) under it */}
                                     {columns.map(column => {
                                         const type = column.type
-                                        return getDynamicClassName(type)&& getDynamicClassName(type) && <th className={`cell cell-${getDynamicClassName(type)}`}>
-                                            <div className='column-title'>{column.title}</div>
-                                            {type === 'status' &&
-                                                <LabelSummary
-                                                    tasks={group.tasks}
-                                                    columnId={column.id}
-                                                    options={statusOptions} /> ||
+                                        return getDynamicClassName(type) && <th className={`cell cell-${getDynamicClassName(type)}`}>
 
-                                                type === 'priority' && <LabelSummary
-                                                    tasks={group.tasks}
-                                                    columnId={column.id}
-                                                    options={priorityOptions} />
-                                            }
+                                            <div className='column-title'>{column.title}</div>
+                                            <DynamicColumnSummary
+                                                type={type}
+                                                tasks={group.tasks}
+                                                columnId={column.id}
+                                                priorityOptions={priorityOptions}
+                                                statusOptions={statusOptions}
+
+                                            />
                                         </th>
                                     })}
-                                    {/* <th className="cell cell-status">
-                                        <div className="collapsed-summary">
-                                            <span className="collapsed-title">Status</span>
-                                            <LabelSummary tasks={group.tasks} field="status" options={statusOptions} />
-                                        </div>
-                                    </th>
-                                    <th className="cell cell-priority">
-                                        <div className="collapsed-summary">
-                                            <span className="collapsed-title">Priority</span>
-                                            <LabelSummary tasks={group.tasks} columnId="priority" options={priorityOptions} />
-                                        </div>
-                                    </th>
-                                    <th className="cell cell-date">
-                                        <div className="collapsed-summary">
-                                            <span className="collapsed-title">Due date</span>
-                                        </div>
-                                    </th> */}
                                     <th className="cell cell-actions" />
                                 </tr>
                             </thead>
@@ -156,5 +136,14 @@ function getDynamicClassName(cmp) {
 
     return cmpFieldMap[cmp]
 
+}
+
+function DynamicColumnSummary(props) {
+    const cmpMap = {
+        'status': <LabelSummary {...props} options={props.statusOptions} />,
+        'priority': <LabelSummary {...props} options={props.priorityOptions}/>,
+        'number': <NumbersSummary {...props} />
+    }
+    return cmpMap[props.type]
 }
 

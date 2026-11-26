@@ -102,6 +102,15 @@ export function getLabelSummary(tasks, columnId, options) {
         .map(option => ({ ...option, count: countById[option.id] }))
 }
 
+export function getNumbersSum(tasks, columnId) {
+    const numberSum = tasks.reduce((acc, task) => {
+        const currNum = task.values[columnId]
+        acc = currNum ? acc + +currNum : acc + 0
+        return acc
+    }, 0)
+
+    return numberSum
+}
 export function getEmptyGroup() {
     return {
         id: 'g' + makeId(),
@@ -146,17 +155,17 @@ function getDefaultFilter() {
 
 function removeColumnFromBoard(board, colId) {
     const updatedBoard = JSON.parse(JSON.stringify(board))
-    console.log('updatedBoard before',updatedBoard)
-    
+    console.log('updatedBoard before', updatedBoard)
+
     updatedBoard.columns = updatedBoard.columns.filter(column => column.id !== colId)
     updatedBoard.groups = updatedBoard.groups.map(group => {
         return {
             ...group,
             tasks: group.tasks.map(task => {
-                console.log('task.values',task.values)
+                console.log('task.values', task.values)
                 const newTask = { ...task }
                 delete newTask.values[colId]
-                console.log('newTask.values',newTask.values)
+                console.log('newTask.values', newTask.values)
                 return newTask
             })
         }
