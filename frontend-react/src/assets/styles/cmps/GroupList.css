@@ -84,6 +84,10 @@
         z-index: 1000;
     }
 
+    .popover:not(.label-picker-popover){
+        top:28px
+    }
+
     .menu-item {
         display: block;
         width: 100%;
@@ -135,8 +139,8 @@
 .group-preview:has(.group-header:hover) {
     .btn-group-menu {
         opacity: 1;
-
     }
+
 }
 .group-preview:has(.popover){
             z-index: 1;
