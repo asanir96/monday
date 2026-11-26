@@ -29,6 +29,8 @@ export function getEmptyBoard() {
                 color: '#e2445c',
             },
         ],
+        // The board's people (the Owner cell looks the task's members up here)
+        members: [],
         groups: [
             {
                 id: 'g104',
@@ -40,6 +42,8 @@ export function getEmptyBoard() {
         ],
         activities: [],
         columns: [
+            // The task's people - shown in the Owner cell (TaskPreview needs every board to have one)
+            { id: 'col' + makeId(), type: 'members', title: 'Members', isVisible: true, width: 150 },
             { id: 'col' + makeId(), type: 'status', title: 'Status', isVisible: true, width: 150 },
             { id: 'col' + makeId(), type: 'date', title: 'Due Date', isVisible: true, width: 150 },],
     }
@@ -111,6 +115,7 @@ export function getNumbersSum(tasks, columnId) {
 
     return numberSum
 }
+
 export function getEmptyGroup() {
     return {
         id: 'g' + makeId(),
