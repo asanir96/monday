@@ -20,7 +20,7 @@ export function TaskList({ group }) {
     const dispatch = useDispatch()
 
     function setFirstColRect() {
-        if (!firstColRef) return
+        if (!firstColRef.current) return
 
         dispatch({
             type: SET_FIRST_COL_RECT,
@@ -36,7 +36,7 @@ export function TaskList({ group }) {
         window.addEventListener('resize', setFirstColRect);
 
         return () => {
-            window.removeEventListener('scroll', setFirstColRect), { passive: true, capture: true };
+            window.removeEventListener('scroll', setFirstColRect,{ passive: true, capture: true });
             window.removeEventListener('resize', setFirstColRect);
         };
     }, [cmpIdxMenuOpen]);
