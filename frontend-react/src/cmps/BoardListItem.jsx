@@ -13,7 +13,7 @@ import { Popover } from './Popover';
 import { BoardActions } from './BoardActions'
 
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
-
+import { Icon } from './Icon';
 
 export function BoardListItem({ board }) {
     const isActive = !!useMatch(`board/${board._id}`)
@@ -22,7 +22,7 @@ export function BoardListItem({ board }) {
     const { onRemoveBoard, onUpdateBoard } = useBoardCrud()
 
     function onMoreOptionsToggle() {
-        setIsPopoverOpen(prev=>!prev)
+        setIsPopoverOpen(prev => !prev)
     }
 
     function handleMoreOptsClose() {
@@ -66,7 +66,9 @@ export function BoardListItem({ board }) {
 
         <NavLink to={`board/${board._id}`} className='board-link aligned-center' >
 
-            <SpaceDashboardOutlinedIcon className='aligned-center' sx={{ fontSize: '1em', lineHeight: '100%' }} />
+            <Icon name="boardTypeMain" section="boardInfo" className="board-icon" />
+
+            {/* <SpaceDashboardOutlinedIcon className='aligned-center' sx={{ fontSize: '1em', lineHeight: '100%' }} /> */}
 
             {isEdit ?
                 <BoardPreviewEdit
