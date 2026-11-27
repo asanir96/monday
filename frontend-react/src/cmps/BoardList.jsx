@@ -6,28 +6,10 @@ import Skeleton from '@mui/material/Skeleton';
 import GridViewIcon from '@mui/icons-material/GridView';
 
 export function BoardList({ boards }) {
-    const sidebarView = useSelector(storedState => storedState.boardModule.sidebarView)
-    const navigate = useNavigate()
-    const isIndex = !!useMatch('/board')   // exact match: true only on /board, not /board/123
     const isAddingBoard = useSelector(storedState => storedState.boardModule.isAddingBoard)
 
-    function navToIndex() {
-        navigate(`board`)
-    }
 
     return <ul className="board-list">
-        {sidebarView === 'workspace' &&
-            <li className={`board-list-item 
-            ${isIndex ? 'selected' : ''}`}>
-
-                <NavLink to={`board`} className='board-link aligned-center board-index-link' >
-                    <GridViewIcon sx={{ fontSize: '1em', lineHeight: '100%' }} />
-                    Manage your board
-                </NavLink>
-
-
-
-            </li>}
         {boards && boards.map(board => <BoardListItem board={board} />)}
         {isAddingBoard &&
             <li className='add-board-loader'>
