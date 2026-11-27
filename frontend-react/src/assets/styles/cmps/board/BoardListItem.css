@@ -14,18 +14,17 @@
     grid-column: 1;
     gap: 8px;
     width: 200px;
-    padding: 0.5em;
+    padding: 4px 8px;
     overflow-inline: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     justify-self: start;
 }
-.boards-sidebar{
-    .board-icon{
-        font-size: 1rem;
-        width: 14px;
-    }
+
+.boards-sidebar .board-list-item:has(    .board-index-link ){
+    margin-top: 0;
 }
+
 .boards-sidebar .board-list-item {
     a {
         width: 100%;
@@ -37,6 +36,23 @@
     .board-index-link {
         border-top-right-radius: var(--border-radius-small);
         border-bottom-right-radius: var(--border-radius-small);
+        height:32px;
+
+        .board-link-title{
+            height:20px;
+            vertical-align: center;
+        }
+        .board-link-icon{
+            width:20px;
+            height:20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .icon{
+                width: 16px;
+                height:16px;
+            }
+        }
     }
 
     .popover-wrapper {

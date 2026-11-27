@@ -13,6 +13,82 @@
     background-color: white;
 }
 
+.boards-sidebar {
+
+    .workspace-header {
+        padding-inline: 18px;
+        padding-block-start: 21px;
+        padding-block-end: 18px;
+
+        .header-title {
+            color: var(--secondary-text-color);
+            font-size: 14px;
+        }
+
+        .workspace-dropdown {
+            color: var(--primary-text-color);
+            height: 40px;
+            width: 245px;
+            margin-inline: auto;
+            margin-block-start: 14px;
+            padding-inline-start: 9px;
+            display: flex;
+            align-items: center;
+            border-radius: var(--border-radius-small);
+            border: 1px solid #c3c6d4;
+
+            .workspace-title {
+                padding-inline-start: 9px;
+                font-size: 14px;
+            }
+
+            .workspace-avatar {
+                background-color: rgb(255, 100, 46);
+                
+                width: 20px;
+                height: 20px;
+                
+                color: white;
+                border-radius: 6px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .icon {
+                    width: 14px;
+                    height: 14px;
+                    position: absolute;
+                    color: black;
+                    left: 10px;
+                    bottom: -4px
+                }
+
+                span {
+                    vertical-align: baseline;
+                    width: 100%;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+
+
+
+
+    .board-icon {
+        font-size: 1rem;
+        width: 14px;
+    }
+}
+
 .board-list-header {
     font-size: var(--font-text3-medium);
     margin-inline: 1rem;
