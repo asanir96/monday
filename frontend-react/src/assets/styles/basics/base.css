@@ -55,3 +55,7 @@ object {
 .left-pane{
     background-color: var(--allgrey-background-color);
 }
+
+button{
+    font-family: inherit;
+}
