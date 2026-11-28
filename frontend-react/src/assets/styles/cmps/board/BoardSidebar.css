@@ -19,6 +19,7 @@
 
 .boards-sidebar.collapsed {
     width: 0;
+    border: 0;
 }
 
 .boards-sidebar {
