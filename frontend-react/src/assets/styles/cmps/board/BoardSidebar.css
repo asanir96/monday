@@ -20,11 +20,12 @@
 .boards-sidebar.collapsed {
     width: 0;
     border: 0;
+        overflow: hidden;
 }
 
 .boards-sidebar {
     transition: 0.3s ease;
-    overflow: hidden;
+
 
     .workspace-header {
         padding-inline: 18px;
