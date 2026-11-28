@@ -65,7 +65,7 @@ export function BoardListItem({ board }) {
         key={board._id} >
 
         <NavLink to={`board/${board._id}`} className='board-link aligned-center' >
-
+            
             <Icon name="boardTypeMain" section="boardInfo" className="board-icon" />
 
 

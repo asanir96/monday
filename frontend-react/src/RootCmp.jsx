@@ -73,11 +73,12 @@ function AppLayout() {
         mediaQuery.addEventListener('change', handleMediaQueryChange)
         // setIsSidebarOpen(true)
 
-        return handleMediaQueryChange
+        return () => mediaQuery.removeEventListener('change', handleMediaQueryChange)
+
     }, [location.pathname])
 
     function handleMediaQueryChange(ev) {
-        if (!ev) return 
+        if (!ev) return
         if (ev.matches) setIsSidebarOpen(false)
         // else setIsSidebarOpen(true)
     }
