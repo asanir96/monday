@@ -68,7 +68,6 @@ export function BoardListItem({ board }) {
 
             <Icon name="boardTypeMain" section="boardInfo" className="board-icon" />
 
-            {/* <SpaceDashboardOutlinedIcon className='aligned-center' sx={{ fontSize: '1em', lineHeight: '100%' }} /> */}
 
             {isEdit ?
                 <BoardPreviewEdit

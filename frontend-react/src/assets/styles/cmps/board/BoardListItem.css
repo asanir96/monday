@@ -21,11 +21,15 @@
     justify-self: start;
 }
 
-.boards-sidebar .board-list-item:has(    .board-index-link ){
+.boards-sidebar .board-list-item:has(.board-index-link) {
     margin-top: 0;
+    color: var(--primary-text-color);
+
 }
 
 .boards-sidebar .board-list-item {
+    color: var(--secondary-text-color);
+
     a {
         width: 100%;
         justify-content: start;
@@ -36,21 +40,23 @@
     .board-index-link {
         border-top-right-radius: var(--border-radius-small);
         border-bottom-right-radius: var(--border-radius-small);
-        height:32px;
+        height: 2rem;
 
-        .board-link-title{
-            height:20px;
+        .board-link-title {
+            height:1.25rem;
             vertical-align: center;
         }
-        .board-link-icon{
-            width:20px;
-            height:20px;
+
+        .board-link-icon {
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            .icon{
-                width: 16px;
-                height:16px;
+
+            .icon {
+                width: 1em;
+                height: 1em;
             }
         }
     }
@@ -71,6 +77,7 @@
 
 .boards-sidebar .board-list-item:hover {
     background-color: rgb(242, 239, 239);
+    color: var(--primary-text-color);
 
     *:not(.board-actions, .board-actions *) {
         background-color: rgb(242, 239, 239);
@@ -91,6 +98,8 @@
 }
 
 .boards-sidebar .board-list-item.focus {
+    color: var(--primary-text-color);
+
     background-color: rgb(242, 239, 239);
 
     *:not(.board-actions, .board-actions *) {
@@ -112,6 +121,8 @@
 }
 
 .boards-sidebar .board-list-item.selected {
+    color: var(--primary-text-color);
+
     background-color: var(--primary-selected-color);
 
     *:not(.board-actions, .board-actions *) {
@@ -129,6 +140,8 @@
 }
 
 .boards-sidebar .board-list-item.selected.focus {
+    color: var(--primary-text-color);
+
     .board-more-options {
         background-color: var(--primary-selected-hover-color);
 
