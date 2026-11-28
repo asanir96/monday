@@ -1,19 +1,15 @@
 import { boardService } from '../services/board'
-import { useEffect, useState } from 'react'
-import { useNavigate, useMatch, NavLink } from 'react-router-dom';
-import GridViewIcon from '@mui/icons-material/GridView';
+import { useEffect } from 'react'
+import { useMatch, NavLink } from 'react-router-dom';
 
 import { useSelector } from 'react-redux'
 import { useBoardCrud } from '../customHooks/useBoardCrud'
 import { loadBoards } from '../store/actions/board.actions'
 
 import { BoardList } from '../cmps/BoardList'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
 import { Tooltip } from '@mui/material'
-import Badge from '@mui/material/Badge';
-import HomeFilledIcon from '@mui/icons-material/HomeFilled';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import { Icon } from './Icon';
 
 export function BoardSidebar({ isOpen, setIsSidebarOpen }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
@@ -34,7 +30,7 @@ export function BoardSidebar({ isOpen, setIsSidebarOpen }) {
         <div className='workspace-header'>
             <Tooltip title="Close workspace menu">
                 <button className='btn-icon close-sidbar-btn' onClick={() => setIsSidebarOpen(false)}>
-                    <KeyboardDoubleArrowLeftIcon />
+                   <Icon name="collapseSidebar" section="boardSidebar" />
                 </button>
             </Tooltip>
 
@@ -44,13 +40,8 @@ export function BoardSidebar({ isOpen, setIsSidebarOpen }) {
                     <div className='container'>
                         <span>M</span>
                     </div>
-                    <HomeFilledIcon className='icon'
-                        sx={{
-                            color: 'black',
-                            stroke: 'white',
-                            strokeWidth: 5,
-                            paintOrder: 'stroke'
-                        }} />
+                    <Icon name="workspaceAvatarHome" section="boardSidebar" />
+
 
                 </div>
                 <div className='workspace-title'>
@@ -68,8 +59,7 @@ export function BoardSidebar({ isOpen, setIsSidebarOpen }) {
 
                         <NavLink to={`board`} className='board-link aligned-center board-index-link' >
                             <div className='board-link-icon' >
-                                <GridViewIcon className="icon" sx={{ fontSize: '16px', lineHeight: '100%' }} />
-
+                                <Icon name="manageWorkspace" section="boardSidebar"/>
                             </div>
                             <div className='board-link-title'>Manage workspace</div>
                         </NavLink>
@@ -84,7 +74,7 @@ export function BoardSidebar({ isOpen, setIsSidebarOpen }) {
                 <span>{view === 'workspace' ? 'Content' : 'Favorites'}</span>
                 {view === 'workspace' && <Tooltip title="Add item to workspace">
                     <button className="add-board-btn" onClick={addEmptyBoard}>
-                        <FontAwesomeIcon icon={faPlus} />
+                        <Icon name="add" section="boardSidebar" />
                     </button>
                 </Tooltip>}
             </div>

@@ -28,13 +28,13 @@
 
     .workspace-header {
         padding-inline: 18px;
-        padding-block-start: 21px;
+        padding-block-start: 16px;
         padding-block-end: 18px;
         display: grid;
         align-items: center;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: max-content max-content;
-        row-gap: 4px;
+        row-gap: 7px;
 
         >.btn-icon {
             border-radius: var(--border-radius-small);
@@ -112,7 +112,11 @@
                     position: absolute;
                     color: black;
                     left: 10px;
-                    bottom: -4px
+                    bottom: -4px;
+                    color:black;
+                    stroke: white;
+                    stroke-width:0.5px;
+                    paint-order: stroke;
                 }
 
                 span {
@@ -136,6 +140,7 @@
 
 .board-list-header {
     font-size: var(--font-text3-medium);
+    border-radius: var(--border-radius-small);
     font-weight: 600;
     margin-inline: 1rem;
     margin-block: 0.5rem;
@@ -164,5 +169,17 @@
     margin: 0;
     padding: 0;
     width: 24px;
-    height: 24px
+    height: 24px;
+    margin-inline-end: .5em;
+    border-radius: var(--border-radius-small);
+
+    .icon {
+        width: 1rem;
+        height: 1rem;
+        padding: 0
+    }
+}
+
+.board-list-header:hover .add-board-btn:hover {
+    background-color: rgb(229, 226, 226)
 }
