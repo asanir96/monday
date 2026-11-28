@@ -32,9 +32,12 @@ export function BoardSidebar({ isOpen, setIsSidebarOpen }) {
 
     return <aside className={`boards-sidebar ${!isOpen ? 'collapsed' : 'expanded'}`}>
         <div className='workspace-header'>
-            <button className='btn-icon' onClick={() => setIsSidebarOpen(false)}>
-                <KeyboardDoubleArrowLeftIcon />
-            </button>
+            <Tooltip title="Close workspace menu">
+                <button className='btn-icon close-sidbar-btn' onClick={() => setIsSidebarOpen(false)}>
+                    <KeyboardDoubleArrowLeftIcon />
+                </button>
+            </Tooltip>
+
             <div className='header-title'>Workspace</div>
             <div className='workspace-dropdown'>
                 <div className='workspace-avatar position-relative'>
