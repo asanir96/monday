@@ -4,6 +4,7 @@ import { setSidebarView } from '../store/actions/board.actions';
 import GridViewIcon from '@mui/icons-material/GridView';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import { Tooltip } from '@mui/material';
 
 export function MainSidebar({isSidebarOpen, setIsSidebarOpen}) {
     const sidebarView = useSelector(storedState => storedState.boardModule.sidebarView)
@@ -13,10 +14,12 @@ export function MainSidebar({isSidebarOpen, setIsSidebarOpen}) {
     }
 
     return <nav className="main-sidebar">
-
+        <Tooltip title='Open workspace menu'>
         <button className={`btn-icon expand-siderbar-btn ${isSidebarOpen?'collapsed':'expanded'}`} onClick={() => setIsSidebarOpen(true)}>
             <KeyboardDoubleArrowRightIcon className='icon'/>
         </button>
+        </Tooltip>
+
 
         <button
             className={`main-sidebar-btn ${sidebarView === 'workspace' ? 'selected' : ''}`}

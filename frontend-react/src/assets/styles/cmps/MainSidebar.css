@@ -28,7 +28,10 @@
         width: 0;
     }
 }
+.expand-siderbar-btn:hover{
+        background-color: var(--primary-background-hover-color);
 
+}
 .expand-siderbar-btn {
     background-color: inherit;
     color:var(--secondary-text-color);

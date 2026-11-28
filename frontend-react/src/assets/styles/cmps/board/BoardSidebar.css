@@ -124,6 +124,7 @@
 
 .board-list-header {
     font-size: var(--font-text3-medium);
+    font-weight: 600;
     margin-inline: 1rem;
     margin-block: 0.5rem;
     display: flex;
