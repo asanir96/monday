@@ -75,10 +75,19 @@
         align-items: center;
         justify-content: center;
         margin: auto;
-        width: 32px;
-        height: 32px;
+        width: 2.90909090909em;
+        height: 2.90909090909em;
         border-radius: var(--border-radius-medium);
+
+        .icon{
+                    alignment-baseline: central;
+
+            width: 1.63636363636em;
+            height: 1.63636363636em;
+        }
     }
+
+    
 
     .sidebar-icon-container:hover {
         >* {

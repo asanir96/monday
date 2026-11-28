@@ -1,23 +1,22 @@
 
 import { useSelector } from 'react-redux';
 import { setSidebarView } from '../store/actions/board.actions';
-import GridViewIcon from '@mui/icons-material/GridView';
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { Tooltip } from '@mui/material';
+import { Icon } from './Icon';
 
-export function MainSidebar({isSidebarOpen, setIsSidebarOpen}) {
+export function MainSidebar({ isSidebarOpen, setIsSidebarOpen }) {
     const sidebarView = useSelector(storedState => storedState.boardModule.sidebarView)
-    console.log('isSidebarOpen',isSidebarOpen)
+    console.log('isSidebarOpen', isSidebarOpen)
     function onSwitchBoardGroup(view) {
         setSidebarView(view)
     }
 
     return <nav className="main-sidebar">
         <Tooltip title='Open workspace menu'>
-        <button className={`btn-icon expand-siderbar-btn ${isSidebarOpen?'collapsed':'expanded'}`} onClick={() => setIsSidebarOpen(true)}>
-            <KeyboardDoubleArrowRightIcon className='icon'/>
-        </button>
+            <button className={`btn-icon expand-siderbar-btn ${isSidebarOpen ? 'collapsed' : 'expanded'}`} onClick={() => setIsSidebarOpen(true)}>
+                <KeyboardDoubleArrowRightIcon className='icon' />
+            </button>
         </Tooltip>
 
 
@@ -26,7 +25,7 @@ export function MainSidebar({isSidebarOpen, setIsSidebarOpen}) {
             onClick={() => onSwitchBoardGroup('workspace')}
         >
             <div className='sidebar-icon-container'>
-                <GridViewIcon sx={{ fontSize: '1rem', lineHeight: '100%', width: 18, height: 18 }} />
+                <Icon name="workspace" section="mainSidebar" />
             </div>
             <span className='sidebar-btn-title'>
                 Workspace
@@ -37,7 +36,8 @@ export function MainSidebar({isSidebarOpen, setIsSidebarOpen}) {
             onClick={() => onSwitchBoardGroup('favorites')}
         >
             <div className='sidebar-icon-container'>
-                <StarBorderOutlinedIcon sx={{ fontSize: '1rem', lineHeight: '100%', width: 18, height: 18 }} />
+                <Icon name="favorites" section="mainSidebar" />
+
             </div>
             <span className='sidebar-btn-title'>
                 Favorites
