@@ -13,14 +13,14 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material'
 import Badge from '@mui/material/Badge';
 import HomeFilledIcon from '@mui/icons-material/HomeFilled';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
-export function BoardSidebar() {
+export function BoardSidebar({ isOpen, setIsSidebarOpen }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const view = useSelector(storeState => storeState.boardModule.sidebarView)
     const filteredBoards = boardService.filterBoardsByView(boards, view)
     const { onAddEmptyBoard } = useBoardCrud()
     const isIndex = !!useMatch('/board')   // exact match: true only on /board, not /board/123
-
 
     useEffect(() => {
         loadBoards()
@@ -30,8 +30,11 @@ export function BoardSidebar() {
         await onAddEmptyBoard()
     }
 
-    return <aside className='boards-sidebar'>
+    return <aside className={`boards-sidebar ${!isOpen ? 'collapsed' : 'expanded'}`}>
         <div className='workspace-header'>
+            <button className='btn-icon' onClick={() => setIsSidebarOpen(false)}>
+                <KeyboardDoubleArrowLeftIcon />
+            </button>
             <div className='header-title'>Workspace</div>
             <div className='workspace-dropdown'>
                 <div className='workspace-avatar position-relative'>
@@ -86,7 +89,7 @@ export function BoardSidebar() {
                 boards={filteredBoards} />
 
 
-    </nav>
+        </nav>
     </aside >
 
 

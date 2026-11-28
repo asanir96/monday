@@ -65,19 +65,29 @@ function AppLayout() {
     // Small screens only: the left pane is a drawer (on desktop it's always shown and this is ignored)
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const location = useLocation()
-
     // Picking a board (or any navigation) closes the drawer
     useEffect(() => {
-        setIsSidebarOpen(false)
+        const mediaQuery = window.matchMedia('(max-width: 1023px)')
+
+        setIsSidebarOpen(true)
+        mediaQuery.addEventListener('change', handleMediaQueryChange)
+        // setIsSidebarOpen(true)
+
+        return handleMediaQueryChange
     }, [location.pathname])
+
+    function handleMediaQueryChange(ev) {
+        if (!ev) return 
+        if (ev.matches) setIsSidebarOpen(false)
+        // else setIsSidebarOpen(true)
+    }
 
     return (
         <div className={`app-layout ${isSidebarOpen ? 'sidebar-open' : ''}`}>
             <AppHeader onToggleSidebar={() => setIsSidebarOpen(isOpen => !isOpen)} />
-            <div className="sidebar-backdrop" onClick={() => setIsSidebarOpen(false)} />
             <aside className='left-pane left-pane-layout'>
-                <MainSidebar/>
-                <BoardSidebar />
+                <MainSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+                <BoardSidebar isOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
             </aside>
             {/* <SideBar /> */}
 

@@ -51,7 +51,7 @@
 }
 
 .left-pane{
-    width: 350px;
+    /* width: 350px; */
 }
 
 /* ---- Small screens: monday has no mobile web layout (it sends phones to its app), so this is our own ----
@@ -60,43 +60,3 @@
     display: none;
 }
 
-@media (max-width: 1023px) {
-    .app-layout {
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-areas:
-            "header"
-            "main";
-
-        /* The left pane becomes a drawer, opened from the header's menu button */
-        > .left-pane {
-            position: fixed;
-            inset-block: 48px 0;
-            inset-inline-start: 0;
-            z-index: 50;
-            /* The sidebar's content is ~350px wide - clip anything wider so it can't peek out when closed */
-            width: min(350px, 100vw);
-            overflow: hidden;
-            background-color: var(--allgrey-background-color);
-            translate: -100%;
-            transition: translate 0.2s ease-out;
-        }
-
-        &.sidebar-open {
-            > .left-pane {
-                translate: 0;
-            }
-
-            > .sidebar-backdrop {
-                display: block;
-                position: fixed;
-                inset: 48px 0 0;
-                z-index: 40;
-                background-color: var(--backdrop-color);
-            }
-        }
-
-        > .app-main {
-            border-start-start-radius: 0;
-        }
-    }
-}

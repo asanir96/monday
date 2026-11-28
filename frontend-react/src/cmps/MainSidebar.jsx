@@ -3,15 +3,21 @@ import { useSelector } from 'react-redux';
 import { setSidebarView } from '../store/actions/board.actions';
 import GridViewIcon from '@mui/icons-material/GridView';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
-export function MainSidebar() {
+export function MainSidebar({isSidebarOpen, setIsSidebarOpen}) {
     const sidebarView = useSelector(storedState => storedState.boardModule.sidebarView)
-
+    console.log('isSidebarOpen',isSidebarOpen)
     function onSwitchBoardGroup(view) {
         setSidebarView(view)
     }
 
     return <nav className="main-sidebar">
+
+        <button className={`btn-icon expand-siderbar-btn ${isSidebarOpen?'collapsed':'expanded'}`} onClick={() => setIsSidebarOpen(true)}>
+            <KeyboardDoubleArrowRightIcon className='icon'/>
+        </button>
+
         <button
             className={`main-sidebar-btn ${sidebarView === 'workspace' ? 'selected' : ''}`}
             onClick={() => onSwitchBoardGroup('workspace')}
